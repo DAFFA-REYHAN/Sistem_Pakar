@@ -1,0 +1,248 @@
+body {
+margin:0;
+padding:0;
+line-height: 1.5em;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+background-color:#E6E6E6;
+}
+a:link { color: #0066CC; text-decoration: none} 
+a:visited { color: #0066CC; text-decoration: none} 
+a:active { color: #008000; text-decoration: underline} 
+a:hover { color: #008000; text-decoration: underline}
+ 
+#templatemo_container {
+width: 980px;
+margin:20px auto;
+background:transparent;
+}
+#templatemo_header {
+clear: left;
+margin:5px auto;
+height: 160px;
+background: url(images) no-repeat;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 10px 2px #000;
+}
+#templatemo_content {
+width: 980px;
+}
+#templatemo_left_column {
+background: #EEEEEE;
+float: left;
+width: 200px;
+margin:5px auto;
+min-height: 400px;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 15px 2px #000;
+}
+#templatemo_right_column {
+float: left;
+width: 770px;
+margin:5px 5px 10px 5px;
+min-height: 400px;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+#templatemo_footer {
+clear: left;
+background: #00CC99;
+color: #FFFFFF;
+margin:20px auto;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 15px 2px #000;
+}
+#templatemo_footer a {
+color: #FFFFFF;
+}
+#templatemo_site_title {
+padding-top: 60px;
+padding-left: 60px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 26px;
+color: #000000;
+}
+#templatemo_site_slogan {
+padding-top: 10px;
+padding-left: 60px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-weight: bold;
+font-size: 12px;
+color: #000000;
+}
+.templatemo_line {
+clear: left;
+height: 3px;
+background: #0066CC;
+}
+.templatemo_pic {
+float: right;
+margin-left: 10px; 
+border: 0px solid #000000;
+}
+.section_box {
+margin: 10px;
+padding: 10px;
+background: #008000;
+color: #FFFFFF;
+}
+.section_box a {
+color: #FFFF99;
+}
+.section_box a:hover {
+color: #99FFFF;
+}
+.section_box2 {
+margin-top: 10px;
+padding: 10px;
+border: 1px dashed #0066AA;
+background: #D9EEFF;
+color: #006699;
+}
+.section_box3 {
+margin: 10px;
+padding: 10px;
+border: 1px dashed #0066AA;
+color: #006699;
+border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+.text_area {
+margin: 10px;
+}
+.title {
+padding-bottom: 10px;
+font-size: 16px;
+font-weight: bold;
+color: #008800;
+}
+.subtitle {
+padding-bottom: 10px;
+font-size: 13px;
+font-weight: bold;
+}
+
+/* Menu Credits: Dynamic Drive CSS Library */
+/* URL: http://www.dynamicdrive.com/style/ */
+#blockmenu{
+margin: 5px auto;
+float: left;
+width: 100%;
+border: 0px solid red;
+}
+.solidblockmenu{         
+margin: 5px auto;
+padding: 0;
+float: left;
+font: bold 13px Verdana;
+width: 100%;
+border: 0px solid #FFFFFF;
+background: #00CC99 url() center center repeat-x;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 15px 2px #000;
+}
+.tanggal{
+		position:absolute;
+		margin-left: 15px;
+		margin-top: 27px;
+		color: #fff;
+		font-weight:bold;
+		}
+.teksjalan{
+		position:absolute;
+		margin-left: 180px;
+		margin-top: 27px;
+		color: #fff;
+		font-weight:bold;
+		border:0px solid red;
+		width: 340px;
+		}
+.solidblockmenu li{
+display: inline;
+
+}
+.solidblockmenu li a{
+float:right;
+color: white;
+padding: 18px 16px;
+text-decoration: none;
+border-left: 1px dashed white;
+}
+.solidblockmenu li a:visited{
+color:#FFF;
+}
+.solidblockmenu li a:hover, .solidblockmenu li {
+color: #000;
+/*font-family:"Comic Sans MS";*/
+   border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  -moz-box-shadow:2px 2px 15px 2px #000;
+}
+
+.solidblockmenu li .current{
+
+/*font-family:"Comic Sans MS";*/
+background: linear-gradient(white,#00CC99);
+   border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+  -moz-box-shadow:2px 2px 15px 2px #000;
+
+}
+p.iepara{
+padding-top: 1em;
+}
+.glossymenu{
+list-style-type: none;
+margin: 5px auto;
+padding: 0px;
+width: 185px;
+border: 1px dashed #006600;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+}
+.glossymenu li a{
+background:#00CC99;
+font: bold 13px "Trebuchet MS", Verdana, Helvetica;
+color: white;
+display: block;
+width: 160px;
+padding: 6px;
+margin: 5px auto;
+padding-left: 10px;
+text-decoration: none;
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 10px 2px #000;
+}
+* html .glossymenu li a{ /*IE only. Actual menu width minus left padding of A element (10px) */
+width: 180px;
+}
+.glossymenu li a:visited, .glossymenu li a:active{
+color: white;
+}
+.glossymenu li a:hover, .glossymenu li .current{
+background: linear-gradient(white,#00CC99);
+color: #006600;
+}
+.glossymenu li:hover>ul
+{
+  visibility: visible;
+  top: 100%;
+}
+.isitabelganjil{
+    background-color:WHITE;
+	font-size: 11px;
+}
+.isitabelgenap{
+    background-color:#DDDDDD;
+	font-size: 11px;
+}
+.style2 {
+	font-size: xx-small;
+	font-style: italic;
+	color: #333333;
+}
+
+#pag {
+   border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+  -moz-box-shadow:2px 2px 10px 2px #000;
+  background-color:#00CC99;
+}
+
+#pag .link{
+color:#fff;
+}
