@@ -236,9 +236,11 @@ if (isset($_REQUEST['page'])) {
 									<tr>
 										<td valign="top">Usia</td>
 										<td valign="top">:</td>
-										<td><span id="sprytextfield4">
+										<td><span id="sprytextfield5">
 												<input name="usia" type="text" size="30" maxlength="30">
-												<span class="selectRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Usia Anak harus dipilih.</span></span>
+												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Usia Anda harus diisi.</span>
+												<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
+											</span>
 										</td>
 									</tr>
 									<tr>
@@ -298,14 +300,11 @@ if (isset($_REQUEST['page'])) {
 
 									</tr>
 									<tr>
-										<td>Masukan Angka Berikut</td>
+										<td>Validasi</td>
 										<td>:</td>
-										<td><span id="sprytextfield77">
-												<img src="captchasecurityimages.php?width=100&height=40&character=4" /><br><br><input id="security_code" name="security_code" type="text" size="12" />
-												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-												<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-												<span class="textfieldMaxCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span></span></td> */
-
+										<td>
+												<div class="g-recaptcha" data-sitekey="6LcEVPUgAAAAAFLhguztcrcslhUU6-uuZYkau_No"></div>
+										</td>
 									</tr>
 									<tr>
 										<td height="40" colspan="3" align="right" valign="bottom"><input type="submit" name="tombol" value="Daftar" /><input type="reset" name="reset" value="Hapus" />
@@ -314,9 +313,8 @@ if (isset($_REQUEST['page'])) {
 								</table>
 							</form>
 						</div>
-
+						<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 						<script type="text/javascript">
-							<!--
 							var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "data", {
 								minChars: 5,
 								validateOn: ["blur"]
@@ -334,18 +332,10 @@ if (isset($_REQUEST['page'])) {
 								validateOn: ["blur"]
 							});
 							var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "integer", {
-								minValue: 1,
-								maxValue: 12,
-								maxChars: 2,
 								validateOn: ["blur"]
 							});
 							var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "alamat", {
 								minChars: 4,
-								validateOn: ["blur"]
-							});
-							var sprytextfield77 = new Spry.Widget.ValidationTextField("sprytextfield77", "none", {
-								minChars: 4,
-								maxChars: 4,
 								validateOn: ["blur"]
 							});
 							var sprytextfield88 = new Spry.Widget.ValidationTextField("sprytextfield88", "nama", {
@@ -358,7 +348,7 @@ if (isset($_REQUEST['page'])) {
 								validateOn: ["blur"]
 							});
 							//
-							-->
+							
 						</script>
 					</div>
 				</div>

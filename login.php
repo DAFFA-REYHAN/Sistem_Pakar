@@ -6,12 +6,6 @@ session_start();
 //Include database connection details
 require_once('koneksi_db.php');
 
-//Array to store validation errors
-$errmsg_arr = array();
-
-//Validation error flag
-$errflag = false;
-
 
 
 //Function to sanitize values received from the form. Prevents SQL injection
@@ -21,7 +15,7 @@ function clean($str)
 	if (get_magic_quotes_gpc()) {
 		$str = stripslashes($str);
 	}
-	return mysqli_real_escape_string($str);
+	return mysqli_real_escape_string($GLOBALS['conn'], $str);
 }
 
 //Sanitize the POST values
@@ -37,14 +31,6 @@ if ($username == '') {
 if ($password == '') {
 	$errmsg_arr[] = 'Password missing';
 	$errflag = true;
-}
-
-//If there are input validations, redirect back to the login form
-if ($errflag) {
-	$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-	session_write_close();
-	header("location: index.php");
-	exit();
 }
 
 //Create query
