@@ -1,6 +1,7 @@
 <?php
 require_once('otentifikasi.php');
 include "tanggal.php";
+
 if (isset($_REQUEST['page'])) {
 	$page = $_REQUEST['page'];
 } else {
@@ -62,7 +63,7 @@ if (isset($_REQUEST['page'])) {
 				<div class="container">
 					<ul class="nav nav-tabs nav-justified">
 						<li role="presentation">
-							<?php echo "$tglsekarang"; ?>
+							<?= "$tglsekarang"; ?>
 
 						</li>
 						<li role="presentation"><a href="index_user.php">Home</a></li>
@@ -117,7 +118,7 @@ if (isset($_REQUEST['page'])) {
 						$act = isset($_GET['act']);
 						$username = $_SESSION['SESS_USERNAME'];
 						?>
-						<div class="alert alert-danger" role="alert">Selamat Datang <?php echo $username; ?></div>
+						<div class="alert alert-danger" role="alert">Selamat Datang <?= $username; ?></div>
 
 
 
@@ -140,9 +141,9 @@ if (isset($_REQUEST['page'])) {
 							<link href="SpryAssets/SpryValidationPassword.css" rel="stylesheet" type="text/css" />
 							<script src="SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
 							<link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css" />
-							<div class="title">Ubah Profil <?php echo $username; ?></div>
+							<div class="title">Ubah Profil <?= $username; ?></div>
 							<br>
-							<form action="?page=9&act=acubahprofil&u=<?php echo $username; ?>" method="post" align="left" cellpadding="5">
+							<form action="?page=9&act=acubahprofil&u=<?= $username; ?>" method="post" align="left" cellpadding="5">
 								<table>
 									<tr>
 										<td colspan="3">
@@ -161,7 +162,7 @@ if (isset($_REQUEST['page'])) {
 										<td>Nama </td>
 										<td>:</td>
 										<td><span id="sprytextfield491">
-												<input name="nama_user" type="text" size="30" maxlength="30" value="<?php echo $data['nama_user']; ?>">
+												<input name="nama_user" type="text" size="30" maxlength="30" value="<?= $data['nama_user']; ?>">
 												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Nama Anda harus diisi.</span>
 												<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Panjang minimal 2 karakter.</span>
 												<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span></span></td>
@@ -169,9 +170,11 @@ if (isset($_REQUEST['page'])) {
 									<tr>
 										<td valign="top">Usia</td>
 										<td valign="top">:</td>
-										<td><span id="sprytextfield4">
-												<input name="usia" type="text" size="30" maxlength="30">
-												<span class="selectRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Usia Anak harus dipilih.</span></span>
+										<td><span id="sprytextfield59">
+												<input name="usia" type="text" size="30" maxlength="30" value="<?= $data['usia'] ?>">
+												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Usia Anda harus diisi.</span>
+												<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
+											</span>
 										</td>
 									</tr>
 									<tr>
@@ -179,15 +182,15 @@ if (isset($_REQUEST['page'])) {
 										<td>:</td>
 										<td><select name="jenis_kelamin">
 												<option value="#">Pilih Jenis Kelamin</option>
-												<option value="L">Laki-laki</option>
-												<option value="P">Perempuan</option>
+												<option value="L" <?php if ($data['jenis_kelamin'] == 'L') echo "selected" ?>>Laki-laki</option>
+												<option value="P" <?php if ($data['jenis_kelamin'] == 'P') echo "selected" ?>>Perempuan</option>
 											</select></td>
 									</tr>
 									<tr>
 										<td>Alamat</td>
 										<td>:</td>
 										<td><span id="sprytextfield69">
-												<input name="alamat" type="text" size="50" maxlength="100" value="<?php echo $data['alamat']; ?>" />
+												<input name="alamat" type="text" size="50" maxlength="100" value="<?= $data['alamat']; ?>" />
 												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Alamat harus diisi.</span>
 												<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 4 karakter.</span>
 												<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
@@ -202,13 +205,11 @@ if (isset($_REQUEST['page'])) {
 
 
 									<tr>
-										<td>Masukan Angka Berikut</td>
+										<td>Validasi</td>
 										<td>:</td>
-										<td><span id="sprytextfield779">
-												<img src="captchasecurityimages.php?width=100&height=40&character=4" /><br><br><input id="security_code" name="security_code" type="text" size="12" />
-												<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-												<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-												<span class="textfieldMaxCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span></span></td>
+										<td>
+											<div class="g-recaptcha" data-sitekey="6LcEVPUgAAAAAFLhguztcrcslhUU6-uuZYkau_No"></div>
+										</td>
 
 									</tr>
 									<tr>
@@ -226,8 +227,8 @@ if (isset($_REQUEST['page'])) {
 							</form>
 						</div>
 
+						<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 						<script type="text/javascript">
-							<!--
 							var sprypassword9 = new Spry.Widget.ValidationPassword("sprypassword9", {
 								minChars: 6,
 								validateOn: ["blur"]
@@ -242,9 +243,6 @@ if (isset($_REQUEST['page'])) {
 								validateOn: ["blur"]
 							});
 							var sprytextfield59 = new Spry.Widget.ValidationTextField("sprytextfield59", "integer", {
-								minValue: 1,
-								maxValue: 12,
-								maxChars: 2,
 								validateOn: ["blur"]
 							});
 							var sprytextfield69 = new Spry.Widget.ValidationTextField("sprytextfield69", "alamat", {
@@ -262,25 +260,20 @@ if (isset($_REQUEST['page'])) {
 							var validsel = new Spry.Widget.ValidationSelect("validsel", {
 								validateOn: ["blur"]
 							});
-
-
-
-							//
-							-->
 						</script>
 
 
 						<?php
 
-						if ($act == "acubahprofil") {
-
+						if ($act == "acubahprofil" && isset($_POST['tombol'])) {
+							include "koneksi_db.php";
 							function clean($str)
 							{
 								$str = @trim($str);
 								if (get_magic_quotes_gpc()) {
 									$str = stripslashes($str);
 								}
-								return mysqli_real_escape_string($str);
+								return mysqli_real_escape_string($GLOBALS['conn'], $str);
 							}
 
 							$username = $_GET['u'];
@@ -299,7 +292,7 @@ if (isset($_REQUEST['page'])) {
 
 
 							if (isset($_POST['tombol'])) {
-								if (($_SESSION['security_code'] == $_POST['security_code']) && (!empty($_SESSION['security_code']))) {
+								if ($_POST['g-recaptcha-response'] != "") {
 
 									$cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'"));
 
@@ -309,10 +302,10 @@ if (isset($_REQUEST['page'])) {
 
 										echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?page=9&current9=curren&act=berhasil&u=$username\">";
 									} else {
-										echo  "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?page=9&current9=curren&act=gagal&u=$username\">";
+										echo  "<meta http-equiv=\"refresh\" content=\"0; url=?page=9&current9=curren&act=gagal&u=$username\">";
 									}
 								} else {
-									echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?page=9&current9=curren&act=gagal2&u=$username\">";
+									echo "<meta http-equiv=\"refresh\" content=\"0; url=?page=9&current9=curren&act=gagal2&u=$username\">";
 								}
 							}
 						} elseif ($act == "berhasil") {
@@ -322,7 +315,7 @@ if (isset($_REQUEST['page'])) {
 							<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 							<div class="text_area" align="justify">
 								<br />
-								<div class="title">Profil <?php echo $username; ?> Berhasil Disimpan</div>
+								<div class="title">Profil <?= $username; ?> Berhasil Disimpan</div>
 								<?php
 
 
@@ -330,7 +323,7 @@ if (isset($_REQUEST['page'])) {
 								$data = mysqli_fetch_array($qry);
 
 								?>
-								<form action="?page=9&act=ubahprofil&u=<?php echo $username; ?>" method="post" align="left" cellpadding="5">
+								<form action="?page=9&act=ubahprofil&u=<?= $username; ?>" method="post" align="left" cellpadding="5">
 									<table align="left" cellpadding="5">
 										<tr>
 											<td colspan="3">
@@ -346,12 +339,12 @@ if (isset($_REQUEST['page'])) {
 										<tr>
 											<td valign="top">Nama </td>
 											<td valign="top">:</td>
-											<td valign="bottom"><?php echo $data['nama_user']; ?>
+											<td valign="bottom"><?= $data['nama_user']; ?>
 										</tr>
 										<tr>
 											<td valign="top">Usia</td>
 											<td valign="top">:</td>
-											<td valign="bottom"><?php echo $data['usia']; ?> tahun
+											<td valign="bottom"><?= $data['usia']; ?> tahun
 										</tr>
 										<tr>
 											<td valign="top">Jenis Kelamin</td>
@@ -365,7 +358,7 @@ if (isset($_REQUEST['page'])) {
 										<tr>
 											<td valign="top">Alamat</td>
 											<td valign="top">:</td>
-											<td valign="bottom"><?php echo $data['alamat']; ?>
+											<td valign="bottom"><?= $data['alamat']; ?>
 										</tr>
 										<tr>
 											<td colspan="3">
@@ -395,10 +388,10 @@ if (isset($_REQUEST['page'])) {
 								<script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 								<link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 								<div class="title">
-									<font color="red">Ubah Profil <?php echo $username; ?> Gagal Disimpan</font>
+									<font color="red">Ubah Profil <?= $username; ?> Gagal Disimpan</font>
 								</div>
 								<br>
-								<form action="?page=9&act=acubahprofil&u=<?php echo $username; ?>" method="post" align="left" cellpadding="5">
+								<form action="?page=9&act=acubahprofil&u=<?= $username; ?>" method="post" align="left" cellpadding="5">
 									<table>
 										<tr>
 											<td colspan="3">
@@ -423,7 +416,7 @@ if (isset($_REQUEST['page'])) {
 											<td>Nama </td>
 											<td>:</td>
 											<td><span id="sprytextfield49">
-													<input name="nama_user" type="text" size="30" maxlength="30" value="<?php echo $data['nama_user']; ?>">
+													<input name="nama_user" type="text" size="30" maxlength="30" value="<?= $data['nama_user']; ?>">
 													<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Nama Anak harus diisi.</span>
 													<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Panjang minimal 2 karakter.</span>
 													<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span></span></td>
@@ -453,20 +446,15 @@ if (isset($_REQUEST['page'])) {
 										<tr>
 											<td>Jenis Kelamin</td>
 											<td>:</td>
-											<td><input name="jenis_kelamin" type="radio" value="L" <?php if ($data['jenis_kelamin'] == 'L') {
-																										echo 'checked';
-																									} ?>> Laki-laki
-												<input name="jenis_kelamin" type="radio" value="P" <?php if ($data['jenis_kelamin'] == 'P') {
-																										echo 'checked';
-																									}
-																									?>> Perempuan
+											<td><input name="jenis_kelamin" type="radio" value="L" <?php if ($data['jenis_kelamin'] == 'L') echo 'checked'; ?>> Laki-laki
+												<input name="jenis_kelamin" type="radio" value="P" <?php if ($data['jenis_kelamin'] == 'P') echo 'checked'; ?>> Perempuan
 											</td>
 										</tr>
 										<tr>
 											<td>Alamat</td>
 											<td>:</td>
 											<td><span id="sprytextfield69">
-													<input name="alamat" type="text" size="50" maxlength="100" value="<?php echo $data['alamat']; ?>" />
+													<input name="alamat" type="text" size="50" maxlength="100" value="<?= $data['alamat']; ?>" />
 													<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Alamat harus diisi.</span>
 													<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 4 karakter.</span>
 													<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
@@ -531,10 +519,10 @@ if (isset($_REQUEST['page'])) {
 								<script src="SpryAssets/SpryValidationConfirm.js" type="text/javascript"></script>
 								<link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 								<div class="title">
-									<font color="red">Ubah Profil <?php echo $username; ?> Gagal Disimpan</font>
+									<font color="red">Ubah Profil <?= $username; ?> Gagal Disimpan</font>
 								</div>
 								<br>
-								<form action="?page=9&act=acubahprofil&u=<?php echo $username; ?>" method="post" align="left" cellpadding="5">
+								<form action="?page=9&act=acubahprofil&u=<?= $username; ?>" method="post" align="left" cellpadding="5">
 									<table>
 
 
@@ -554,7 +542,7 @@ if (isset($_REQUEST['page'])) {
 											<td>Nama</td>
 											<td>:</td>
 											<td><span id="sprytextfield49">
-													<input name="nama_user" type="text" size="30" maxlength="30" value="<?php echo $data['nama_user']; ?>">
+													<input name="nama_user" type="text" size="30" maxlength="30" value="<?= $data['nama_user']; ?>">
 													<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Nama Anak harus diisi.</span>
 													<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Panjang minimal 2 karakter.</span>
 													<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span></span></td>
@@ -583,7 +571,7 @@ if (isset($_REQUEST['page'])) {
 											<td>Alamat</td>
 											<td>:</td>
 											<td><span id="sprytextfield69">
-													<input name="alamat" type="text" size="50" maxlength="100" value="<?php echo $data['alamat']; ?>" />
+													<input name="alamat" type="text" size="50" maxlength="100" value="<?= $data['alamat']; ?>" />
 													<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Alamat harus diisi.</span>
 													<span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 4 karakter.</span>
 													<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
@@ -632,9 +620,8 @@ if (isset($_REQUEST['page'])) {
 
 
 						?>
-
+						<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 						<script type="text/javascript">
-							<!--
 							var sprypassword9 = new Spry.Widget.ValidationPassword("sprypassword9", {
 								minChars: 6,
 								validateOn: ["blur"]
@@ -649,20 +636,13 @@ if (isset($_REQUEST['page'])) {
 								validateOn: ["blur"]
 							});
 							var sprytextfield59 = new Spry.Widget.ValidationTextField("sprytextfield59", "integer", {
-								minValue: 1,
-								maxValue: 12,
-								maxChars: 2,
 								validateOn: ["blur"]
 							});
 							var sprytextfield69 = new Spry.Widget.ValidationTextField("sprytextfield69", "alamat", {
 								minChars: 4,
 								validateOn: ["blur"]
 							});
-							var sprytextfield779 = new Spry.Widget.ValidationTextField("sprytextfield779", "none", {
-								minChars: 4,
-								maxChars: 4,
-								validateOn: ["blur"]
-							});
+
 							var sprytextfield889 = new Spry.Widget.ValidationTextField("sprytextfield889", "nama", {
 								validateOn: ["blur"]
 							});
@@ -673,7 +653,6 @@ if (isset($_REQUEST['page'])) {
 
 
 							//
-							-->
 						</script>
 
 

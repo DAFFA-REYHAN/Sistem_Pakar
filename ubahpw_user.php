@@ -119,13 +119,13 @@ if (isset($_REQUEST['page'])) {
 
 
             <style type="text/css">
-              <!--
+          
               .style2 {
                 font-size: xx-small;
                 font-style: italic;
                 color: #333333;
               }
-              -->
+             
             </style>
             <?php
 
@@ -238,13 +238,11 @@ if (isset($_REQUEST['page'])) {
 
                     </tr>
                     <tr>
-                      <td>Masukan Angka Berikut</td>
+                      <td>Validasi</td>
                       <td>:</td>
-                      <td><span id="sprytextfield779">
-                          <img src="captchasecurityimages.php?width=100&height=40&character=4" /><br><br><input id="security_code" name="security_code" type="text" size="12" />
-                          <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-                          <span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span>
-                          <span class="textfieldMaxCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Angka harus diisi dengan benar.</span></span></td>
+                      <td>
+                        <div class="g-recaptcha" data-sitekey="6LcEVPUgAAAAAFLhguztcrcslhUU6-uuZYkau_No">
+                      </td>
 
                     </tr>
                     <tr>
@@ -266,13 +264,14 @@ if (isset($_REQUEST['page'])) {
             <?php
 
             if ($act == "acubahpass") {
+              include "koneksi_db.php";
               function clean($str)
               {
                 $str = @trim($str);
                 if (get_magic_quotes_gpc()) {
                   $str = stripslashes($str);
                 }
-                return mysqli_real_escape_string($str);
+                return mysqli_real_escape_string($GLOBALS['conn'], $str);
               }
 
               $username = $_GET['u'];
@@ -287,7 +286,7 @@ if (isset($_REQUEST['page'])) {
 
 
               if (isset($_POST['tombol'])) {
-                if (($_SESSION['security_code'] == $_POST['security_code']) && (!empty($_SESSION['security_code']))) {
+                if ($_POST['g-recaptcha-response'] != "") {
 
                   $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username' and password='" . md5($_POST['passwordlama']) . "'"));
 
@@ -604,9 +603,8 @@ if (isset($_REQUEST['page'])) {
 
 
             ?>
-
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
             <script type="text/javascript">
-              <!--
               var sprypassword9 = new Spry.Widget.ValidationPassword("sprypassword9", {
                 minChars: 6,
                 validateOn: ["blur"]
@@ -646,7 +644,6 @@ if (isset($_REQUEST['page'])) {
               });
 
               //
-              -->
             </script>
           </div>
         </div>

@@ -2,8 +2,8 @@
 session_start();
 
 if (isset($_POST['tombol']) && $_POST['g-recaptcha-response'] != "") {
-	
-	
+
+
 	// Insert you code for processing the form here
 	include "koneksi_db.php";
 	function clean($str)
@@ -40,6 +40,5 @@ if (isset($_POST['tombol']) && $_POST['g-recaptcha-response'] != "") {
 	} else {
 		echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php?page=gagal2\">";
 	}
-	
 } else {
 }
