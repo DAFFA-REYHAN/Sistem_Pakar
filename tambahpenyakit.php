@@ -190,7 +190,7 @@ if (isset($_REQUEST['page'])) {
 						?>
 
 						<script type="text/javascript">
-							<!--
+							
 							var sprytextfield21 = new Spry.Widget.ValidationTextField("sprytextfield21");
 							var sprytextfield22 = new Spry.Widget.ValidationTextField("sprytextfield22");
 
@@ -201,7 +201,7 @@ if (isset($_REQUEST['page'])) {
 							var sprytextarea5 = new Spry.Widget.ValidationTextarea("sprytextarea5");
 
 							//
-							-->
+
 						</script>
 
 

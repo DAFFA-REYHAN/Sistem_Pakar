@@ -1,5 +1,4 @@
 <script type="text/javascript">
-	<!--
 	function popup(url) {
 		var width = 770;
 		var height = 300;
@@ -21,7 +20,6 @@
 		return false;
 	}
 	// 
-	-->
 </script>
 
 
@@ -43,7 +41,7 @@ function koneksi_db()
 	$link = mysqli_connect($host, $user, $password);
 	mysqli_select_db($database, $link);
 	if (!$link)
-		echo "Error : " . mysqli_error();
+		echo "Error : " . mysqli_errno();
 	return $link;
 }
 
@@ -218,9 +216,11 @@ function form_login()
 #fungsi untuk membuat kode otomatis untuk penyakit
 function kdautopenyakit($tabel, $inisial)
 {
+	$conn = mysqli_connect("localhost", "root", "", "sispak");
 	$struktur	= mysqli_query($conn, "SELECT * FROM $tabel");
-	$field		= mysqli_field_name($struktur, 0);
-	$panjang	= mysqli_field_len($struktur, 0);
+	$field		=  mysqli_fetch_field_direct($struktur, 0)->name;
+	$panjang	= mysqli_fetch_field_direct($struktur, 0)->max_length;
+
 
 	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
 	$row	= mysqli_fetch_array($qry);
@@ -236,15 +236,16 @@ function kdautopenyakit($tabel, $inisial)
 	for ($i = 1; $i <= ($panjang - strlen($inisial) - strlen($angka)); $i++) {
 		$tmp = $tmp . "0";
 	}
-	return $inisial . $tmp . $angka;
+	return  $inisial . $tmp . $angka;
 }
 
 #fungsi untuk membuat kode otomatis untuk gejala
 function kdautogejala($tabel, $inisial)
 {
+	$conn = mysqli_connect("localhost", "root", "", "sispak");
 	$struktur	= mysqli_query($conn, "SELECT * FROM $tabel");
-	$field		= mysqli_field_name($struktur, 0);
-	$panjang	= mysqli_field_len($struktur, 0);
+	$field		=  mysqli_fetch_field_direct($struktur, 0)->name;
+	$panjang	= mysqli_fetch_field_direct($struktur, 0)->max_length;
 
 	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
 	$row	= mysqli_fetch_array($qry);

@@ -164,12 +164,12 @@ if ($act=="tambahgejala"){
 	?>		
 		
 <script type="text/javascript">
-<!--
+
 var sprytextfield22 = new Spry.Widget.ValidationTextField("sprytextfield22");
 
 var sprytextarea31 = new Spry.Widget.ValidationTextarea("sprytextarea31");
 
-//-->
+//
 </script>
 	
 	
