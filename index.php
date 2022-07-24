@@ -18,142 +18,125 @@ if (isset($_REQUEST['page'])) {
 <head>
 	<meta charset="utf-8">
 	<title>Sistem Pakar Kejiwaan</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-	<script type='text/javascript'>
-		msg = " -- Selamat datang di website ";
-		msg = " Sistem Pakar Diagnosa Gangguan Kejiwaan-- " + msg;
-		pos = 0;
-
-		function scrollMSG() {
-			document.title = msg.substring(pos, msg.length) + msg.substring(0, pos);
-			pos++;
-			if (pos > msg.length) pos = 0
-			window.setTimeout("scrollMSG()", 200);
-		}
-		scrollMSG();
-	</script>
-
-	<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-	<?php include("library.php");
+	<?php 
 	include("koneksi_db.php"); ?>
-	<script type="text/javascript">
-		//fungsi displayTime yang dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik
-		function displayTime() {
-			//buat object date berdasarkan waktu saat ini
-			var time = new Date();
-			//ambil nilai jam,
-			//tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length
-			var sh = time.getHours() + "";
-			//ambil nilai menit
-			var sm = time.getMinutes() + "";
-			//ambil nilai detik
-			var ss = time.getSeconds() + "";
-			//tampilkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
-			document.getElementById("clock").innerHTML = (sh.length == 1 ? "0" + sh : sh) + ":" + (sm.length == 1 ? "0" + sm : sm) + ":" + (ss.length == 1 ? "0" + ss : ss);
+	
+	<style>
+		/* .rounded-navbar{
+			border-radius: 20px 20px 0px 0px!important;
+		}, */
+		.active{
+			background-color: #f5f5f5;
+			border-radius: 30rem!important;
 		}
-	</script>
+		.jumbotron{
+			background-image: url('gambar/gambar-jumbotron2.jpg');
+			background-size: cover;
+			background-position: center;
+			height: 500px;
+		}
+		.text-jumbotron{
+			color: white;
+		}
+		.text-jumbotron .text-large{
+			font-size: 60px;
+		}
+		.about{
+			background-color: #f1f4f8!important;
+		}
+	</style>
 
 </head>
 
 <body>
-	<div class="container">
-
-		<nav class="navbar navbar-default navbar-static-top">
-
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation">
-							<?php echo "$tglsekarang"; ?>
-						</li>
-						<li role="presentation" class="active"><a href="index.php">Home</a></li>
-						<li role="presentation"> <a href="informasi.php">Informasi</a></li>
-						<li role="presentation"><a href="lokasi_display.php">Lokasi</a></li>
-						<li role="presentation"><a href="Artikel_display.php">Artikel</a></li>
-						<li role="presentation"><a href="bantuan.php">Bantuan</a></li>
-						<li role="presentation"><a href="about.php">About Us</a></li>
-						<li role="presentation"><a href="contact.php">Contact Us</a></li>
-					</ul>
-				</div>
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-white px-5 py-3 shadow-sm">
+		<div class="container">
+			<b><?php echo"$tglsekarang";?></b>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-4 active">
+						<a class="nav-link" href="index.php">Home</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="informasi.php">Informasi</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="lokasi_display.php">Lokasi</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="Artikel_display.php">Artikel</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="bantuan.php">Bantuan</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="about.php">About Us</a>
+					</li>
+					<li class="nav-item mx-4">
+						<a class="nav-link" href="contact.php">Contact Us</a>
+					</li>
+				</ul>
 			</div>
-
-		</nav>
-
-
-		<div class="jumbotron">
-			<h2>Selamat Datang di Website Sistem Pakar Kejiwaan!</h2>
-			<p>Daftarkan diri anda segera untuk menggunakan fasilitas diagnosis gangguan kejiwaan.</p>
-			<a href="daftar.php" class="btn btn-large btn-success">Daftar</a>
 		</div>
+	</nav>
 
+
+	<div class="jumbotron text-center text-jumbotron">
+		<h2 class="mt-5">Website Sistem Pakar</h2>
+		<p class="text-large">DIAGNOSIS PENYAKIT RAHIM</p>
+		<h5>Daftarkan diri anda segera untuk menggunakan fasilitas diagnosis gangguan kejiwaan.</h5>
+		<div>
+			<a class="btn btn-outline-warning text-warning rounded-pill px-4 mt-4" href="daftar.php">Masuk</a>
+			<a class="btn btn-warning text-black rounded-pill px-4 mt-4" href="daftar.php">Daftar</a>
+		</div>
+	</div>
+	<!-- <div class="about py-5">
+		<img src="gambar/stmik-logo.png" alt="" height="200">
+	</div> -->
+	<div class="container mt-5">
 
 		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-info">
-					<div class="panel-footer">
+			<div class="col-md-4 ">
+				<div class="card shadow-sm">
+  					<div class="card-body">
 						<form class="form-horizontal" role="form" method="post" action="login.php">
 							<div class="form-group">
-								<label for="username" class="col-sm-2 control-label">User</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="username" placeholder="Masukkan username">
-								</div>
+								<label for="username">User</label>
+								<input type="text" class="form-control" name="username" placeholder="Masukkan username">
 							</div>
 							<div class="form-group">
-								<label for="password" class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control" name="password" placeholder="Masukkan password">
-								</div>
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="password" placeholder="Masukkan password">
 							</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-
 							<div class="form-group">
-								<label class="control-label col-xs-3">Status</label>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="pakar"> Pakar
-									</label>
-								</div>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="user"> User
-									</label>
-								</div>
+								<button type="submit" class="btn btn-warning rounded-pill">Masuk</button>
+								<a href="lupa_pw.php" class="btn btn-link" role="button">Lupa Password ?</a>
 							</div>
-
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2">
-								<button type="submit" class="btn btn-primary btn-lg active">Masuk</button>
-								<a href="lupa_pw.php" class="btn btn-primary btn-lg active" role="button">Lupa Password</a>
-
-							</div>
-						</div>
+						</form>
 					</div>
-				</div>
-				<div class="panel panel-info">
-					<div class="panel-footer">
-						</form>
-						</form>
+				
+					<div class="card-footer">
 						<ul class="nav nav-list">
 							<li class="nav-header">Website Kejiwaan Lainnya :</li>
 							<li class="active"><a href="http://www.pdskji.org/home">http://www.pdskji.org/home</a></li>
 							<li><a href="http://www.lahargokembaren.com/">http://www.lahargokembaren.com/</a></li>
 							<li><a href="http://www.budiannakeliat.com/">http://www.budiannakeliat.com/</a></li>
-
 						</ul>
 					</div>
-				</div>
+				</div>	
 			</div>
 
 			<div class="col-md-8">
 				<div class="panel panel-success">
 					<div class="panel-body">
 
-
-						<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
 						<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
 						<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
 						<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
@@ -225,8 +208,10 @@ if (isset($_REQUEST['page'])) {
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+
+
+	
+
 
 
 	<div class="row">
@@ -241,13 +226,15 @@ if (isset($_REQUEST['page'])) {
 		</div>
 	</div>
 
-	</div> <!-- end dari class container -->
 
 
 
 	<!-- Javascript files harus ditaruh di bawah untuk meningkatkan performa web -->
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<!-- <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="js/bootstrap.js"></script> -->
+	<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
 
 

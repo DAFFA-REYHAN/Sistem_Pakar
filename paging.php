@@ -1,4 +1,4 @@
-<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="templatemo_style.css" rel="stylesheet" type="text/css" /> -->
 <?php
 class Paging{
   // Fungsi untuk mencek halaman dan posisi data
