@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Agu 2015 pada 04.25
--- Versi Server: 5.6.24
--- PHP Version: 5.6.8
+-- Generation Time: Jul 24, 2022 at 03:09 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `sispak`
@@ -23,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `artikel`
+-- Table structure for table `artikel`
 --
 
-CREATE TABLE IF NOT EXISTS `artikel` (
+CREATE TABLE `artikel` (
   `kd_artikel` varchar(5) NOT NULL,
   `penulis` varchar(30) NOT NULL,
   `judul` text NOT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `artikel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `artikel`
+-- Dumping data for table `artikel`
 --
 
 INSERT INTO `artikel` (`kd_artikel`, `penulis`, `judul`, `abstrak`, `isi`, `gambar`) VALUES
@@ -50,10 +51,10 @@ INSERT INTO `artikel` (`kd_artikel`, `penulis`, `judul`, `abstrak`, `isi`, `gamb
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_pakar`
+-- Table structure for table `data_pakar`
 --
 
-CREATE TABLE IF NOT EXISTS `data_pakar` (
+CREATE TABLE `data_pakar` (
   `username` varchar(10) NOT NULL,
   `password` varchar(50) NOT NULL,
   `pertanyaan` varchar(50) NOT NULL,
@@ -61,21 +62,21 @@ CREATE TABLE IF NOT EXISTS `data_pakar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `data_pakar`
+-- Dumping data for table `data_pakar`
 --
 
 INSERT INTO `data_pakar` (`username`, `password`, `pertanyaan`, `jawaban`) VALUES
 ('lahargo', 'e10adc3949ba59abbe56e057f20f883e', 'Apa Makanan Favorit Anda?', 'bb9f601ba081ab8d336a14a697048cb0'),
-('admin', '21232f297a57a5a743894a0e4a801fc3', 'Apa Makanan Favorit Anda?', 'd9c84901c7cdbfddbc3b75af86ba1701'),
-('jesreel', '3d0d4e13dc0a4d9e5868cf3ed3c5bd65', 'Apa Makanan Favorit Anda?', '5b307381861d9a4c51b0e881eef973d3');
+('adminn', 'd638d193eb29ac87c0950ab36b80e0e8', 'Apa Makanan Favorit Anda?', 'd9c84901c7cdbfddbc3b75af86ba1701'),
+('jesreel', 'e10adc3949ba59abbe56e057f20f883e', 'Apa Buku Favorit Anda?', 'd638d193eb29ac87c0950ab36b80e0e8');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_user`
+-- Table structure for table `data_user`
 --
 
-CREATE TABLE IF NOT EXISTS `data_user` (
+CREATE TABLE `data_user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `nama_user` varchar(50) NOT NULL,
@@ -87,123 +88,88 @@ CREATE TABLE IF NOT EXISTS `data_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `data_user`
+-- Dumping data for table `data_user`
 --
 
 INSERT INTO `data_user` (`username`, `password`, `nama_user`, `usia`, `jenis_kelamin`, `alamat`, `pertanyaan`, `jawaban`) VALUES
-('Jesss', 'e10adc3949ba59abbe56e057f20f883e', 'jesreel', 123, '#', 'Bogor', 'Apa Makanan Favorit Anda?', '575d7351946e7bd7ded33f4e33f4ad24'),
-('Testing', 'e10adc3949ba59abbe56e057f20f883e', 'Pengujian Internal', 99, 'L', 'Gunadarma', 'Apa Makanan Favorit Anda?', '62d08f70f89c457c93d4fd287a6f98e8');
+('Jesss', 'fcea920f7412b5da7be0cf42b8c93759', 'jesreel', 123, '#', 'Bogor', 'Apa Makanan Favorit Anda?', '575d7351946e7bd7ded33f4e33f4ad24'),
+('Testing', 'e10adc3949ba59abbe56e057f20f883e', 'Pengujian Internal', 99, 'L', 'Gunadarma', 'Apa Makanan Favorit Anda?', '62d08f70f89c457c93d4fd287a6f98e8'),
+('daffa', '7b1e852330575c92c8d918377b30726a', 'Daffa Reyhan', 17, 'L', 'Jakarta Selatan', 'Apa Buku Favorit Anda?', 'd638d193eb29ac87c0950ab36b80e0e8');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gejala`
+-- Table structure for table `gejala`
 --
 
-CREATE TABLE IF NOT EXISTS `gejala` (
+CREATE TABLE `gejala` (
   `kode_gejala` varchar(5) NOT NULL,
   `nama_gejala` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `gejala`
+-- Dumping data for table `gejala`
 --
 
 INSERT INTO `gejala` (`kode_gejala`, `nama_gejala`) VALUES
-('G0001', 'Keinginan menggunakan zat'),
-('G0002', 'Sulit berhenti menggunakan zat'),
-('G0003', 'Peningkatan dosis penggunaan zat'),
-('G0004', 'Terus menggunakan zat,muski tau akibatnya'),
-('G0005', 'Gangguan psikologis\r\n'),
-('G0006', 'Gaduh, gelisah ketika tidak menggunakan zat'),
-('G0007', 'Gemetar Ketakutan ketika tidak menggunakan zat'),
-('G0008', 'Halusinasi'),
-('G0009', 'Merasa dirinya spesial'),
-('G0010', 'Perubahan prikau yang aneh\r\n'),
-('G0011', 'Pembicaraan aneh'),
-('G0012', 'Emosional extrim'),
-('G0013', 'Delusi (memiliki kerpercayaan berlebih pada hal tertentu)'),
-('G0014', 'Murung'),
-('G0015', 'Kehilangan Gairah'),
-('G0016', 'Tidak nafsu makan'),
-('G0017', 'Perubahan pola tidur'),
-('G0018', 'Sulit konsentrasi'),
-('G0019', 'Ingin bunuh diri'),
-('G0020', 'Sulit membuat Keputusan'),
-('G0021', 'Kehilangan ingatan'),
-('G0022', 'Memiliki trauma yang mendalam'),
-('G0023', 'Membentuk identitas baru'),
-('G0024', 'Detak jantung tidak normal ketika bertemu objek tertentu'),
-('G0025', 'Keringat Berlebih  ketika bertemu objek tertentu'),
-('G0026', 'Gemetaran  ketika bertemu objek tertentu'),
-('G0027', 'Panas-dingin  ketika bertemu objek tertentu'),
-('G0028', 'Pusing  ketika bertemu objek tertentu'),
-('G0029', 'Gangguan perut ketika melihat objek tertentu'),
-('G0030', 'Kerongkongan terasa tersekat'),
-('G0031', 'Diare ketika melihat objek tertentu'),
-('G0032', 'Takut di depan umum'),
-('G0041', 'Sebab mencuri yang tidak jelas'),
-('G0040', 'Persaan lega setelah melakukan pencurian'),
-('G0039', 'Keinginan mencuri'),
-('G0038', 'Selalu ingin tidur'),
-('G0037', 'Merasa lelah setiap waktu'),
-('G0036', 'Kerusakan pada otak'),
-('G0035', 'Ketergantungan obat penenang'),
-('G0034', 'Berubah-ubah jam kerja'),
-('G0033', 'Takut pada objek tertentu seperti angka,tempat,warna,sukut,dll'),
-('G0042', 'Pola tidur tidak teratur'),
-('G0043', 'Susah Tertidur');
+('G0024', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
+('G0023', 'Nyeri Perut'),
+('G0022', 'Kehilangan Nafsu Makan'),
+('G0021', 'Perdarahan Tidak Normal (Diluar Masa Menstruasi, Setelah Berhubungan Seksual Atau Setelah Menopause)'),
+('G0020', 'Nyeri Saat Menstruasi, Setelah Berhubungan Seksual Atau Saat Terjadi Penekanan Pada Panggul'),
+('G0019', 'Perut Terasa Penuh Dan Membesar'),
+('G0018', 'Menstruasi Dalam Jumlah Banyak\r\n'),
+('G0017', 'Mudah Merasa Lelah Atau Tidak Enak Badan'),
+('G0016', 'Perdarahan Diluar Waktu Menstruasi Atau Setelah Berhubungan Seksual'),
+('G0015', 'Nyeri Panggul Atau Perut Bagian Bawah'),
+('G0014', 'Keputihan Berbau Tidak Sedap'),
+('G0013', 'Demam'),
+('G0012', 'Mual Dan Muntah'),
+('G0011', 'Nyeri Ketika Buang Air Kecil'),
+('G0010', 'Gangguan Buang Air Besar'),
+('G0009', 'Dispareunia (Nyeri Sebelum, Selama, atau Sesudah Berhubungan Seksual)'),
+('G0008', 'Nyeri Setelah Berhubungan Seksual'),
+('G0007', 'Nyeri Haid Terasa Sangat Menyakitkan'),
+('G0006', 'Sering Buang Air Kecil'),
+('G0005', 'Sulit Buang Air Besar'),
+('G0004', 'Merasa Sangat Kenyang Walau Hanya Makan Sedikit Atau Perut Terasa Kembung'),
+('G0003', 'Haid Tidak Teratur'),
+('G0002', 'Nyeri Secara Tiba-Tiba Pada Area Panggul'),
+('G0001', 'Nyeri Perut Bagian Kiri Atau Kanan Bawah (Panggul)'),
+('G0025', 'Perdarahan Pascamenopause Atau Diantara Waktu Menstruasi'),
+('G0026', 'Keluar Cairan Yang Tidak Biasa Dengan Jumlah Banyak Dari Vagina Disertai Rasa Perih'),
+('G0027', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
+('G0028', 'Nyeri Di Panggul, Perut Dan Punggung Bagian Bawah'),
+('G0029', 'Jaringan Rahim Menonjol Ke Vagina'),
+('G0030', 'Perasaan Berat Atau Tekanan Di Panggul'),
+('G0031', 'Merasa Ada Sesuatu Yang Mengganjal Saat Duduk'),
+('G0032', 'Kemerahan Dan Pembengkakan Di Sisi Bibir Vagina'),
+('G0033', 'Kemerahan Dan Nyeri Disekitar Vagina'),
+('G0034', 'Flek Atau Perdarahan Dari Vagina Setelah Berhubungan Seksual dan Terasa Perih'),
+('G0035', 'Keputihan Yang Kental, Berwarna Putih Atau Kuning Kehijauan Dan Berbau Tidak Sedap'),
+('G0036', 'Gatal Di Area Vagina Atau Disekitarnya');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hasil_diagnosa`
+-- Table structure for table `hasil_diagnosa`
 --
 
-CREATE TABLE IF NOT EXISTS `hasil_diagnosa` (
+CREATE TABLE `hasil_diagnosa` (
   `id_diagnosa` int(10) NOT NULL,
   `username` varchar(50) NOT NULL,
   `kode_penyakit` varchar(5) NOT NULL,
   `tanggal_diagnosa` date NOT NULL,
   `persentase` int(3) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `hasil_diagnosa`
---
-
-INSERT INTO `hasil_diagnosa` (`id_diagnosa`, `username`, `kode_penyakit`, `tanggal_diagnosa`, `persentase`) VALUES
-(1, 'Jesss', 'P0006', '2015-07-31', 60),
-(2, 'Jesss', 'P0011', '2015-07-31', 15),
-(3, 'Jesss', '', '2015-07-31', 0),
-(4, 'Jesss', '', '2015-07-31', 0),
-(5, 'Jesss', '', '2015-07-31', 0),
-(6, 'Jesss', '', '2015-07-31', 0),
-(7, 'Jesss', '', '2015-07-31', 0),
-(8, 'Jesss', 'P0001', '2015-07-31', 75),
-(9, 'Jesss', 'P0001', '2015-07-31', 50),
-(10, 'Jesss', '', '2015-07-31', 0),
-(11, 'Jesss', '', '2015-07-31', 0),
-(12, 'Jesss', 'P0001', '2015-07-31', 50),
-(13, 'Jesss', 'P0008', '2015-07-31', 100),
-(14, 'Jesss', 'P0009', '2015-07-31', 100),
-(15, 'Jesss', 'P0008', '2015-07-31', 100),
-(16, 'Jesss', '', '2015-08-05', 0),
-(17, 'Jesss', '', '2015-08-05', 0),
-(18, 'Jesss', 'P0005', '2015-08-07', 40),
-(19, 'Jesss', '', '2015-08-07', 0),
-(20, 'Jesss', 'P0008', '2015-08-07', 5),
-(21, 'Jesss', '', '2015-08-07', 0),
-(22, 'Jesss', 'P0008', '2015-08-07', 5),
-(23, 'Jesss', 'P0008', '2015-08-07', 5);
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penyakit`
+-- Table structure for table `penyakit`
 --
 
-CREATE TABLE IF NOT EXISTS `penyakit` (
+CREATE TABLE `penyakit` (
   `kode_penyakit` varchar(5) NOT NULL,
   `nama_penyakit` varchar(60) NOT NULL,
   `definisi` text NOT NULL,
@@ -212,30 +178,28 @@ CREATE TABLE IF NOT EXISTS `penyakit` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penyakit`
+-- Dumping data for table `penyakit`
 --
 
 INSERT INTO `penyakit` (`kode_penyakit`, `nama_penyakit`, `definisi`, `pengobatan`, `pencegahan`) VALUES
-('P0001', 'Ketergantungan Zat', '1.	Sindrom ketergantungan zat psikoaktif adalah suatu kelompok fenomena fisiologis, perilaku, dan kognitif akibat penggunaan suatu zat atau golongan zat tertentu yang mendapat prioritas lebih tinggi bagi individu tertentu ketimbang perilaku yang pernah diunggulkan pada masa lalu. Gambaran utama yang khas dari sindrom ketergantungan ialah keinginan (sering amat kuat dan bahkan terlalu kuat) untuk menggunakan obat psikoaktif (baik yang diresepkan ataupun tidak), alkohol, atau tembakau. Mungkin ada bukti bahwa mereka yang menggunakan kembali zat setelah satu periode abstinesia akan lebih cepet kambuh daripada individu yang sama sekali tidak ketergantungan.', 'Mengkonsultasikan diri ke psikater atau dokter jiwa agar mendapatkan penangan yang sesuai dengan kondisi pasien saat ini.', 'Tidak mencoba untuk mengkonsumsi zat adiktif.\r\nMemahami bahaya dari zat adiktif dengan sering mengikuti seminar atau penyuluhan anti zat adiktif.\r\nMengurangi pergaulan dan membentengi diri dari orang yang mengkonsumsi zat adiktif. \r\nLebih mendekatkan diri ke Tuhan.'),
-('P0002', 'Putus zat', 'Keadaan putus zat adalah sekelompok gejala dengan aneka bentuk dan keparahan yang terjadi pada penghentian pemberian zat secara absolut atau relatif sesudah penggunaan zat yang terus-menerus dan dalam jangka panjang atau dosis tinggi. Onset dan perjalanan keadaan putus zat waktunya relatif terbatas dan berkaitan dengan jenis dan dosis zat yang digunakan sebelumnya. ', 'Segera konsultasikan diri anda ke psikiater atau Dokter kejiwaan, karena pengidap penyakit ini perlu penanganan khusus.', 'Tidak menyalahgunakan zat psikoaktif.\r\nTidak menggunakan zat psikoatif diluar resep dokter (untuk pengidap penyakit tertentu).'),
-('P0003', 'Psikotik', 'Gangguan psikotik adalah gangguan jiwa yang ditandai dengan ketidakmampuan individu menilai ke.nyataan yang terjadi (realitas).\r\nSecara umum, katanya, penderita psikotik dipicu oleh ketidakmampuan seseorang untuk menyelesaikan masalah yang diterima oleh seorang manusia. Cara mengendalikan, memperlakukan dan merespons   masalah yang dihadapi sangat berbeda antara satu orang dengan orang lain, sehingga tingkatan keparahan psikotik yang diderita sangat beragam meskipun sama-sama ditimpa oleh masalah yang sama.', 'Upaya penyembuhan psikotik dapat ditempuh dengan dua cara, yakni dengan obat-obatan (farmakologi) dan psikoterapi (terapi kejiwaan). Biasanya proses penyembuhan dipadu antara keduanya. Dan yang paling menentukan, keluarga pasien harus memahami kalau kelainan jiwa psikotik memerlukan waktu penyembuhan yang lama. Di samping itu, kata Malawaty, stigma masyarakat terhadap penderita psikotik  sebagai orang gila dan mengucilkannya menyebabkan proses penyembuhan psikotik butuh waktu lama. ', 'Penyebab utama psikotik, kata Malawaty, selain faktor-faktor genetik (keturunan), faktor kamampuan pribadi mempertahankan terhadap gangguan stres dan latar belakang keluarga, pengaruh lingkungan yang  juga menjadi pemicu timbulnya psikotik. Bila seseorang dengan riwayat keluarga yang menderita psikotik, katanya, kemungkinan menderita psikotik lebih besar apa bila disertai dengan faktor-faktor pemicu yang konflit.'),
-('P0004', 'Skitzofernia', 'Skizofrenia dalah gangguan mental yang ditandai dengan gangguan proses berpikir dan tanggapan emosi yang lemah. Keadaan ini pada umumnya dimanifestasikan dalam bentukhalusinasi, paranoid, keyakinan atau pikiran yang salah yang tidak sesuai dengan dunia nyata serta dibangun atas unsur yang tidak berdasarkan logika, dan disertai dengan disfungsi sosial dan pekerjaan yang signifikan. ', 'Obat-obatan\r\nObat-obatan merupakan penanganan awal skizofrenia, dan obat yang diresepkan oleh dokter adalah antipsikotik. Antipsikotik memengaruhi kinerja dopamin dan serotonin pada otak. Obat ini mampu mencegah, menurunkan, bahkan menghilangkan halusinasi, delusi, agitasi, serta kecemasan yang dialami penderita skizofrenia.\r\n\r\nPenderita yang menggunakan antipsikotik, perilakunya tidak seagresif penderita lainnya yang tidak menggunakan obat ini. Selain itu, menurut penelitian, mereka yang menggunakan antipsikotik juga jarang mengalami kumat setelah kondisinya membaik.\r\n\r\nAnti psikotik bisa digunakan dalam dua cara, yaitu diminum atau disuntikkan. Bagi penderita skizofrenia yang telah melewati masa akut, pemberian antipsikotik harus tetap diberikan sebagai langkah pencegahan.\r\n\r\nAda dua kategori obat-obatan antipsikotik, yaitu antipsikotik generasi lama (fluphenazine, perphenazine, chlorpromazine, dan haloperidol) dan generasi baru (clozapine, ziprasidone, quetiapine, olanzapine, risperidone, aripiprazole, dan paliperidone)\r\n\r\nEfek samping yang hanya ada pada antipsikotik generasi lama adalah otot terasa berkedut, badan gemetar, dan kejang otot. Sedangkan efek samping yang ada pada kedua jenis antipsikotik adalah peningkatan berat badan, sembelit, mengantuk, pandangan kabur, mulut kering, dan berkurangnya gairah seks.\r\n\r\nSaat ini antipsikotik generasi baru merupakan obat yang paling sering direkomendasikan oleh dokter karena dianggap memiliki efek samping yang lebih sedikit.\r\n\r\nPenanganan psikologis\r\nSetelah gejala skizofrenia reda, disamping harus tetap melanjutkan konsumsi obat, penderita juga membutuhkan pengobatan psikologis. Ada beberapa hal yang termasuk di dalam penanganan psikologis ini.\r\n\r\nPertama adalah terapi individual. Pada terapi ini penderita diajarkan cara mengatasi stres dan mengendalikan skizofrenia melalui identifikasi tanda-tanda kambuh secara dini. Terapi ini juga berguna untuk memulihkan kepercayaan diri mereka. Terapi individual juga bermanfaat untuk kembali mengembangkan kemampuan mereka untuk bekerja dalam mengisi rutinitas kehidupannya.\r\n\r\nSelain itu, dalam terapi individu, penderita skizofrenia juga akan diajarkan cara-cara untuk mengendalikan perasaan dan pola pikirnya. Tujuannya adalah untuk menggantikan pikiran negatif dengan hal-hal yang positif.\r\n\r\nYang kedua adalah terapi kemampuan bersosialisasi. Dalam hal ini penderita diajarkan bagaimana meningkatkan komunikasi dan interaksi dengan orang lain.\r\n\r\nDan yang ketiga adalah penyuluhan yang diperuntukkan bagi keluarga penderita. Guna penyuluhan ini adalah untuk memberikan pendidikan serta wawasan pada keluarga penderita skizofrenia, baik mengenai cara mengatasi masalah yang timbul akibat gejalanya, maupun cara memberikan dukungan bagi penderita skizofrenia. Seseorang yang mengalami gejala skizofrenia sebaiknya segera dibawa ke psikiater dan psikolog.', 'Mencegah mereka yang baru memperlihatkan tanda-tanda fase prodromal tidak menjadi skizofrenia yang nyata, dengan cara memberikan obat antipsikotik dan suasana keluarga yang kondusif.'),
-('P0005', 'Depresi', 'Depresi adalah perasaan yang sedih dan kehilangan minat terhadap segala sesuatu. Pasien dapat mengungkapkan bahwa mereka merasa murung, tidak ada harapan, terbuang dan tidak berharga. Penderita akan sering mengaku bahwa perasaannya sakit sekali, dan kadang-kadang sampai tidak bisa menangis bahkan pasian bisa melakukan tindakan bunuh diri. ', 'Berkosultasi dengan psikolog,\r\nMelakukan pendekatan terhadap agama dan berkonsultasi dengan pemuka agama.\r\nMengubah pemikiran dari negative ke arah positive.\r\nMinta dukungan dari orang-orang terdekat.\r\nBanyak berkomunikasi dengan orang terdekat seperti teman, keluarga, dan kerabat.', 'Rutin mengikuti ceramah kerohanian/ ceramah agama.\r\nBerfikir dan bertindak positif atas segala sesuatu.\r\nJangan mengurung/menutup diri.\r\nOlah raga lah secara rutin.\r\nSering melakukan aktifitas outdoor dan terkena sinar matahari.\r\nTidur cukup (+- 6 jam) dan teratur.\r\nBersosialita (Berinteraksi dengan orang lain).\r\nMakan dan minum  yang cukup serta bermanfaat bagi tubuh.'),
-('P0006', 'Amnesia', 'Amnesia disosiatif adalah ketidak mampuan individu untuk mengingat detail personal yang penting dan pengalaman yang sering kali berhubungan dengan kejadian traumatis atau sangat menekan. Memori ini hilang tanpa berhubungan dengan disfungsi otak yang berkaitan dengan kerusakan otak atau obat-obatan, juga buka sebuah kondisi lupa yang umumnya terjadi. Orang-orang yang mengalami amnesia disosiatif sangat umum memberikan gambaran tentang sebuah rentang atau rangkaian dalam ingatan mereka mengenai kejadian bermasalah di masa lalu atau bagian-bagian kehidupan mereka. Amnesia disosiatif jarang terjadi, sejauh ini merupakan hal yan sangat umum dalam gangguan disosiatif. Terdapat sebuah kesepakatan yang telah diperhatikan setelah perang dunia II, ketika banyak individu dengan trauma yang berhubungan dengan pertempuran mengalami amnesia.', 'Pengobatan amnesia tergantung dari penyebabnya. Misalnya, seseorang yang telah mengalami peristiwa traumatis akan efektif ditangani dengan sedasi, perawatan dengan kasih sayang, dan mungkin membutuhkan bantuan psikiater. Penderita gegar otak harus beristirahat setelah komplikasinya disembuhkan. Jika alkoholisme adalah penyebabnya, maka penderita harus berhenti mengonsumsi alkohol, dukungan emosional dan mencukupi nutrisi penting bagi tubuhnya. Dalam kasus penyakit Alzheimer, berbagai obat-obatan baru yang akan meningkatkan fungsi kolinergik otak sudah banyak tersedia.', ' '),
-('P0007', 'Fugue', '7.	Fugue disosiatif adalah hilangnya memori yang disertai dengan meninggalkan rumah dan menciptakan indentitas baru. Dalam fugue disosiatif, hilangnya memori lebih besar dibandingkan dalam amnesia disosiatif. Orang yang mengalami fugue disosiatif tidak hanya mengalami amnesia total, namun tiba-tiba meninggalkan rumah dan beraktifitas dengan menggunakan identitas baru', 'Terapi kesenian kreatif. Dalam beberapa referensi dikatakan bahwa tipe terapi ini menggunakan proses kreatif untuk membantu pasien yang sulit mengekspresikan pikiran dan perasaan mereka. Seni kreatif dapat membantu meningkatkan kesadaran diri. Terapi seni kreatif meliputi kesenian, tari, drama dan puisi.\r\nTerapi kognitif. Terapi kognitif ini bisa membantu untuk mengidentifikasikan kelakuan yang negative dan tidak sehat dan menggantikannya dengan yang positif dan sehat, dan semua tergantung dari ide dalam pikiran untuk mendeterminasikan apa yang menjadi perilaku pemeriksa.\r\nTerapi obat. Terapi ini sangat baik untuk dijadikan penangan awal, walaupun tidak ada obat yang spesifik dalam menangani gangguan disosiatif ini. Biasanya pasien diberikan resep berupa anti-depresan dan obat anti-cemas untuk membantu mengontrol gejala mental pada gangguan disosiatif ini.', 'Anak- anak yang secara fisik, emosional dan seksual mengalami gangguan, sangat beresiko tinggi mengalami gangguan mental yang dalam hal ini adalah gangguan disosiatif. Jika terjadi hal yang demikian, maka bersegeralah mengobati secara sugesti, agar penangan tidak berupa obat anti depresan ataupun obat anti stress, karena diketahui bahwa jika menanamkan sugesti yang baik terhadap usia belia, maka nantinya akan didapatkan hasil yang maksimal, dengan penangan yang minimal.'),
-('P0008', 'Fobia Sosial', 'Fobia Sosial adalah ketakutan menetap dan tidak rasional yang umumnya berkaitan dengan keberadaan orang lain. Fobia ini dapat sangat merusak, sedemikian parah sehingga angka bunuh diri pada orang-orang yang menderita fobia ini jauh lebih tinggi disbanding pada mereka yang menderita gangguan anxietas lain. Fobia sosial di tandai dengan ketakutan akan situasi sosial seperti biaca didepan public, buang air kecil di kamar mandi umum, makan di depan umum, atau menulis di depan umum yang membuat perasaan diawasi dan dievaluasi secara negatif oleh orang lain. Individu yang menderita fobia social biasanya mencoba menghindari situasi dimana ia mungkin dinilai dan menunjukkan tanda-tanda kecemasan atau berprilaku secara memalukan. Ketakutan yang ditunjukan dengan keringat yang berlebihan atau memerahnya waja. Berbicara atau melakukan sesuatu didepan public, makan ditempat umum, menggunakan toilet umum atau hamir semua aktifitas lain yang dilakukan ditempat yang terdapat orang lain dapat menimbulkan kecemasan ekstrim, bahkan serangan panik besar-besaran.', 'Terapi\r\nTerapi perilaku kognitif untuk penderita kecemasan sosial terbukti berhasil mengatasi masalah ini. Hasil penelitian menyebutkan, penderita fobia sosial tak lagi dikontrol oleh ketakutan dan kecemasan setelah menjalani terapi ini. Lebih maksimal lagi jika terapi dilakukan dalam grup.\r\n\r\nObat-obatan\r\nObat tertentu seperti antidepresan juga menolong penderita fobia sosial. Tentu saja pengawasan psikolog dan psikiater tetap diperlukan. Obat yang dikombinasikan dengan terapi akan lebih maksimal dalam menyembuhkan fobia sosial. Jika hanya bergantung pada obat, kecenderungan penanganannya bersifat sementara.\r\n\r\n Perawatan intensif\r\nPenyakit ini sangat bisa disembuhkan. Perawatan yang intensif, paduan dari obat dan terapi dengan pengawasan dari spesialis akan memberikan hasil optimal. Cari spesialis yang mengerti betul gejala dan penyakit ini, berikut perawatan hingga pemulihannya. ', 'Fobia sosial dapat dicegah sehingga tidak sampai berlarut-larut salah satunya adalah pola asuh yang mengajarkan pada anak untuk percaya diri, Memberikan motivasi untuk terus maju dan biarkan anak-anak ntuk berkawan denan siapa saja , asalkan masih dalam batas yang wajar. Dan Orangtua juga harus mengajarkan pada anak pentingnya berinteraksi dengan orang lain dan lingkungan sekitar karena manusia adalah makhluk sosial yang sangat bergantung dengan orang lain.'),
-('P0009', 'Fobia Khusus', 'Fobia Khusus, ditandai oleh ketakutan yang tidak rasional akan objek atau situasi tertentu. Gangguan ini termasuk gangguan medik yang paling sering didapati, namun demikian sebagian kasus hanyalah ringan dan tidak perlu mendapatkan pengobatan. Pada fobia terjadi salah-pindah kecemasan pada barang atau keadaan yang mula-mula menimbulkan kecemasan itu. Jadi terdapat dua mekanisme pembelaan, yaitu salah-pindah dan simbolisasi. Ada banyak macam fobia yang dinamakan menurut barang atau keadaan. Apabila berhadapan dengan objek atau situasi tersebut, orang dengan fobia akan mengalami perasaan panik, berkeringat, berusaha menghindar, sulit untuk bernapas dan jantung berdebar. Sebagian besar orang dewasa yang menderita fobia menyadari bahwa ketakutannya tidak rasional dan banyak yang memilih untuk mencoba menahan perasaan anxietas yang hebat daripada mengungkapkan ganguannya.\r\nBeberapa istilah fobia Khusus :\r\n\r\nafrophobia - ketakutan akan orang Afrika atau budaya Afrika.\r\n\r\nagoraphobia - takut pada lapangan.\r\n\r\nantlophobia - takut akan banjir.\r\n\r\narachnophobia - ketakutan pada laba-laba.\r\n\r\narithmophobia - takut akan angka.\r\n\r\nbibliophobia - takut pada buku.\r\n\r\ncaucasophobia - ketakutan akan orang dari ras kaukasus.\r\n\r\ncenophobia - takut akan ruangan yang kosong.\r\n\r\nclaustrophobia - takut akan ruang sempit seperti lift.\r\n\r\ndendrophobia - takut pada pohon.\r\n\r\necclesiophobia - takut pada gereja.\r\n\r\nfelinophobia - takut akan kucing.\r\n\r\ngenuphobia - takut akan lutut.\r\n\r\nhydrophobia - ketakutan akan air.\r\n\r\nhyperphobia - takut akan ketinggian.\r\n\r\niatrophobia - takut akan dokter.\r\n\r\njapanophobia - ketakutan akan orang jepang.\r\n\r\nlachanophobia - ketakutan pada sayur-sayuran.\r\n\r\nlygopobia - ketakutan akan kegelapan.\r\n\r\nnecrophobia - takut akan kematian.\r\n\r\npanophobia - takut akan segalanya.\r\n\r\nphotophobia - ketakutan akan cahaya.\r\n\r\nranidaphobia - takut pada katak.\r\n\r\nschlionophobia - takut pada sekolah.\r\n\r\ntripofobia - ketakutan akan lubang yang banyak.\r\n\r\nuranophobia - ketakutan akan surga.\r\n\r\nxanthophobia - ketakutan pada warna kuning.\r\n\r\n\r\n', 'Terapi\r\nTerapi perilaku kognitif untuk penderita kecemasan sosial terbukti berhasil mengatasi masalah ini. Hasil penelitian menyebutkan, penderita fobia sosial tak lagi dikontrol oleh ketakutan dan kecemasan setelah menjalani terapi ini. Lebih maksimal lagi jika terapi dilakukan dalam grup.\r\n\r\nObat-obatan\r\nObat tertentu seperti antidepresan juga menolong penderita fobia sosial. Tentu saja pengawasan psikolog dan psikiater tetap diperlukan. Obat yang dikombinasikan dengan terapi akan lebih maksimal dalam menyembuhkan fobia sosial. Jika hanya bergantung pada obat, kecenderungan penanganannya bersifat sementara.\r\n\r\n Perawatan intensif\r\nPenyakit ini sangat bisa disembuhkan. Perawatan yang intensif, paduan dari obat dan terapi dengan pengawasan dari spesialis akan memberikan hasil optimal. Cari spesialis yang mengerti betul gejala dan penyakit ini, berikut perawatan hingga pemulihannya. ', 'Fobia sosial dapat dicegah sehingga tidak sampai berlarut-larut salah satunya adalah pola asuh yang mengajarkan pada anak untuk percaya diri, Memberikan motivasi untuk terus maju dan biarkan anak-anak ntuk berkawan denan siapa saja , asalkan masih dalam batas yang wajar. Dan Orangtua juga harus mengajarkan pada anak pentingnya berinteraksi dengan orang lain dan lingkungan sekitar karena manusia adalah makhluk sosial yang sangat bergantung dengan orang lain.'),
-('P0010', 'Insomnia ', 'Insomnia adalah gejala kelainan dalam tidur berupa kesulitan berulang untuk tidur atau mempertahankan tidur walaupun ada kesempatan untuk itu. Gejala tersebut biasanya diikuti gangguan fungsional saat bangun. Insomnia sering disebabkan oleh adanya suatu penyakit atau akibat adanya permasalahan psikologis. Dalam hal ini, bantuan medis atau psikologis akan diperlukan. Salah satuterapi psikologis yang efektif menangani insomnia adalah terapi kognitif. Dalam terapi tersebut, seorang pasien diajari untuk memperbaiki kebiasaan tidur dan menghilangkan asumsi yang kontra-produktif mengenai tidur. Banyak penderita insomnia tergantung pada obat tidur dan zat penenang lainnya untuk bisa beristirahat. Semua obat sedatif memiliki potensi untuk menyebabkan ketergantungan psikologis berupa anggapan bahwa mereka tidak dapat tidur tanpa obat tersebut.', 'Pengobatan insomnia tergantung kepada penyebab dan beratnya insomnia.\r\n\r\nOrang tua yang mengalami perubahan tidur karena bertambahnya usia, biasanya tidak memerlukan pengobatan, karena perubahan tersebut adalah normal.\r\n\r\nPenderita insomnia hendaknya tetap tenang dan santai beberapa jam sebelum waktu tidur tiba dan menciptakan suasana yang nyaman di kamar tidur; cahaya yang redup dan tidak berisik.\r\n\r\nJika penyebabnya adalah stres emosional, diberikan obat untuk mengurangi stres. Jika penyebabnya adalah depresi, diberikan obat anti-depresi.\r\n\r\nJika gangguan tidur berhubungan dengan aktivitas normal penderita dan penderita merasa sehat, bisa diberikan obat tidur untuk sementara waktu. Alternatif lain untuk mengatasi insomnia tanpa obat-obatan adalah dengan terapi hipnosis atau hipnoterapi.', 'Ada beberapa langkah pencegahan yang dapat Anda lakukan agar tidak terkena insomnia, di antaranya adalah dengan menjaga kenyamanan kamar tidur dan menerapkan pola hidup sehat.\r\n\r\nHindari mengonsumsi makanan dalam porsi besar, minuman beralkohol, dan nikotin menjelang waktu tidur. Sama halnya dengan kafein, jika Anda gemar minum teh atau kopi, berhentilah mengonsumsi minuman tersebut setidaknya empat jam sebelum waktu tidur. Lakukanlah hal-hal yang dapat membantu menimbulkan rasa kantuk misalnya seperti mandi atau minum susu hangat.\r\n\r\nJika Anda masih belum mengantuk, jangan memaksakan diri untuk tidur. Lebih baik Anda bangun dan melakukan kegiatan lainnya seperti menonton TV, mengobrol bersama keluarga, atau membaca. Setelah Anda mengantuk dan merasa lelah, barulah kembali ke kamar. Hindari untuk berbaring lama-lama di tempat tidur sambil merasa cemas atau memperhatikan jam.\r\n\r\nJagalah kebersihan kamar agar Anda dapat tidur dengan nyaman dan terhindar dari penyakit. Jika suara bising atau cahaya lampu yang berasal dari luar kamar mengganggu tidur Anda, maka pakailah penutup kuping atau mata sebagai solusinya.\r\n\r\nUsahakan untuk bangun di waktu yang sama tiap hari meski kurang tidur. Jika Anda lelah dan mengantuk saat siang, jangan tidur karena itu hanya akan membuat Anda kembali sulit tidur pada malam harinya. Lakukanlah olahraga sekitar tiga puluh menit tiap hari secara rutin, seperti bersepeda atau jalan santai. Selain dapat menjaga tubuh tetap bugar, olahraga juga dapat membuat tidur Anda nyenyak. Namun harus diingat bahwa batas waktu dilakukannya olahraga adalah empat jam sebelum waktu tidur.'),
-('P0011', 'Hipersomnia', '11.	Hipersomnia adalah kelainan tidur yang ditandai rasa kantuk yang berlebihan yang menyebabkan pasien sering kali membutuhkan waktu tidur yang jauh lebih lama dari orang normal. Pasien tidur di malam hari dalam jangka waktu yang lama tetapi tidak menyegarkan, sehingga pasien sering kali melakukan tidur siang yang juga lama dan tidak memuaskan. Pasien hipersomnia dapat tidur selama jangka waktu 20 jam sehari. Hipersomnia juga dapat diakibatkan oleh kondisi medis seperti infeksi virus, terutama mononucleosis dan ensefalitism atau hidrosefalus.', 'Konsultasikan diri anda ke psikolog.\r\nBiasakan berprilaku tidur sehat dan mengatur waktu tidur yang benar, yakni mengusahakan tertidur dan bangun pada jam tertentu setiap hari. Pola tidur yang baik pasti akan memberikan kualitas tidur yang baik pula.', 'Dalam banyak kasus, hipersomnia dapat dibantu dengan perubahan gaya hidup, seperti:\r\nMenghindari rokok, alkohol dan minuman berkafein sebelum tidur.\r\nRelaksasi secara rutin untuk mencegah kecemasan atau kekhawatiran di malam hari.\r\nBerolahraga secara teratur dan menjaga berat badan yang normal.\r\nDiet seimbang untuk mencegah kekurangan gizi.\r\nHindari gangguan di ruang tidur, misalnya dengan tidak menempatkan televisi di kamar tidur.\r\nAtur tempat tidur senyaman mungkin, pastikan suhunya tidak terlalu panas atau terlalu dingin.\r\nTerapkan jadwal tidur, dan patuhi. Hal ini akan membuat tubuh Anda terbiasa dan akan merespon ketika saatnya harus tidur.\r\nHanya tidur hanya saat mengantuk.\r\n'),
-('P0012', 'Kleptomania', 'Kleptomania adalahdalah gangguan mental yang membuat penderitanya tidak bisa menahan diri untukmencuri. Benda-benda yang dicuri oleh penderita kleptomania umumnya adalah barang-barang yang tidak berharga, seperti mencuri gula, permen, sisir, atau barang-barang lainnya. Sang penderita biasanya merasakan rasa tegang subjektif sebelum mencuri dan merasakan kelegaan atau kenikmatan setelah mereka melakukan tindakan mencuri tersebut. Tindakan ini harus dibedakan dari tindakan mencuri biasa yang biasanya didorong oleh motivasi keuntungan dan telah direncanakan sebelumnya. Penyakit ini umum muncul pada masa puber dan ada sampai dewasa. Pada beberapa kasus, kleptomania diderita seumur hidup. Penderita juga mungkin memiliki kelainan jiwa lainnya, seperti kelainan emosi, bulimia Nervosa, paranoid, schizoid atau borderline personality disorder.\r\n', 'Meskipun akan sangat sulit untuk menyembuhkan kleptomania dengan diri anda sendiri, anda bisa mengikuti langkah-langkah di bawah ini untuk  merawat diri anda dengan cara pengobatan sehat, disaat yang sama saat anda mendapatkan pengobatan profesional :\r\n\r\n1. Bertahan pada rencana pengobatan. Konsumsi obat-obatan seperti yang telah dijadwalkan oleh sesi terapi. Ingatlah bahwa hal ini bisa menjadi sangat berat untuk dijalankan dan anda adakalanya anda mengalami kemunduran dalam menjalankan pengobatan ini.\r\n\r\n2.Mendidik diri anda. Belajar lebih banyak tentang kleptomania jadi anda bisa lebih memahami faktor resiko, pengobatan, dan hal-hal yang dapat memicu kleptomania.\r\n\r\n3.Cari pengobatan untuk penyimpaangan pengunaan zat-zat berbahaya dan msalah kesehatan mental.  Kecanduan, depresi, kegelisahan, tekanan mental bisa mempengaruhi satu sama lain, membuat anda terjebak dalam siklus mental tidak sehat.\r\n\r\n\r\n\r\n\r\n', 'Karena penyebab kleptomania masih belum jelas, tidak diketahu dengan jelas bagaimana mencegah kleptomania dengan jalan tertentu. Mendapatkan pengobatan secepatnya saat keinginan mencuri kambuhan mulai terjadi, bisa membantu mencegah kleptomania menjadi lebih buruk, kondisinya menjadi kronis yang nantinya akan sulit untuk disembuhkan.');
+('P0010', 'Vaginitis', 'Vaginitis adalah peradangan pada vagina yang ditandai dengan gatal di vagina dan keputihan. Berbeda dengan keputihan normal yang tidak berbau, keputihan yang dialami penderita vaginitis berbau tidak sedap. Vagina secara alami terus memproduksi cairan, yang jumlah dan teksturnya bisa berubah-ubah sepanjang siklus menstruasi. Pada kondisi tertentu, cairan vagina akan lebih kental dan banyak, lalu muncul sebagai keputihan. Namun, perlu diketahui bahwa tidak semua keputihan merupakan gejala vaginitis.\r\n', 'Pemberian obat antibiotik, Pemberian obat antijamur, Terapi pengganti hormon\r\n', 'Bersihkan vagina dengan air tanpa menggunakan sabun, dan hindari membasuh bagian dalam vagina. Selalu bersihkan vagina dari arah depan ke belakang setiap kali selesai buang air, dan pastikan menyeka vagina hingga benar-benar kering. Seka area kemaluan hingga benar-benar kering sebelum mengenakan celana dalam agar celana tidak lembap. Hindari penggunaan benda yang bisa menyebabkan iritasi atau alergi pada vagina, seperti pembalut yang mengandung pewangi atau sabun pembersih vagina. Lakukan hubungan seks yang aman, misalnya dengan menggunakan kondom atau tidak bergonta-ganti pasangan. Gunakan air hangat bila ingin berendam. Pilih celana dalam yang tidak ketat dan berbahan katun. Kontrol kadar gula darah bila menderita diabetes.\r\n'),
+('P0006', 'Polip Serviks', 'Polip serviks adalah pertumbuhan sel tumor jinak yang muncul di serviks atau leher rahim. Polip biasanya berwarna merah seperti ceri, keunguan, atau putih cenderung abu-abu. Wujud dan ukurannya bervariasi, terkadang seperti umbi-umbian yang menempel pada batang pohon tipis. Ukuran dari tumor jinak ini sekitar 1-2 cm atau tidak lebih besar dari biji wijen. Polip pada leher rahim biasanya bersifat nonkanker. Meski begitu, ada kemungkinan tumor jinak ini bisa berubah menjadi kanker atau polip prakanker.', 'Prosedur pengangkatan tanpa pereda nyeri, Operasi pembedahan dengan bius total', 'Melakukan pemeriksaan panggul di dokter kandungan secara teratur. Memakai celana dalam bahan katun agar mencegah panas berlebih yang bisa menjadi sumber infeksi. Gunakan kondom saat berhubungan seksual. Lakukan pap smear secara teratur.'),
+('P0007', 'Cervicitis / Servisitis', 'Servisitis adalah peradangan pada serviks atau leher rahim. Peradangan ini dapat ditandai dengan perdarahan dari vagina di luar masa menstruasi, nyeri saat berhubungan seksual, atau keluarnya cairan abnormal dari vagina. Serviks merupakan bagian paling bawah dari rahim yang terhubung dengan vagina. Layaknya jaringan lain, serviks juga dapat mengalami peradangan karena berbagai penyebab. Penyebabnya bisa berupa infeksi, misalnya infeksi menular seksual, maupun noninfeksi, seperti iritasi atau alergi.', 'Antibiotik, Antivirus, Antijamur\r\n', 'Melakukan hubungan seksual yang aman, yaitu dengan memakai pengaman dan tidak berganti-ganti pasangan. Menghindari produk-produk kewanitaan yang mengandung pewangi, karena bisa menyebabkan iritasi pada vagina dan serviks. Menjaga kebersihan vagina untuk mengurangi risiko infeksi.\r\n'),
+('P0008', 'Prolaps Uteri', 'Prolaps uterus adalah Kelainan organ rahim yang terjadi ketika rahim turun ke atau ke dalam vagina. Kondisi terjadi ketika otot-otot dasar panggul dan ligamen menjadi lemah dan tidak lagi mampu menopang rahim.\r\n', 'Vaginal pessary, Bedah\r\n', 'Senam kegel. Cegah sembelit. Hindari beban berat. Mengendalikan batuk. Cegah obesitas.\r\n'),
+('P0009', 'Kista Bartholin/Bartholinitis', 'Kista bartolin merupakan kantung berisi cairan jernih yang terbentuk akibat tersumbatnya kelenjar bartolin. Kelenjar bartolin itu sendiri terletak di bibir vagina (labia). Kelenjar tersebut menghasilkan cairan yang bermanfaat untuk mencegah iritasi akibat gesekan saat hubungan intim. Jika kelenjar bartolin tersumbat, cairan akan menumpuk dan memicu terjadinya kista.', 'Mengonsumsi obat anti-nyeri dan mengompres kista dengan air hangat, Memasukkan selang kateter kecil ke dalam kista selama 2–4 minggu untuk mengalirkan cairan dari dalam kista keluar,  Marsupialisasi, Aspirasi jarum, Pengangkatan kelenjar bartolin (eksisi)\r\n', 'Menjaga diri sendiri agar terhindar dari penyakit menular seksual. Melakukan hubungan seks yang aman. Berhubungan intim hanya dengan satu pasangan seksual (suami/ istri) dan menggunakan kondom saat berhubungan intim bila diperlukan.\r\n'),
+('P0004', 'Mioma Uteri\r\n', 'Mioma adalah pertumbuhan massa di dalam rahim atau di luar rahim yang tidak bersifat ganas. Mioma berasal dari sel otot polos rahim, dan pada beberapa kasus juga berasal dari otot polos pembuluh darah rahim. Jumlah dan ukuran mioma bervariasi, terkadang ditemukan satu atau lebih dari satu. Biasanya mioma tersebut berlokasi di dinding rahim, dan bentuknya menonjol ke rongga endometrium atau permukaan rahim.', 'USG, Terapi Hormonal, Miektomi, Histerektomi.\r\n', 'Olahraga/aktivitas fisik. Tubuh akan membakar kalori lebih sedikit ketika Anda malas bergerak. Pola makan sehat. Pola makan yang tinggi kalori, sedikit sayur dan buah, sering melewatkan sarapan, dan minum minuman tinggi gula dapat menyebabkan terjadinya obesitas. Hindari merokok. Kebiasaan ini dapat meningkatkan risiko mioma.'),
+('P0005', 'Kanker Serviks', 'Kanker serviks adalah kanker yang tumbuh pada sel-sel di leher rahim. Kanker ini umumnya berkembang perlahan dan baru menunjukkan gejala ketika sudah memasuki stadium lanjut. Oleh sebab itu, penting untuk mendeteksi kanker serviks sejak dini sebelum timbul masalah serius. Serviks atau leher rahim adalah bagian rahim yang terhubung ke vagina. Fungsinya adalah untuk memproduksi lendir yang membantu menyalurkan sperma dari vagina ke rahim saat berhubungan seksual. Serviks juga berfungsi melindungi rahim dari bakteri dan benda asing dari luar.', 'Bedah, Radioterapi, Kemoterapi, Terapi Target.', 'Vaksin HPV. Berhubungan seks secara aman, yaitu dengan menggunakan kondom dan menghindari berhubungan seksual dengan lebih dari satu pasangan. Menjalani pap smear atau pemeriksaan IVA secara berkala agar kondisi serviks selalu terpantau dan agar penanganan bisa lebih cepat dilakukan bila ada kanker. Tidak merokok.'),
+('P0001', 'Kista Ovarium Terpuntir', 'Kista ovarium adalah kantong berisi cairan yang tumbuh pada indung telur (ovarium) wanita. Kista ini biasanya muncul selama masa subur atau selama wanita  mengalami menstruasi. Tiap wanita memiliki dua indung telur (ovarium), satu di bagian kanan dan satu lagi di sebelah kiri rahim. Ovarium yang berukuran sebesar biji kenari ini merupakan bagian dari sistem reproduksi wanita. Ovarium berfungsi untuk menghasilkan sel telur tiap bulan (mulai dari masa pubertas hingga menopause), serta memproduksi hormon estrogen dan progesteron. Fungsi ovarium terkadang dapat terganggu, kista termasuk jenis gangguan yang sering terjadi.', 'Pemantauan Rutin, Konsumsi Pil KB, Prosedur Operasi.', 'Melakukan pemeriksaan panggul secara rutin. Waspada terhadap perubahan dalam siklus menstruasi, termasuk gejala menstruasi yang tidak biasa, terutama yang terjadi lebih dari beberapa siklus. Segera berkonsultasi dengan dokter bila mengalami gejala yang mengkhawatirkan.'),
+('P0002', 'Kista Endometriosis', 'Kista endometriosis adalah kista yang terbentuk saat jaringan endometrium tumbuh di ovarium atau indung telur. Isinya berupa cairan berukuran besar pada indung telur, bahkan bisa membungkusnya. Pada kebanyakan kasus, keadaan ini muncul akibat endometriosis yang tidak mendapat penanganan tepat. Dikenal sebagai endometrioma atau \"chocolate cyst\" (karena berisi cairan berwarna cokelat tua yang terdiri dari darah dan jaringan menstruasi lama).', 'Konsumsi Obat-obatan, Terapi Hormon, Operasi', 'Berolahraga secara rutin, minimal 30 menit setiap hari. Menjaga berat badan agar tetap ideal. Menurunkan berat badan bila mengalami obesitas. Mengurangi konsumsi alkohol secara berlebihan. Mengurangi konsumsi kafein yang berlebihan. Berkonsultasi dengan dokter mengenai penggunaan alat kontrasepsi yang tepat.'),
+('P0003', 'PID (Pelvic Inflammation Disease) / Penyakit Radang Panggul', 'Radang panggul atau pelvic inflammatory disease (PID) adalah infeksi pada organ reproduksi wanita, seperti serviks, rahim, dan ovarium. Salah satu penyebab paling sering dari radang panggul adalah infeksi menular seksual. Radang panggul umumnya dialami oleh wanita usia 15–25 tahun yang aktif berhubungan seksual. Radang panggul bisa ditandai dengan nyeri di panggul atau perut bagian bawah. Kondisi ini perlu mendapat penanganan untuk mencegah terjadinya komplikasi, seperti kehamilan di luar kandungan (ektopik) atau kemandulan (infertilitas).', 'Konsumsi Obat-obatan, Operasi', 'Jangan berganti-ganti pasangan. Gunakan kondom saat berhubungan seksual. Periksa kesehatan secara rutin jika memiliki risiko tertular infeksi menular seksual. Konsultasikan pilihan dan rencana penggunaan alat kontrasepsi dengan dokter. Bersihkan area kemaluan dari depan ke belakang dan jangan sebaliknya.');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `peta`
+-- Table structure for table `peta`
 --
 
-CREATE TABLE IF NOT EXISTS `peta` (
+CREATE TABLE `peta` (
   `kd_peta` varchar(5) NOT NULL,
   `nama_rs` varchar(30) NOT NULL,
   `kota` text NOT NULL,
@@ -243,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `peta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `peta`
+-- Dumping data for table `peta`
 --
 
 INSERT INTO `peta` (`kd_peta`, `nama_rs`, `kota`, `link`) VALUES
@@ -254,86 +218,84 @@ INSERT INTO `peta` (`kd_peta`, `nama_rs`, `kota`, `link`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `relasi_penyakit_gejala`
+-- Table structure for table `relasi_penyakit_gejala`
 --
 
-CREATE TABLE IF NOT EXISTS `relasi_penyakit_gejala` (
+CREATE TABLE `relasi_penyakit_gejala` (
   `kode_penyakit` varchar(8) NOT NULL,
   `kode_gejala` varchar(8) NOT NULL,
   `bobot` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `relasi_penyakit_gejala`
+-- Dumping data for table `relasi_penyakit_gejala`
 --
 
 INSERT INTO `relasi_penyakit_gejala` (`kode_penyakit`, `kode_gejala`, `bobot`) VALUES
-('P0001', 'G0001', 25),
-('P0001', 'G0002', 25),
-('P0001', 'G0003', 25),
-('P0001', 'G0004', 25),
-('P0002', 'G0005', 30),
-('P0002', 'G0006', 35),
-('P0002', 'G0007', 35),
-('P0003', 'G0008', 25),
-('P0003', 'G0009', 25),
-('P0003', 'G0010', 15),
-('P0003', 'G0011', 10),
-('P0003', 'G0012', 25),
-('P0004', 'G0008', 15),
-('P0004', 'G0009', 30),
-('P0004', 'G0011', 15),
-('P0004', 'G0013', 30),
-('P0004', 'G0018', 10),
-('P0005', 'G0014', 30),
-('P0005', 'G0015', 20),
-('P0005', 'G0016', 10),
-('P0005', 'G0017', 10),
-('P0005', 'G0018', 10),
-('P0005', 'G0019', 5),
-('P0005', 'G0020', 15),
-('P0006', 'G0021', 60),
-('P0006', 'G0022', 40),
-('P0007', 'G0021', 40),
-('P0007', 'G0023', 60),
-('P0008', 'G0032', 25),
-('P0008', 'G0024', 15),
-('P0008', 'G0031', 5),
-('P0008', 'G0030', 10),
-('P0008', 'G0029', 5),
-('P0008', 'G0028', 10),
-('P0008', 'G0027', 10),
-('P0008', 'G0026', 10),
-('P0008', 'G0025', 10),
-('P0010', 'G0042', 30),
-('P0010', 'G0036', 15),
-('P0009', 'G0033', 25),
-('P0009', 'G0024', 15),
-('P0009', 'G0031', 5),
-('P0009', 'G0030', 10),
-('P0009', 'G0029', 5),
-('P0009', 'G0028', 10),
-('P0009', 'G0027', 10),
-('P0009', 'G0026', 10),
-('P0009', 'G0025', 10),
-('P0010', 'G0035', 15),
-('P0010', 'G0034', 20),
+('P0001', 'G0003', 10),
+('P0001', 'G0001', 30),
+('P0001', 'G0002', 30),
+('P0002', 'G0008', 25),
+('P0002', 'G0007', 30),
+('P0002', 'G0003', 10),
+('P0003', 'G0014', 0),
+('P0003', 'G0013', 0),
+('P0003', 'G0012', 0),
+('P0003', 'G0011', 0),
+('P0004', 'G0020', 0),
+('P0004', 'G0019', 0),
+('P0004', 'G0018', 0),
+('P0007', 'G0027', 0),
+('P0005', 'G0023', 0),
+('P0005', 'G0022', 0),
+('P0005', 'G0021', 0),
+('P0005', 'G0014', 0),
+('P0006', 'G0025', 0),
+('P0006', 'G0024', 0),
+('P0007', 'G0026', 0),
+('P0007', 'G0009', 0),
+('P0010', 'G0036', 0),
+('P0008', 'G0031', 0),
+('P0008', 'G0028', 0),
+('P0008', 'G0030', 0),
+('P0008', 'G0029', 0),
+('P0010', 'G0035', 0),
+('P0010', 'G0034', 0),
+('', 'G0036', 0),
+('', 'G0035', 0),
+('', 'G0034', 0),
+('', 'G0033', 0),
+('', 'G0011', 0),
+('', 'G0009', 0),
+('P0009', 'G0032', 0),
+('P0009', 'G0013', 0),
+('P0009', 'G0009', 0),
+('P0010', 'G0033', 0),
+('P0010', 'G0011', 0),
 ('P0011', 'G0036', 20),
 ('P0012', 'G0039', 20),
 ('P0012', 'G0040', 40),
 ('P0012', 'G0041', 40),
-('P0010', 'G0043', 20),
+('P0010', 'G0009', 0),
 ('P0011', 'G0042', 20),
 ('P0011', 'G0038', 30),
-('P0011', 'G0037', 30);
+('P0011', 'G0037', 30),
+('P0001', 'G0004', 10),
+('P0001', 'G0005', 10),
+('P0001', 'G0006', 10),
+('P0002', 'G0009', 25),
+('P0002', 'G0010', 10),
+('P0003', 'G0015', 0),
+('P0003', 'G0016', 0),
+('P0003', 'G0017', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tmp_analisa`
+-- Table structure for table `tmp_analisa`
 --
 
-CREATE TABLE IF NOT EXISTS `tmp_analisa` (
+CREATE TABLE `tmp_analisa` (
   `username` varchar(50) NOT NULL,
   `kode_penyakit` varchar(5) NOT NULL,
   `kode_gejala` varchar(5) NOT NULL
@@ -342,10 +304,10 @@ CREATE TABLE IF NOT EXISTS `tmp_analisa` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tmp_gejala`
+-- Table structure for table `tmp_gejala`
 --
 
-CREATE TABLE IF NOT EXISTS `tmp_gejala` (
+CREATE TABLE `tmp_gejala` (
   `username` varchar(50) NOT NULL,
   `kode_gejala` varchar(5) NOT NULL,
   `status` enum('1','0') NOT NULL DEFAULT '1'
@@ -354,10 +316,10 @@ CREATE TABLE IF NOT EXISTS `tmp_gejala` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tmp_penyakit`
+-- Table structure for table `tmp_penyakit`
 --
 
-CREATE TABLE IF NOT EXISTS `tmp_penyakit` (
+CREATE TABLE `tmp_penyakit` (
   `username` varchar(50) NOT NULL,
   `kode_penyakit` varchar(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -416,7 +378,9 @@ ALTER TABLE `peta`
 -- AUTO_INCREMENT for table `hasil_diagnosa`
 --
 ALTER TABLE `hasil_diagnosa`
-  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
