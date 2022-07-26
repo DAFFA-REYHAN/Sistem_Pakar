@@ -23,16 +23,16 @@ if (isset($_REQUEST['page'])) {
 		<div class="row">
 			<div class="col-8 offset-2">
 				<ol>
-					<li>
+					<li class="mb-3">
 						Silahkan melakukan <a href="daftar.php"><b>PENDAFTARAN</b></a> terlebih dahulu apabila user belum memiliki <b>NAMA PENGGUNA</b> dan <b>KATA KUNCI.</b>
 					</li>
-					<li>
+					<li class="mb-3">
 						Setelah melakukan proses <b>PENDAFTARAN</b>, maka user dapat langsung melakukan proses<strong> LOG MASUK</strong>.
 					</li>
-					<li>
+					<li class="mb-3">
 						Apabila user lupa dengan <b>KATA KUNCI</b> maka user dapat memilih menu <a href="lupa_pw.php"><b>LUPA KATA KUNCI</b>.</a>
 					</li>
-					<li>
+					<li class="mb-3">
 						Kemudian user dapat langsung melakukan proses<b> KONSULTASI</b>.
 					</li>
 				</ol>
