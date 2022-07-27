@@ -1,3 +1,8 @@
+<?php 
+
+$page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+
+?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <!-- navbar -->
@@ -10,27 +15,37 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item mx-2 px-2 active active-navbar">
+				<li class="nav-item mx-2 px-2 <?= $page == "index.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="index.php">Home</a>
 				</li>
-				<li class="nav-item mx-2 px-2">
+				<li class="nav-item mx-2 px-2 <?= $page == "Artikel_display.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="Artikel_display.php">Artikel</a>
 				</li>
-				<li class="nav-item mx-2 px-2">
+				<li class="nav-item mx-2 px-2 <?= $page == "bantuan.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="bantuan.php">Bantuan</a>
 				</li>
-				<li class="nav-item mx-2 px-2">
+				<li class="nav-item mx-2 px-2 <?= $page == "about.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
-				<li class="nav-item mx-2 px-2">
+				<li class="nav-item mx-2 px-2 <?= $page == "contact.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="contact.php">Kontak</a>
 				</li>
+				<?php 
+				if (!isset($_SESSION['SESS_USERNAME'])) {
+				
+				?>
 				<li class="nav-item ml-2 px-2">
 					<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
 				</li>
 				<li class="nav-item mr-2 px-2">
 					<a class="nav-link btn btn-primary text-white px-3" data-toggle="modal" data-target="#registerModal">Daftar</a>
 				</li>
+
+				<?php 
+
+				}
+				?>
+				
 			</ul>
 		</div>
 	</div>
