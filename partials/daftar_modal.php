@@ -178,7 +178,7 @@
 
 
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <script type="text/javascript">
     var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "data", {
         minChars: 5,

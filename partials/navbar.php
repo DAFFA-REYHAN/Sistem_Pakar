@@ -10,7 +10,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item mx-2 px-2 active">
+				<li class="nav-item mx-2 px-2 active active-navbar">
 					<a class="nav-link" href="index.php">Home</a>
 				</li>
 				<li class="nav-item mx-2 px-2">

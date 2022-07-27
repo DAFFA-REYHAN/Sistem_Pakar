@@ -35,10 +35,16 @@ if (isset($_POST['tombol']) && $_POST['g-recaptcha-response'] != "") {
 
 	//Check whether the query was successful or not
 	if ($result) {
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php?page=berhasil\">";
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php\">";
+		$_SESSION['sukses'] = "berhasil mendaftar";
 		exit();
 	} else {
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php?page=gagal2\">";
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php\">";
+		$_SESSION['gagal'] = "gagal mendaftar";
+		exit();
 	}
 } else {
+	echo "<meta http-equiv=\"refresh\" content=\"0; url=index.php\">";
+	$_SESSION['gagal'] = "gagal mendaftar";
+	exit();
 }
