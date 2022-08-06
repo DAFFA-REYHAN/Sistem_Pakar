@@ -105,9 +105,9 @@ border: 1px dashed #0066AA;
 color: #006699;
 border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
 }
-.text_area {
+/* .text_area {
 margin: 10px;
-}
+} */
 .title {
 padding-bottom: 10px;
 font-size: 16px;

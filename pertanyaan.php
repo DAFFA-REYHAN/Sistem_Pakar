@@ -1,275 +1,222 @@
 <?php
+//Start session
 session_start();
-unset($_SESSION['SESS_USERNAME']);
 
-include "tanggal.php";
-
-if (isset($_REQUEST['page'])) {
-	$page = $_REQUEST['page'];
-} else {
-	$page = '1';
+if (!isset($_GET['act'])) {
+    header("Location: lupa_pw.php");
 }
-?>
 
-<!DOCTYPE html>
-<html>
-<link rel="icon" type="image/gif" href="images/gun.gif">
+
+?>
+<!doctype html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Sistem Pakar Kejiwaan</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<script type='text/javascript'>
-		msg = " -- Selamat datang di website ";
-		msg = " Sistem Pakar Diagnosa Gangguan Kejiwaan-- " + msg;
-		pos = 0;
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-		function scrollMSG() {
-			document.title = msg.substring(pos, msg.length) + msg.substring(0, pos);
-			pos++;
-			if (pos > msg.length) pos = 0
-			window.setTimeout("scrollMSG()", 200);
-		}
-		scrollMSG();
-	</script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-	<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-	<?php include("library.php");
-	include("koneksi_db.php"); ?>
-	<script type="text/javascript">
-		//fungsi displayTime yang dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik
-		function displayTime() {
-			//buat object date berdasarkan waktu saat ini
-			var time = new Date();
-			//ambil nilai jam,
-			//tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length
-			var sh = time.getHours() + "";
-			//ambil nilai menit
-			var sm = time.getMinutes() + "";
-			//ambil nilai detik
-			var ss = time.getSeconds() + "";
-			//tampilkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
-			document.getElementById("clock").innerHTML = (sh.length == 1 ? "0" + sh : sh) + ":" + (sm.length == 1 ? "0" + sm : sm) + ":" + (ss.length == 1 ? "0" + ss : ss);
-		}
-	</script>
+    <!-- CSS -->
+    <style>
+        body {
+            background-color: #F8F8F8;
+        }
 
+        .card {
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        }
+
+        .btn {
+            background-color: #23517F;
+        }
+
+        .btn:hover {
+            background-color: #23518E;
+            transition: background-color .3s ease-in-out
+        }
+
+        i {
+            padding: 8px;
+            color: #23517F;
+
+        }
+
+        i:hover {
+            background-color: #23517F;
+            border-radius: 50%;
+            color: white;
+            transition: background-color .5s ease-out;
+            transition: color .3s ease-out;
+        }
+
+        .footer>container>p {
+            color: #888888;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        }
+    </style>
+    <title>Hello, world!</title>
 </head>
 
 <body>
-	<div class="container">
-		<h1><a href="#">Website Kejiwaan</a></h1>
+    <div class="row mx-0" style="margin-top: 120px;">
+        <div class="col-6 offset-3">
+            <div class="card w-100" style="width: 18rem;">
 
-		<nav class="navbar navbar-inverse">
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation">
-							<div class="tanggal"><?php echo "$tglsekarang"; ?> &nbsp; | &nbsp;
-								<span id="clock"></span>
-							</div>
-						</li>
-						<li role="presentation" class="active"><a href="index.php">Home</a></li>
-						<li role="presentation"><a href="informasi.php">Informasi</a></li>
-						<li role="presentation"><a href="lokasi.php">Lokasi</a></li>
-						<li role="presentation"><a href="bantuan.php">Bantuan</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+                <div class="row">
+                    <div class="col-12 ml-4 mt-4">
+                        <a href="lupa_pw.php" class="fs-2"><i class="fas fa-arrow-left fa-lg"></i></a>
+                    </div>
+
+                </div>
 
 
-		<div class="jumbotron">
-			<h1>Daftar Segera !!</h1>
-			<p>Daftarkan diri anda segera untuk menggunakan fasilitas diagnosis gangguan kejiwaan.</p>
-			<a href="daftar.php" class="btn btn-large btn-success">Daftar</a>
-		</div>
+                <h5 class="text-success text-center fs-2">Jawab Pertanyaan Rahasia</h5>
+                <div class="card-body mt-2 mb-4">
+                    <!-- PROSES ANBIL DATA -->
+                    <?php
+                    include "koneksi_db.php";
+                    if (isset($_POST['tombol'])) {
+                        $username = $_SESSION['username'];
+                        $jawaban = md5($_POST['jawaban']);
+                        $query = mysqli_query($conn, "SELECT * FROM data_user WHERE username ='$username'");
+                        $row = mysqli_fetch_assoc($query);
+                        $data_jawaban = $row['jawaban'];
 
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-info">
-					<div class="panel-footer">
-						<form class="form-horizontal" role="form" method="post" action="login.php">
-							<div class="form-group">
-								<label for="username" class="col-sm-2 control-label">User</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="username" placeholder="Masukkan username">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="password" class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control" name="password" placeholder="Masukkan password">
-								</div>
-							</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
+                        if ($jawaban == $data_jawaban) {
+                            $tampil = "";
+                            $warna = "success";
+                            $pesan = "Jawaban Benar!";
 
-							<div class="form-group">
-								<label class="control-label col-xs-3">Status</label>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="pakar"> Pakar
-									</label>
-								</div>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="user"> User
-									</label>
-								</div>
-							</div>
+                            header("Location: ubah.php?act=accubah");
+                        } else {
+                            $tampil = "";
+                            $warna = "danger";
 
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2">
-								<button type="submit" class="btn btn-primary btn-lg active">Masuk</button>
-								<a href="lupa_pw.php" class="btn btn-primary btn-lg active" role="button">Lupa Password</a>
+                            $pesan = "Jawaban Kurang Tepat!";
+                        }
+                    }
 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-info">
-					<div class="panel-footer">
-						</form>
-						</form>
-						<ul class="nav nav-list">
-							<li class="nav-header">Website Kejiwaan Lainnya :</li>
-							<li class="active"><a href="http://www.pdskji.org/home">http://www.pdskji.org/home</a></li>
-							<li><a href="http://www.lahargokembaren.com/">http://www.lahargokembaren.com/</a></li>
-							<li><a href="http://www.budiannakeliat.com/">http://www.budiannakeliat.com/</a></li>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Contact Us</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+                    $username = $_SESSION['username'];
+                    $status   = $_SESSION['status'];
+                    if ($status == 'user') {
 
-			<div class="col-md-8">
-				<div class="panel panel-success">
-					<div class="panel-body">
-
-						<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-						<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-						<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+                        $qry = mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'");
+                        $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'"));
+                    } else {
+                        $qry = mysqli_query($conn, "SELECT * FROM data_pakar WHERE username='$username'");
+                        $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_pakar WHERE username='$username'"));
+                    }
 
 
-
-						<?php
-						$act = isset($_GET['act']);
-						if ($act == "pertanyaan") {
-							$username = $_POST['username'];
-							$status   = $_POST['status'];
-							if ($status == 'user') {
-
-								$qry = mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'");
-								$cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'"));
-							} else {
-								$qry = mysqli_query($conn, "SELECT * FROM data_pakar WHERE username='$username'");
-								$cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_pakar WHERE username='$username'"));
-							}
+                    if ($cek > 0) {
+                        $data = mysqli_fetch_array($qry);
+                    }
 
 
-							if ($cek > 0) {
-								$data = mysqli_fetch_array($qry);
+                    ?>
+                    <!-- END PROSES AMBIL DATA -->
+                    <!-- ALERT GAGAL-->
+                    <?php if (!isset($_POST['tombol'])) {
+                        $tampil = "hidden";
+                    } ?>
+                    <div class="alert alert-<?= $warna ?> alert-dismissible fade show auto-close" role="alert" <?= $tampil ?>>
+                        <strong><?= $pesan ?></strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <!-- END ALERT -->
 
-						?>
-								<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-								<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
+                    <form action="" method="post" align="left" cellpadding="5">
+                        <input name="username" value="<?php echo $username; ?>" type="hidden" />
+                        <input name="status" value="<?php echo $status; ?>" type="hidden" />
+                        <table align="center" cellpadding="5">
+                            <tr>
+                                <td valign="top">Pertanyaan Rahasia</td>
+                                <td valign="top">:</td>
+                                <td valign="bottom"><?php echo $data['pertanyaan']; ?>
+                            </tr>
+                            </tr>
+                            <tr>
+                                <td valign="top">Jawaban Anda</td>
+                                <td valign="top">:</td>
+                                <td valign=""><span id="sprytextfield88">
+                                        <input name="jawaban" type="text" size="30" maxlength="30">
+                                        <br>
+                                        <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Jawaban harus diisi.</span>
+                                        <span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
+                                    </span></td>
+                            </tr>
+                            <tr>
 
-								<div class="text_area" align="justify">
-									<br />
-									<div class="title">Jawab Pertanyaan Rahasia</div>
 
-									<form action="ubah.php?page=5&act=ubah" method="post" align="left" cellpadding="5">
-										<input name="username" value="<?php echo $username; ?>" type="hidden" />
-										<input name="status" value="<?php echo $status; ?>" type="hidden" />
-										<table align="left" cellpadding="5">
-											<tr>
-												<td colspan="3">
-													<hr color="#AAAAAA">
-												</td>
+                            </tr>
 
-											</tr>
-											<tr>
-												<td valign="top">Pertanyaan Rahasia</td>
-												<td valign="top">:</td>
-												<td valign="bottom"><?php echo $data['pertanyaan']; ?>
-											</tr>
-											</tr>
-											<tr>
-												<td>Jawaban Anda</td>
-												<td>:</td>
-												<td><span id="sprytextfield88">
-														<input name="jawaban" type="text" size="30" maxlength="30">
-														<span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Jawaban harus diisi.</span>
-														<span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
-													</span></td>
-											</tr>
-											<tr>
-												<td colspan="3">
-													<hr color="#AAAAAA">
-												</td>
 
-											</tr>
-											<tr>
-												<td></td>
-												<td></td>
-												<td><input type="submit" name="Ubah" value="Lanjutkan" /></td>
-											</tr>
-
-										</table>
-
-								</div>
-						<?php
-							} else {
-								echo "<meta http-equiv=\"refresh\" content=\"0; url=gagal_lupa_pw.php\">";
-							}
-						}
-						?>
+                        </table>
 
 
 
 
+                </div>
+
+                <div class="card-footer py-3 text-center">
+                    <input class="btn text-white w-75 font-weight-bold" type="submit" name="tombol" value="Lanjutkan" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <div class="footer py-4 fixed-bottom">
+        <div class="container text-center text-secondary font-weight-bolder">
+            <p> © Copyright 2022</p>
+        </div>
+    </div>
 
+    <!-- Optional JavaScript; choose one of the two! -->
 
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- <link href="templatemo_style.css" rel="stylesheet" type="text/css" /> -->
+    <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+    <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Buat fungsi closeAlert()
+            function closeAlert() {
+                // Buat timer dengan javascript
+                setInterval(function() { // fungsi ini akan dijalankan ketika timer selesai
+                    $('.auto-close').fadeOut(500); // buat animasi slideup dengan waktu 200 miliseconds = 0.2 detik
+                }, 4000); // set timer menjadi 3000 miliseconds = 3 detik
+            }
 
+            closeAlert(); // panggil fungsi closeAlert() untuk menutup alert
+        });
 
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="container">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<center>
-						Design by Jesreel Surbakti | jeareel22@gmail.com | © Copyright 2015
-					</center>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	</div> <!-- end dari class container -->
-
-
-
-	<!-- Javascript files harus ditaruh di bawah untuk meningkatkan performa web -->
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-
-
-
-
+        var sprytextfield70 = new Spry.Widget.ValidationTextField("sprytextfield88", "data", {
+            minChars: 5,
+            validateOn: ["blur"]
+        });
+    </script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
 </body>
 
 </html>
