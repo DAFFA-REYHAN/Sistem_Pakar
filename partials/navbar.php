@@ -27,14 +27,8 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_
 				<li class="nav-item mx-2 px-2 <?= $page == "about.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
-<<<<<<< HEAD
 				<?php 
-=======
-
-				<?php
->>>>>>> aaf4b93620e790733e08450909ca7be39ed0e707
 				if (!isset($_SESSION['SESS_USERNAME'])) {
-
 				?>
 					<li class="nav-item ml-2 px-2">
 						<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
