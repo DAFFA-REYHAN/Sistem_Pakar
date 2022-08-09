@@ -22,7 +22,7 @@
 
                     </div>
                     <div class="md-form mb-3 text-right mr-3">
-                        <a href="">Lupa password ?</a>
+                        <a href="lupa_pw.php">Lupa password ?</a>
 
                     </div>
                     <div class="md-form mb-2 text-right">

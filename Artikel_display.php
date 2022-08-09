@@ -9,31 +9,33 @@ if (isset($_REQUEST['page'])) {
 	$page = '1';
 }
 ?>
-<?php 
-	include("koneksi_db.php"); ?>
+<?php
+include("koneksi_db.php"); ?>
 
 
 <?php include('partials/header.php') ?>
 <?php include('partials/navbar.php') ?>
-	
+<?php include('partials/login_modal.php') ?>
+<?php include('partials/daftar_modal.php') ?>
 
-	
-	<div class="container mt-5">
-		<h4 class="text-center mb-5">Artikel</h4>
-		<?php 
-			include("paging.php");
-			$act = isset($_GET['act']);
 
-			$p = new Paging;
-			$batas = 4;
-			$posisi = $p->cariPosisi($batas);
 
-			$no = 0;
-			$qlog = mysqli_query($conn, "SELECT * FROM artikel ORDER BY kd_artikel Desc LIMIT $posisi,$batas");
+<div class="container mt-5">
+	<h4 class="text-center mb-5">Artikel</h4>
+	<?php
+	include("paging.php");
+	$act = isset($_GET['act']);
 
-			while ($data = mysqli_fetch_array($qlog)) {
-				$no++;
-		?>
+	$p = new Paging;
+	$batas = 4;
+	$posisi = $p->cariPosisi($batas);
+
+	$no = 0;
+	$qlog = mysqli_query($conn, "SELECT * FROM artikel ORDER BY kd_artikel Desc LIMIT $posisi,$batas");
+
+	while ($data = mysqli_fetch_array($qlog)) {
+		$no++;
+	?>
 		<div class="card mb-3 mx-auto" style="max-width: 940px;">
 			<div class="row no-gutters">
 				<div class="col-md-5">
@@ -48,19 +50,14 @@ if (isset($_REQUEST['page'])) {
 				</div>
 			</div>
 		</div>
-		<?php } ?>
+	<?php } ?>
 
-		<?php
-		$jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
-		$jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
-		$linkHalaman = $p->navHalaman($_GET['hal'], $jmlhalaman);
-		echo "<center>$linkHalaman</center>";
-		?>
-	</div>
+	<?php
+	$jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
+	$jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
+	$linkHalaman = $p->navHalaman($_GET['hal'], $jmlhalaman);
+	echo "<center>$linkHalaman</center>";
+	?>
+</div>
 
 <?php include('partials/footer.php') ?>
-	
-
-
-
-	

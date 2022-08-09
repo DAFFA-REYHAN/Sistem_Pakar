@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-$page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+$page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -27,18 +27,23 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_N
 				<li class="nav-item mx-2 px-2 <?= $page == "about.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
+<<<<<<< HEAD
 				<?php 
-				if (!isset($_SESSION['SESS_USERNAME'])) {
-				
-				?>
-				<li class="nav-item ml-2 px-2">
-					<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
-				</li>
-				<li class="nav-item mr-2 px-2">
-					<a class="nav-link btn btn-primary text-white px-3" data-toggle="modal" data-target="#registerModal">Daftar</a>
-				</li>
+=======
 
-				<?php 
+				<?php
+>>>>>>> aaf4b93620e790733e08450909ca7be39ed0e707
+				if (!isset($_SESSION['SESS_USERNAME'])) {
+
+				?>
+					<li class="nav-item ml-2 px-2">
+						<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
+					</li>
+					<li class="nav-item mr-2 px-2">
+						<a class="nav-link btn btn-primary text-white px-3" data-toggle="modal" data-target="#registerModal">Daftar</a>
+					</li>
+
+				<?php
 
 				}else {
 				?>
@@ -48,7 +53,7 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_N
 				<?php 
 				}
 				?>
-				
+
 			</ul>
 		</div>
 	</div>
