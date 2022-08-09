@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 24, 2022 at 03:09 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: localhost
+-- Generation Time: Aug 09, 2022 at 07:56 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,17 +84,19 @@ CREATE TABLE `data_user` (
   `jenis_kelamin` varchar(1) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `pertanyaan` varchar(50) NOT NULL,
-  `jawaban` varchar(50) NOT NULL
+  `jawaban` varchar(50) NOT NULL,
+  `hak_akses` varchar(10) NOT NULL DEFAULT 'user'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `data_user`
 --
 
-INSERT INTO `data_user` (`username`, `password`, `nama_user`, `usia`, `jenis_kelamin`, `alamat`, `pertanyaan`, `jawaban`) VALUES
-('Jesss', 'fcea920f7412b5da7be0cf42b8c93759', 'jesreel', 123, '#', 'Bogor', 'Apa Makanan Favorit Anda?', '575d7351946e7bd7ded33f4e33f4ad24'),
-('Testing', 'e10adc3949ba59abbe56e057f20f883e', 'Pengujian Internal', 99, 'L', 'Gunadarma', 'Apa Makanan Favorit Anda?', '62d08f70f89c457c93d4fd287a6f98e8'),
-('daffa', '7b1e852330575c92c8d918377b30726a', 'Daffa Reyhan', 17, 'L', 'Jakarta Selatan', 'Apa Buku Favorit Anda?', 'd638d193eb29ac87c0950ab36b80e0e8');
+INSERT INTO `data_user` (`username`, `password`, `nama_user`, `usia`, `jenis_kelamin`, `alamat`, `pertanyaan`, `jawaban`, `hak_akses`) VALUES
+('Jesss', 'fcea920f7412b5da7be0cf42b8c93759', 'jesreel', 123, '#', 'Bogor', 'Apa Makanan Favorit Anda?', '575d7351946e7bd7ded33f4e33f4ad24', 'user'),
+('Testing', 'e10adc3949ba59abbe56e057f20f883e', 'Pengujian Internal', 99, 'L', 'Gunadarma', 'Apa Makanan Favorit Anda?', '62d08f70f89c457c93d4fd287a6f98e8', 'user'),
+('daffa', '7b1e852330575c92c8d918377b30726a', 'Daffa Reyhan', 17, 'L', 'Jakarta Selatan', 'Apa Buku Favorit Anda?', 'd638d193eb29ac87c0950ab36b80e0e8', 'pakar'),
+('muhamadhafidz', '5f4dcc3b5aa765d61d8327deb882cf99', 'nur hafidz n', 15, 'L', 'Tangerang Banten', 'Apa Makanan Favorit Anda?', '099b3b060154898840f0ebdfb46ec78f', 'user');
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,7 @@ INSERT INTO `gejala` (`kode_gejala`, `nama_gejala`) VALUES
 ('G0004', 'Merasa Sangat Kenyang Walau Hanya Makan Sedikit Atau Perut Terasa Kembung'),
 ('G0003', 'Haid Tidak Teratur'),
 ('G0002', 'Nyeri Secara Tiba-Tiba Pada Area Panggul'),
-('G0001', 'Nyeri Perut Bagian Kiri Atau Kanan Bawah (Panggul)'),
+('G0001', 'Nyeri Perut Bagian Kiri Atau Kanan Bawah (Panggul).'),
 ('G0025', 'Perdarahan Pascamenopause Atau Diantara Waktu Menstruasi'),
 ('G0026', 'Keluar Cairan Yang Tidak Biasa Dengan Jumlah Banyak Dari Vagina Disertai Rasa Perih'),
 ('G0027', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
@@ -162,6 +164,33 @@ CREATE TABLE `hasil_diagnosa` (
   `tanggal_diagnosa` date NOT NULL,
   `persentase` int(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hasil_diagnosa`
+--
+
+INSERT INTO `hasil_diagnosa` (`id_diagnosa`, `username`, `kode_penyakit`, `tanggal_diagnosa`, `persentase`) VALUES
+(28, 'muhamadhafidz', '', '2022-07-27', 0),
+(29, 'muhamadhafidz', 'P0001', '2022-07-28', 90),
+(30, 'muhamadhafidz', '', '2022-07-28', 0),
+(31, 'muhamadhafidz', 'P0001', '2022-07-28', 80),
+(32, 'muhamadhafidz', 'P0001', '2022-07-28', 80),
+(33, 'muhamadhafidz', 'P0001', '2022-07-28', 80),
+(34, 'muhamadhafidz', 'P0001', '2022-07-28', 80),
+(35, 'muhamadhafidz', 'P0001', '2022-07-28', 60),
+(36, 'muhamadhafidz', 'P0001', '2022-07-28', 60),
+(37, 'muhamadhafidz', 'P0001', '2022-07-28', 30),
+(38, 'muhamadhafidz', 'P0001', '2022-07-28', 30),
+(39, 'muhamadhafidz', 'P0002', '2022-07-28', 90),
+(40, 'muhamadhafidz', '', '2022-07-28', 0),
+(41, 'muhamadhafidz', 'P0002', '2022-07-28', 50),
+(42, 'muhamadhafidz', '', '2022-07-28', 0),
+(43, 'muhamadhafidz', 'P0002', '2022-07-28', 35),
+(44, 'daffa', 'P0001', '2022-08-02', 70),
+(45, 'muhamadhafidz', '', '2022-08-07', 0),
+(46, 'muhamadhafidz', 'P0001', '2022-08-07', 80),
+(47, 'muhamadhafidz', 'P0001', '2022-08-07', 80),
+(48, 'muhamadhafidz', 'P0001', '2022-08-07', 70);
 
 -- --------------------------------------------------------
 
@@ -191,7 +220,8 @@ INSERT INTO `penyakit` (`kode_penyakit`, `nama_penyakit`, `definisi`, `pengobata
 ('P0005', 'Kanker Serviks', 'Kanker serviks adalah kanker yang tumbuh pada sel-sel di leher rahim. Kanker ini umumnya berkembang perlahan dan baru menunjukkan gejala ketika sudah memasuki stadium lanjut. Oleh sebab itu, penting untuk mendeteksi kanker serviks sejak dini sebelum timbul masalah serius. Serviks atau leher rahim adalah bagian rahim yang terhubung ke vagina. Fungsinya adalah untuk memproduksi lendir yang membantu menyalurkan sperma dari vagina ke rahim saat berhubungan seksual. Serviks juga berfungsi melindungi rahim dari bakteri dan benda asing dari luar.', 'Bedah, Radioterapi, Kemoterapi, Terapi Target.', 'Vaksin HPV. Berhubungan seks secara aman, yaitu dengan menggunakan kondom dan menghindari berhubungan seksual dengan lebih dari satu pasangan. Menjalani pap smear atau pemeriksaan IVA secara berkala agar kondisi serviks selalu terpantau dan agar penanganan bisa lebih cepat dilakukan bila ada kanker. Tidak merokok.'),
 ('P0001', 'Kista Ovarium Terpuntir', 'Kista ovarium adalah kantong berisi cairan yang tumbuh pada indung telur (ovarium) wanita. Kista ini biasanya muncul selama masa subur atau selama wanita  mengalami menstruasi. Tiap wanita memiliki dua indung telur (ovarium), satu di bagian kanan dan satu lagi di sebelah kiri rahim. Ovarium yang berukuran sebesar biji kenari ini merupakan bagian dari sistem reproduksi wanita. Ovarium berfungsi untuk menghasilkan sel telur tiap bulan (mulai dari masa pubertas hingga menopause), serta memproduksi hormon estrogen dan progesteron. Fungsi ovarium terkadang dapat terganggu, kista termasuk jenis gangguan yang sering terjadi.', 'Pemantauan Rutin, Konsumsi Pil KB, Prosedur Operasi.', 'Melakukan pemeriksaan panggul secara rutin. Waspada terhadap perubahan dalam siklus menstruasi, termasuk gejala menstruasi yang tidak biasa, terutama yang terjadi lebih dari beberapa siklus. Segera berkonsultasi dengan dokter bila mengalami gejala yang mengkhawatirkan.'),
 ('P0002', 'Kista Endometriosis', 'Kista endometriosis adalah kista yang terbentuk saat jaringan endometrium tumbuh di ovarium atau indung telur. Isinya berupa cairan berukuran besar pada indung telur, bahkan bisa membungkusnya. Pada kebanyakan kasus, keadaan ini muncul akibat endometriosis yang tidak mendapat penanganan tepat. Dikenal sebagai endometrioma atau \"chocolate cyst\" (karena berisi cairan berwarna cokelat tua yang terdiri dari darah dan jaringan menstruasi lama).', 'Konsumsi Obat-obatan, Terapi Hormon, Operasi', 'Berolahraga secara rutin, minimal 30 menit setiap hari. Menjaga berat badan agar tetap ideal. Menurunkan berat badan bila mengalami obesitas. Mengurangi konsumsi alkohol secara berlebihan. Mengurangi konsumsi kafein yang berlebihan. Berkonsultasi dengan dokter mengenai penggunaan alat kontrasepsi yang tepat.'),
-('P0003', 'PID (Pelvic Inflammation Disease) / Penyakit Radang Panggul', 'Radang panggul atau pelvic inflammatory disease (PID) adalah infeksi pada organ reproduksi wanita, seperti serviks, rahim, dan ovarium. Salah satu penyebab paling sering dari radang panggul adalah infeksi menular seksual. Radang panggul umumnya dialami oleh wanita usia 15–25 tahun yang aktif berhubungan seksual. Radang panggul bisa ditandai dengan nyeri di panggul atau perut bagian bawah. Kondisi ini perlu mendapat penanganan untuk mencegah terjadinya komplikasi, seperti kehamilan di luar kandungan (ektopik) atau kemandulan (infertilitas).', 'Konsumsi Obat-obatan, Operasi', 'Jangan berganti-ganti pasangan. Gunakan kondom saat berhubungan seksual. Periksa kesehatan secara rutin jika memiliki risiko tertular infeksi menular seksual. Konsultasikan pilihan dan rencana penggunaan alat kontrasepsi dengan dokter. Bersihkan area kemaluan dari depan ke belakang dan jangan sebaliknya.');
+('P0003', 'PID (Pelvic Inflammation Disease) / Penyakit Radang Panggul', 'Radang panggul atau pelvic inflammatory disease (PID) adalah infeksi pada organ reproduksi wanita, seperti serviks, rahim, dan ovarium. Salah satu penyebab paling sering dari radang panggul adalah infeksi menular seksual. Radang panggul umumnya dialami oleh wanita usia 15–25 tahun yang aktif berhubungan seksual. Radang panggul bisa ditandai dengan nyeri di panggul atau perut bagian bawah. Kondisi ini perlu mendapat penanganan untuk mencegah terjadinya komplikasi, seperti kehamilan di luar kandungan (ektopik) atau kemandulan (infertilitas).', 'Konsumsi Obat-obatan, Operasi', 'Jangan berganti-ganti pasangan. Gunakan kondom saat berhubungan seksual. Periksa kesehatan secara rutin jika memiliki risiko tertular infeksi menular seksual. Konsultasikan pilihan dan rencana penggunaan alat kontrasepsi dengan dokter. Bersihkan area kemaluan dari depan ke belakang dan jangan sebaliknya.'),
+('P0011', 'adfwfa', 'sda', 'sdasdaw', 'sdawdwd');
 
 -- --------------------------------------------------------
 
@@ -222,6 +252,7 @@ INSERT INTO `peta` (`kd_peta`, `nama_rs`, `kota`, `link`) VALUES
 --
 
 CREATE TABLE `relasi_penyakit_gejala` (
+  `id` int(11) NOT NULL,
   `kode_penyakit` varchar(8) NOT NULL,
   `kode_gejala` varchar(8) NOT NULL,
   `bobot` int(3) NOT NULL
@@ -231,63 +262,50 @@ CREATE TABLE `relasi_penyakit_gejala` (
 -- Dumping data for table `relasi_penyakit_gejala`
 --
 
-INSERT INTO `relasi_penyakit_gejala` (`kode_penyakit`, `kode_gejala`, `bobot`) VALUES
-('P0001', 'G0003', 10),
-('P0001', 'G0001', 30),
-('P0001', 'G0002', 30),
-('P0002', 'G0008', 25),
-('P0002', 'G0007', 30),
-('P0002', 'G0003', 10),
-('P0003', 'G0014', 0),
-('P0003', 'G0013', 0),
-('P0003', 'G0012', 0),
-('P0003', 'G0011', 0),
-('P0004', 'G0020', 0),
-('P0004', 'G0019', 0),
-('P0004', 'G0018', 0),
-('P0007', 'G0027', 0),
-('P0005', 'G0023', 0),
-('P0005', 'G0022', 0),
-('P0005', 'G0021', 0),
-('P0005', 'G0014', 0),
-('P0006', 'G0025', 0),
-('P0006', 'G0024', 0),
-('P0007', 'G0026', 0),
-('P0007', 'G0009', 0),
-('P0010', 'G0036', 0),
-('P0008', 'G0031', 0),
-('P0008', 'G0028', 0),
-('P0008', 'G0030', 0),
-('P0008', 'G0029', 0),
-('P0010', 'G0035', 0),
-('P0010', 'G0034', 0),
-('', 'G0036', 0),
-('', 'G0035', 0),
-('', 'G0034', 0),
-('', 'G0033', 0),
-('', 'G0011', 0),
-('', 'G0009', 0),
-('P0009', 'G0032', 0),
-('P0009', 'G0013', 0),
-('P0009', 'G0009', 0),
-('P0010', 'G0033', 0),
-('P0010', 'G0011', 0),
-('P0011', 'G0036', 20),
-('P0012', 'G0039', 20),
-('P0012', 'G0040', 40),
-('P0012', 'G0041', 40),
-('P0010', 'G0009', 0),
-('P0011', 'G0042', 20),
-('P0011', 'G0038', 30),
-('P0011', 'G0037', 30),
-('P0001', 'G0004', 10),
-('P0001', 'G0005', 10),
-('P0001', 'G0006', 10),
-('P0002', 'G0009', 25),
-('P0002', 'G0010', 10),
-('P0003', 'G0015', 0),
-('P0003', 'G0016', 0),
-('P0003', 'G0017', 0);
+INSERT INTO `relasi_penyakit_gejala` (`id`, `kode_penyakit`, `kode_gejala`, `bobot`) VALUES
+(1, 'P0001', 'G0003', 10),
+(2, 'P0001', 'G0001', 30),
+(3, 'P0001', 'G0002', 30),
+(4, 'P0002', 'G0008', 25),
+(5, 'P0002', 'G0007', 30),
+(6, 'P0002', 'G0003', 10),
+(7, 'P0003', 'G0014', 0),
+(8, 'P0003', 'G0013', 0),
+(9, 'P0003', 'G0012', 0),
+(10, 'P0003', 'G0011', 0),
+(11, 'P0004', 'G0020', 0),
+(12, 'P0004', 'G0019', 0),
+(13, 'P0004', 'G0018', 0),
+(14, 'P0007', 'G0027', 0),
+(15, 'P0005', 'G0023', 0),
+(16, 'P0005', 'G0022', 0),
+(17, 'P0005', 'G0021', 0),
+(18, 'P0005', 'G0014', 0),
+(19, 'P0006', 'G0025', 0),
+(20, 'P0006', 'G0024', 0),
+(21, 'P0007', 'G0026', 0),
+(22, 'P0007', 'G0009', 0),
+(23, 'P0010', 'G0036', 0),
+(24, 'P0008', 'G0031', 0),
+(25, 'P0008', 'G0028', 0),
+(26, 'P0008', 'G0030', 0),
+(27, 'P0008', 'G0029', 0),
+(28, 'P0010', 'G0035', 0),
+(29, 'P0010', 'G0034', 0),
+(36, 'P0009', 'G0032', 0),
+(37, 'P0009', 'G0013', 0),
+(38, 'P0009', 'G0009', 0),
+(39, 'P0010', 'G0033', 0),
+(40, 'P0010', 'G0011', 0),
+(45, 'P0010', 'G0009', 0),
+(49, 'P0001', 'G0004', 10),
+(50, 'P0001', 'G0005', 10),
+(51, 'P0001', 'G0006', 10),
+(52, 'P0002', 'G0009', 25),
+(53, 'P0002', 'G0010', 10),
+(54, 'P0003', 'G0015', 0),
+(55, 'P0003', 'G0016', 0),
+(56, 'P0003', 'G0017', 0);
 
 -- --------------------------------------------------------
 
@@ -371,6 +389,12 @@ ALTER TABLE `peta`
   ADD PRIMARY KEY (`kd_peta`);
 
 --
+-- Indexes for table `relasi_penyakit_gejala`
+--
+ALTER TABLE `relasi_penyakit_gejala`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -378,7 +402,13 @@ ALTER TABLE `peta`
 -- AUTO_INCREMENT for table `hasil_diagnosa`
 --
 ALTER TABLE `hasil_diagnosa`
-  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `relasi_penyakit_gejala`
+--
+ALTER TABLE `relasi_penyakit_gejala`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

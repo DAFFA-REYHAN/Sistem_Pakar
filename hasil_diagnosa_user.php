@@ -65,7 +65,7 @@
 									}
 									?>
 								</td>
-								<td><a href="user_detail.php"><img src="gambar/detail.png" align="middle" width="20" border="0"> Detail</a></td>
+								<td><a href="index_user.php?detail=true&id=<?= $data['id_diagnosa'] ?>"><img src="gambar/detail.png" align="middle" width="20" border="0"> Detail</a></td>
 							</tr>
 						<?php
 						}

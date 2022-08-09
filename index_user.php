@@ -6,7 +6,6 @@ if(isset($_REQUEST['page'])){
 }else{
 	$page='1';
 }
-
 function clean($str)
 {
   $str = @trim($str);
@@ -30,7 +29,9 @@ include("library.php");
 	}
 </style>
 <?php include('partials/navbar.php') ?>
-<div class="container mt-5">
+<div class=" py-5"  style="background-color: #23517f!important;">
+
+<div class="container">
 	<div class="row">
 		<div class="col-4">
 			
@@ -48,14 +49,14 @@ include("library.php");
 				<a class="list-group-item list-group-item-action" id="list-hasildiagnosa-list" data-toggle="list" href="#list-hasildiagnosa" role="tab" aria-controls="hasildiagnosa">
 					<img src="gambar/lihathasil.png" width="48" height="48" />Lihat Hasil Diagnosa
 				</a>
-				<a class="list-group-item list-group-item-action" href="index.php">
+				<a class="list-group-item list-group-item-action" href="logout.php">
 					<img src="gambar/keluar.png" width="48" height="48" />Keluar
 				</a>
 			</div>
 		</div>
 		<div class="col-8">
 			<div class="tab-content" id="nav-tabContent">
-				<div class="tab-pane fade show active" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
+				<div class="tab-pane fade" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
 					<div class="card">
 						<div class="card-header">
 							Profil
@@ -95,11 +96,31 @@ include("library.php");
 						</div>
 					</div>
 				</div>
+				<div class="tab-pane fade <?= isset($_SESSION['hasil']) ? 'show active' : '' ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
+					<div class="card">
+						<div class="card-header">
+							Hasil
+						</div>
+						<div class="card-body">
+						<?php include "hasil.php" ?>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade <?= isset($_GET['detail']) ? 'show active' : '' ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
+					<div class="card">
+						<div class="card-header">
+						</div>
+						<div class="card-body">
+						<?php include "user_detail.php" ?>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 	
+</div>
 <script type="text/javascript">
 				var sprypassword9 = new Spry.Widget.ValidationPassword("sprypassword9", {
 					minChars: 6,

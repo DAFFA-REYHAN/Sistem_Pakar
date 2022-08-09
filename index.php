@@ -1,6 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['SESS_USERNAME']);
 
 include "tanggal.php";
 
@@ -16,8 +15,7 @@ include("koneksi_db.php"); ?>
 
 <?php include('partials/header.php') ?>
 <?php include('partials/navbar.php') ?>
-<?php include('partials/login_modal.php') ?>
-<?php include('partials/daftar_modal.php') ?>
+
 
 
 <div class="jumbotron text-left text-jumbotron mb-0">

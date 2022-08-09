@@ -1,6 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['SESS_USERNAME']);
 
 include "tanggal.php";
 
@@ -11,18 +10,8 @@ if (isset($_REQUEST['page'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<title>Sistem Pakar Kejiwaan</title>
-
-
-</head>
-
-<body>
-	<?php include("partials/navbar.php"); ?>
+<?php include('partials/header.php') ?>
+<?php include('partials/navbar.php') ?>
 	<div class="container my-5 py-5">
 		<h4 class="text-center mb-5">Tentang Kami</h4>
 		<div class="col-md-12">
@@ -30,11 +19,3 @@ if (isset($_REQUEST['page'])) {
 		</div>
 	</div>
 	<?php include("partials/footer.php") ?>
-
-
-
-
-
-</body>
-
-</html>

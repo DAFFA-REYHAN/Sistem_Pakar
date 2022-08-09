@@ -27,9 +27,6 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_N
 				<li class="nav-item mx-2 px-2 <?= $page == "about.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
-				<li class="nav-item mx-2 px-2 <?= $page == "contact.php" ? "active active-navbar" : "" ?>">
-					<a class="nav-link" href="contact.php">Kontak</a>
-				</li>
 				<?php 
 				if (!isset($_SESSION['SESS_USERNAME'])) {
 				
@@ -43,6 +40,12 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_N
 
 				<?php 
 
+				}else {
+				?>
+				<li class="nav-item ml-2 px-2">
+					<a class="nav-link btn btn-outline-primary px-3" href="index_user.php">dashboard</a>
+				</li>
+				<?php 
 				}
 				?>
 				
@@ -50,3 +53,6 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_N
 		</div>
 	</div>
 </nav>
+
+<?php include('partials/login_modal.php') ?>
+<?php include('partials/daftar_modal.php') ?>

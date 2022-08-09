@@ -142,8 +142,8 @@ if (isset($_POST['submit'])) {
 		$hsl_pasien = mysqli_fetch_array($qry_pasien);
 		$sql_in = "INSERT INTO hasil_diagnosa SET username='$hsl_pasien[username]', kode_penyakit='$hsl_data[kode_penyakit]', tanggal_diagnosa=NOW(), persentase='$persentase'";
 		mysqli_query($GLOBALS['conn'], $sql_in) or die(mysqli_error($GLOBALS['conn']));
-
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=hasil.php\">";
+		$_SESSION['hasil'] = true;
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
 		exit;
 	}
 

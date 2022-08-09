@@ -21,65 +21,30 @@ function clean($str)
 //Sanitize the POST values
 $username = clean($_POST['username']);
 $password = $_POST['password'];
-$status   = clean(@$_POST['status']);
 
-//Input Validations
-if ($username == '') {
-	$errmsg_arr[] = 'Login ID missing';
-	$errflag = true;
-}
-if ($password == '') {
-	$errmsg_arr[] = 'Password missing';
-	$errflag = true;
-}
 
 //Create query
-if ($status == 'pakar') {
-	$qry = "SELECT * FROM data_pakar WHERE username='$username' AND password='" . md5($_POST['password']) . "'";
-	$result = mysqli_query($conn, $qry);
-} else {
-	$qry = "SELECT * FROM data_user WHERE username='$username' AND password='" . md5($_POST['password']) . "'";
-	$result = mysqli_query($conn, $qry);;
-}
+
+$qry = "SELECT * FROM data_user WHERE username='$username' AND password='" . md5($_POST['password']) . "'";
+$result = mysqli_query($conn, $qry);
 
 //Check whether the query was successful or not
-if ($result) {
-	if (mysqli_num_rows($result) == 1) {
-		//Login Successful
-		if ($status == 'pakar') {
-			session_regenerate_id();
-			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_USERNAME'] = $member['username'];
-			$_SESSION['SESS_PASSWORD'] = $member['password'];
-			session_write_close();
-			header("location: index_pakar.php");
-			exit();
-		} else {
-			session_regenerate_id();
-			$member = mysqli_fetch_assoc($result);
-			$_SESSION['SESS_USERNAME'] = $member['username'];
-			$_SESSION['SESS_PASSWORD'] = $member['password'];
-			session_write_close();
-			header("location: index_user.php");
-			exit();
-		}
+
+if (mysqli_num_rows($result) == 1) {
+	//Login Successful
+	$member = mysqli_fetch_assoc($result);
+	$_SESSION['SESS_USERNAME'] = $member['username'];
+	$hak_akses = $member['hak_akses'];
+	if ($hak_akses == 'pakar') {
+		header("location: index_pakar.php");
+		exit();
 	} else {
-		if ($status == 'pakar') {
-			//Login failed
-			echo "<meta http-equiv=\"refresh\" content=\"0;url=gagal_login.php\">";
-			exit();
-		} else {
-			//Login failed
-			echo "<meta http-equiv=\"refresh\" content=\"0; url=gagal_login.php\">";
-			exit();
-		}
+		header("location: index_user.php");
+		exit();
 	}
 } else {
-	die("Query failed");
+	$_SESSION['gagal'] = "Username atau password salah!";
+	header("location: index.php");
+	exit();
 }
-$act = $_GET['act'];
-if ($act == "logout") {
-	session_start();
-	unset($_SESSION['SESS_USERNAME']);
-	"<meta http-equiv=\"refresh\" content=\"0; url=index.php>";
-}
+
