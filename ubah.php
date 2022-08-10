@@ -119,7 +119,7 @@ if (isset($_POST['tombol'])) {
                     ?>
                     <!-- END PROSES AMBIL DATA -->
 
-                    <form action="ubah1.php?act='berhasil'" method="post" align="left" cellpadding="5">
+                    <form action="ubah.php?act='berhasil'" method="post" align="left" cellpadding="5">
                         <table align="center" cellpadding="5">
 
                             <tr>
@@ -137,6 +137,7 @@ if (isset($_POST['tombol'])) {
                                 <td valign="bottom"><span id="sprypassword">
                                         <input name="password" type="password" id="passwordbaru" size="15" maxlength="30" />
                                         <span class="passwordRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Kata Sandi Harus Diisi.</span>
+
                                         <span class="passwordMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 6 karakter.</span></span>
                                     <br>
                                     <span class="style2">Panjang minimal 6 karakter.</span>
@@ -148,6 +149,7 @@ if (isset($_POST['tombol'])) {
                                 <td>:</td>
                                 <td><span id="spryconfirm">
                                         <input name="passwordbaru2" type="password" size="15" maxlength="30" />
+                                        <br>
                                         <span class="confirmRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Konfirmasi Kata Sandi Harus Diisi.</span>
                                         <span class="confirmInvalidMsg"><img src="gambar/hapus.png" width="10" height="10"> Kata Sandi Harus Cocok.</span></span></td>
                             </tr>
@@ -182,7 +184,7 @@ if (isset($_POST['tombol'])) {
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="templatemo_style.css" rel="stylesheet" type="text/css" /> -->
     <script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
     <link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
     <script src="SpryAssets/SpryValidationPassword.js" type="text/javascript"></script>

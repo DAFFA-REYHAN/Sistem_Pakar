@@ -149,7 +149,7 @@ if (isset($_REQUEST['page'])) {
                 <br />
                 <div class="title">Ubah Kata Kunci <?php echo $username; ?></div>
                 <?php
-                $username = $_SESSION['SESS_USERNAME'];
+               
                 $qry = mysqli_query($conn, "SELECT * FROM data_pakar WHERE username='$username'");
                 $data = mysqli_fetch_array($qry);
 

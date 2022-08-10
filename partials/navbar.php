@@ -27,7 +27,7 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_
 				<li class="nav-item mx-2 px-2 <?= $page == "about.php" ? "active active-navbar" : "" ?>">
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
-				<?php 
+				<?php
 				if (!isset($_SESSION['SESS_USERNAME'])) {
 				?>
 					<li class="nav-item ml-2 px-2">
@@ -39,12 +39,12 @@ $page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_
 
 				<?php
 
-				}else {
+				} else {
 				?>
-				<li class="nav-item ml-2 px-2">
-					<a class="nav-link btn btn-outline-primary px-3" href="index_user.php">dashboard</a>
-				</li>
-				<?php 
+					<li class="nav-item ml-2 px-2">
+						<a class=" nav-link btn btn-outline-primary px-3" href="index_<?= $_SESSION['hak_akses'] ?>.php">Dashboard</a>
+					</li>
+				<?php
 				}
 				?>
 

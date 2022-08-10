@@ -35,11 +35,18 @@ if (mysqli_num_rows($result) == 1) {
 	$member = mysqli_fetch_assoc($result);
 	$_SESSION['SESS_USERNAME'] = $member['username'];
 	$hak_akses = $member['hak_akses'];
+
 	if ($hak_akses == 'pakar') {
+		$_SESSION['pakar']   = true;
+		$_SESSION['hak_akses'] = "pakar";
 		header("location: index_pakar.php");
+
 		exit();
 	} else {
+		$_SESSION['user']   = true;
+		$_SESSION['hak_akses'] = "user";
 		header("location: index_user.php");
+
 		exit();
 	}
 } else {
@@ -47,4 +54,3 @@ if (mysqli_num_rows($result) == 1) {
 	header("location: index.php");
 	exit();
 }
-

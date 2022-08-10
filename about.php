@@ -22,8 +22,10 @@ include("koneksi_db.php"); ?>
 <div class="container my-5 py-5">
 	<h4 class="text-center mb-5">Tentang Kami</h4>
 	<div class="row">
-		<div class="col-12 ">
-			<p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe vel nisi expedita at quae quas architecto obcaecati provident, veniam voluptatum corporis neque repellendus atque nam ex modi dolorum pariatur rem nemo, adipisci explicabo debitis minima tenetur. Quis consectetur cum error magni dolorum dolor. Laboriosam error iusto enim obcaecati aut quisquam molestiae quae possimus repellat. Facilis, perferendis deleniti? Expedita magnam perspiciatis corporis? Magnam facilis porro repudiandae omnis veritatis ab incidunt aspernatur, facere, eos saepe sed eligendi voluptatibus pariatur enim dignissimos doloremque repellendus voluptate illum vitae? Nemo quam quia rem velit at amet consequatur id tempora ipsam praesentium repellendus quas, dolorem inventore culpa error debitis dolor ducimus dolorum reprehenderit, modi expedita? Dolores minima vitae qui fugit temporibus pariatur voluptas rem quis commodi cum iusto quasi recusandae odio, vel possimus repellendus atque. Illo quisquam eveniet ut modi quo distinctio minima veniam possimus veritatis placeat, culpa, aut soluta reprehenderit quam voluptate, iusto explicabo provident. Molestias, quod. Nihil, mollitia blanditiis. Debitis porro ea similique, corporis officia labore impedit consequuntur. Itaque reprehenderit beatae nostrum provident quaerat modi consequatur quam sequi animi, iusto possimus enim. Suscipit, laborum nostrum recusandae delectus vel, quaerat eligendi veritatis provident, vero magni aspernatur veniam voluptas sed molestiae est? Quis at quibusdam praesentium.</p>
+		<div class="offset-2 col-8">
+			<p class="text-justify">Aplikasi Website Sistem Pakar Diagnosa Penyakit pada Sistem Reproduksi Wanita Menggunakan Metode Forward Chaining dan Fuzzy Mamdani dibuat dengan dana hibah Penelitian Tesis Magister (PTM) dari Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia. <br><br>
+				Aplikasi ini dibuat dengan tujuan untuk membantu para wanita melakukan diagnosa awal penyakit yang diderita berdasarkan gejala-gejala yang dipilih, data penyakit serta gejala penyakit didapatkan melalui wawancara dengan dokter spesialis obstetri dan ginekologi. Aplikasi ini juga menyediakan artikel dan informasi terkait kesehatan sistem reproduksi wanita.
+			</p>
 		</div>
 	</div>
 
