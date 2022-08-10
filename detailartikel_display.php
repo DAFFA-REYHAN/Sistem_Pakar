@@ -1,6 +1,5 @@
 <?php
 session_start();
-unset($_SESSION['SESS_USERNAME']);
 
 include "tanggal.php";
 
@@ -10,6 +9,8 @@ if (isset($_REQUEST['page'])) {
 	$page = '1';
 }
 ?>
+<?php
+include("koneksi_db.php"); ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@ if (isset($_REQUEST['page'])) {
 <head>
 	<meta charset="utf-8">
 	<title>Sistem Pakar Kejiwaan</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
 
 	<script type='text/javascript'>
 		msg = " -- Selamat datang di website ";
@@ -34,209 +35,84 @@ if (isset($_REQUEST['page'])) {
 		scrollMSG();
 	</script>
 
-	<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-	<?php include("library.php");
-	include("koneksi_db.php"); ?>
-	<script type="text/javascript">
-		//fungsi displayTime yang dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik
-		function displayTime() {
-			//buat object date berdasarkan waktu saat ini
-			var time = new Date();
-			//ambil nilai jam,
-			//tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length
-			var sh = time.getHours() + "";
-			//ambil nilai menit
-			var sm = time.getMinutes() + "";
-			//ambil nilai detik
-			var ss = time.getSeconds() + "";
-			//tampilkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
-			document.getElementById("clock").innerHTML = (sh.length == 1 ? "0" + sh : sh) + ":" + (sm.length == 1 ? "0" + sm : sm) + ":" + (ss.length == 1 ? "0" + ss : ss);
+	<style>
+		.card {
+			border-radius: 50px;
+			background: #e0e0e0;
+			box-shadow: 10px 10px 40px #c7c7c7,
+				-10px -10px 40px #f9f9f9;
 		}
-	</script>
+
+		.link {
+			text-decoration: none;
+			color: black
+		}
+
+		.link:hover {
+			padding: 1%;
+			text-decoration: none;
+			border-radius: 5px;
+
+			background-color: #e0e0e0;
+			transition: background-color .3s ease-out;
+			transition: color .2s ease-out;
+
+		}
+	</style>
 
 </head>
 
 <body>
-	<div class="container">
+	<?php include('partials/header.php') ?>
+	<?php include('partials/navbar.php') ?>
+	<?php include('partials/login_modal.php') ?>
+	<?php include('partials/daftar_modal.php') ?>
+	<!-- Ambil data -->
+	<?php
+	$kd_artikel = $_GET['kd_artikel'];
+	$qry = mysqli_query($conn, "SELECT * FROM artikel WHERE kd_artikel='$kd_artikel'");
+	$data = mysqli_fetch_array($qry);
+	?>
+	<!-- End Ambil Data -->
 
 
-		<nav class="navbar navbar-default navbar-static-top">
+	<div class="row mx-0">
+		<div class="col-8 my-4" align="justify">
+			<div class="card w-100">
+				<p class="mt-3 ml-3 font-italic ">Penulis : <?= $data['penulis'] ?></p>
+				<div class="card-body px-5 pb-5">
+					<h3 class="text-center mb-3"><?= $data['judul'] ?></h3>
+					<div class="image text-center mb-5"><img src="gambarartikel/<?= $data['gambar'] ?>" alt="Gambar Artikel <?= $data['judul'] ?>" width="400px" height="300px"></div>
 
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation">
-							<?php echo "$tglsekarang"; ?>
-						</li>
-						<li role="presentation"><a href="index.php">Home</a></li>
-						<li role="presentation"> <a href="informasi.php">Informasi</a></li>
-						<li role="presentation"><a href="lokasi_display.php">Lokasi</a></li>
-						<li role="presentation"><a href="Artikel_display.php">Artikel</a></li>
-						<li role="presentation"><a href="bantuan.php">Bantuan</a></li>
-						<li role="presentation"><a href="about.php">About Us</a></li>
-						<li role="presentation"><a href="contact.php">Contact Us</a></li>
-					</ul>
-				</div>
-			</div>
-
-		</nav>
-
-		<div class="jumbotron">
-			<h2>Selamat Datang di Website Sistem Pakar Kejiwaan!</h2>
-			<p>Daftarkan diri anda segera untuk menggunakan fasilitas diagnosis gangguan kejiwaan.</p>
-			<a href="daftar.php" class="btn btn-large btn-success">Daftar</a>
-		</div>
-
-
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-info">
-					<div class="panel-footer">
-						<form class="form-horizontal" role="form" method="post" action="login.php">
-							<div class="form-group">
-								<label for="username" class="col-sm-2 control-label">User</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="username" placeholder="Masukkan username">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="password" class="col-sm-2 control-label">Password</label>
-								<div class="col-sm-10">
-									<input type="password" class="form-control" name="password" placeholder="Masukkan password">
-								</div>
-							</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-
-							<div class="form-group">
-								<label class="control-label col-xs-3">Status</label>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="pakar"> Pakar
-									</label>
-								</div>
-								<div class="col-xs-4">
-									<label class="radio-inline">
-										<input type="radio" name="status" value="user"> User
-									</label>
-								</div>
-							</div>
-
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2">
-								<button type="submit" class="btn btn-primary btn-lg active">Masuk</button>
-								<a href="lupa_pw.php" class="btn btn-primary btn-lg active" role="button">Lupa Password</a>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel panel-info">
-					<div class="panel-footer">
-						</form>
-						</form>
-						<ul class="nav nav-list">
-							<li class="nav-header">Website Kejiwaan Lainnya :</li>
-							<li class="active"><a href="http://www.pdskji.org/home">http://www.pdskji.org/home</a></li>
-							<li><a href="http://www.lahargokembaren.com/">http://www.lahargokembaren.com/</a></li>
-							<li><a href="http://www.budiannakeliat.com/">http://www.budiannakeliat.com/</a></li>
-
-						</ul>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-8">
-				<div class="panel panel-success">
-					<div class="panel-body">
-
-
-						<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-						<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
-						<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
-						<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-						<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-						<?php include("koneksi_db.php");
-						include("paging.php");
-						$act = isset($_GET['act']);
-						?>
-						<div class="text_area" align="justify">
-
-							<?php
-							if ($act == "detailartikel") {
-								$kd_artikel = $_GET['kd_artikel'];
-								$qry = mysqli_query($conn, "SELECT * FROM artikel WHERE kd_artikel='$kd_artikel'");
-								$data = mysqli_fetch_array($qry);
-							?>
-								<br>
-								<div class="text_area" align="justify">
-									<div class="title">Judul artikel : <?php echo $data['judul']; ?></div>
-									<br>
-									<table>
-										<tr>
-											<td colspan="3">
-												<hr color="#AAAAAA">
-											</td>
-
-										</tr>
-										<tr>
-
-											<td colspan="3" align="center"><?php echo "<img src='gambarartikel/" . $data['gambar'] . "' width='300px' height='300px'/>"; ?></td>
-										</tr>
-										<tr>
-											<td class="subtitle">Penulis</td>
-											<td align="center">:</td>
-											<td><?php echo $data['penulis']; ?></td>
-										</tr>
-										<tr>
-											<td class="subtitle">Isi</td>
-											<td align="center">:</td>
-											<td><?php echo $data['isi']; ?></td>
-										</tr>
-
-										<tr>
-											<td colspan="3">
-												<hr color="#AAAAAA">
-											</td>
-
-										</tr>
-										<tr>
-										<tr>
-											<td colspan="3" align="center"><input type="button" name="kembali" value="Kembali" onclick="javascript:history.go(-1)" /></td>
-										</tr>
-									</table>
-								</div>
-							<?php
-							}
-							?>
-
-
-
-
-
-
-						</div>
-					</div>
+					<?= $data['isi'] ?>
 				</div>
 			</div>
 		</div>
-
-
-		<div class="row">
-			<div class="container">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<center>
-							Design by Jesreel Surbakti | jeareel22@gmail.com | © Copyright 2015
-						</center>
-					</div>
+		<div class="col-4 mt-4">
+			<div class="card w-100">
+				<div class="card-header">
+					Baca Artikel Lainnya :
 				</div>
+				<?php
+				$query = mysqli_query($conn, "SELECT * FROM artikel");
+
+
+				?>
+
+				<ul class="list-group list-group-flush">
+					<?php while ($row = mysqli_fetch_array($query)) : ?>
+						<li class="list-group-item text-center"><a class="link" href="detailartikel_display.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" href="#"><?= $row['judul'] ?></a></li>
+					<?php endwhile; ?>
+
+				</ul>
 			</div>
 		</div>
+	</div>
+	</div>
 
-	</div> <!-- end dari class container -->
+
+	<?php include('partials/footer.php') ?>
+
 
 
 

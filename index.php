@@ -76,7 +76,7 @@ include("koneksi_db.php"); ?>
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $data['judul']; ?></h5>
 						<p class="card-text"><?php echo $data['abstrak']; ?></p>
-						<a href="detailartikel_display.php?page=4&act=detailartikel&kd_artikel=<?php echo $data['kd_artikel']; ?>" class="btn btn-primary" role="button">Lanjutkan membaca</a>
+						<a href="detailartikel_display.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" class="btn btn-primary" role="button">Lanjutkan membaca</a>
 					</div>
 				</div>
 			</div>
