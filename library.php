@@ -239,6 +239,32 @@ function kdautopenyakit($tabel, $inisial)
 	return  $inisial . $tmp . $angka;
 }
 
+#fungsi untuk membuat kode otomatis untuk relasi
+function kdautorelasi($tabel, $inisial)
+{
+	$conn = mysqli_connect("localhost", "root", "", "sispak");
+	$struktur	= mysqli_query($conn, "SELECT * FROM $tabel");
+	$field		=  mysqli_fetch_field_direct($struktur, 0)->name;
+	$panjang	= mysqli_fetch_field_direct($struktur, 0)->max_length;
+
+	// return $panjang;
+	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
+	$row	= mysqli_fetch_array($qry);
+	if ($row[0] == "") {
+		$angka = 0;
+	} else {
+		$angka = substr($row[0], strlen($inisial));
+	}
+
+	$angka++;
+	$angka = strval($angka);
+	$tmp = "";
+	for ($i = 1; $i <= ($panjang - strlen($inisial) - strlen($angka)); $i++) {
+		$tmp = $tmp . "0";
+	}
+	return  $inisial . $tmp . $angka;
+}
+
 #fungsi untuk membuat kode otomatis untuk gejala
 function kdautogejala($tabel, $inisial)
 {

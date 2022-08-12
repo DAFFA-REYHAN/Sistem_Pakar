@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+// var_dump($_SESSION);
+// die;
 if (isset($_SESSION['pakar'])) {
 	$username = $_SESSION['SESS_USERNAME'];
 } elseif (isset($_SESSION['user'])) {
@@ -51,22 +52,22 @@ include("library.php");
 					<a class="list-group-item list-group-item-action" id="list-profil-list" data-toggle="list" href="#list-profil" role="tab" aria-controls="profil">
 						<img src="gambar/iconprofile.png" width="48" height="48" />Profile
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "ubah_password" ? "active" : "" ?>" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
 						<img src="gambar/ubahpassword.png" width="48" height="48" />Ubah Password
 					</a>
-					<a class="list-group-item list-group-item-action" id="daftar-penyakit-list" data-toggle="list" href="#daftar-penyakit" role="tab" aria-controls="diagnosa">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "daftar_penyakit" ? "active" : "" ?>" id="daftar-penyakit-list" data-toggle="list" href="#daftar-penyakit" role="tab" aria-controls="diagnosa">
 						<img src="gambar/daftar_penyakit.png" width="48" height="48" />Daftar Penyakit
 					</a>
-					<a class="list-group-item list-group-item-action" id="daftar-gejala-list" data-toggle="list" href="#daftar-gejala" role="tab" aria-controls="diagnosa">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "daftar_gejala" ? "active" : "" ?>" id="daftar-gejala-list" data-toggle="list" href="#daftar-gejala" role="tab" aria-controls="diagnosa">
 						<img src="gambar/daftar_gejala.png" width="48" height="48" />Daftar Gejala
 					</a>
-					<a class="list-group-item list-group-item-action" id="daftar-relasi-list" data-toggle="list" href="#daftar-relasi" role="tab" aria-controls="diagnosa">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "relasi" ? "active" : "" ?>" id="daftar-relasi-list" data-toggle="list" href="#daftar-relasi" role="tab" aria-controls="diagnosa">
 						<img src="gambar/relasi.png" width="48" height="48" />Relasi
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-bobot-list" data-toggle="list" href="#list-bobot" role="tab" aria-controls="bobot">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "bobot" ? "active" : "" ?>" id="list-bobot-list" data-toggle="list" href="#list-bobot" role="tab" aria-controls="bobot">
 						<img src="gambar/timbangan.png" width="48" height="48" />Bobot Gejala
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-artikel-list" data-toggle="list" href="#list-artikel" role="tab" aria-controls="artikel">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "artikel" ? "active" : "" ?>" id="list-artikel-list" data-toggle="list" href="#list-artikel" role="tab" aria-controls="artikel">
 						<img src="gambar/artikel.png" width="48" height="48" />Artikel
 					</a>
 					<a class="list-group-item list-group-item-action" href="logout.php">
@@ -76,7 +77,7 @@ include("library.php");
 			</div>
 			<div class="col-8">
 				<div class="tab-content" id="nav-tabContent">
-					<div class="tab-pane fade" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
+					<div class="tab-pane fade  <?= !isset($_GET['act']) ? "active show" : "" ?>" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
 						<div class="card">
 							<div class="card-header">
 								Profil
@@ -86,7 +87,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "ubah_password" ? "active show" : "" ?>" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
 						<div class="card">
 							<div class="card-header">
 								Ubah Password
@@ -96,7 +97,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="daftar-penyakit" role="tabpanel" aria-labelledby="daftar-penyakit-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "daftar_penyakit" ? "active show" : "" ?>" id="daftar-penyakit" role="tabpanel" aria-labelledby="daftar-penyakit-list">
 						<div class="card">
 							<div class="card-header">
 								Daftar Penyakit
@@ -106,7 +107,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="daftar-gejala" role="tabpanel" aria-labelledby="daftar-gejala-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "daftar_gejala" ? "active show" : "" ?>" id="daftar-gejala" role="tabpanel" aria-labelledby="daftar-gejala-list">
 						<div class="card">
 							<div class="card-header">
 								Daftar Gejala
@@ -116,7 +117,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="daftar-relasi" role="tabpanel" aria-labelledby="daftar-relasi-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "relasi" ? "active show" : "" ?>" id="daftar-relasi" role="tabpanel" aria-labelledby="daftar-relasi-list">
 						<div class="card">
 							<div class="card-header">
 								Relasi
@@ -126,16 +127,16 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<!-- <div class="tab-pane fade" id="list-bobot" role="tabpanel" aria-labelledby="list-bobot-list">
-					<div class="card">
-						<div class="card-header">
-							Bobot Gejala
-						</div>
-						<div class="card-body">
-						
+					<div class="tab-pane fade <?= $_GET['act'] == "bobot" ? "active show" : "" ?>" id="list-bobot" role="tabpanel" aria-labelledby="list-bobot-list">
+						<div class="card">
+							<div class="card-header">
+								Bobot Gejala
+							</div>
+							<div class="card-body">
+								<?php include "bobot_gejala.php" ?>
+							</div>
 						</div>
 					</div>
-				</div> -->
 					<!-- <div class="tab-pane fade" id="list-artikel" role="tabpanel" aria-labelledby="list-artikel-list">
 					<div class="card">
 						<div class="card-header">

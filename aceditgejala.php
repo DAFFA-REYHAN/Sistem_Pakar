@@ -7,6 +7,11 @@ $nama_gejala = $_POST['nama_gejala'];
 
 $qry = mysqli_query($conn, "UPDATE gejala SET nama_gejala='$nama_gejala' WHERE kode_gejala='$kode_gejala'");
 
-header("location: index_pakar.php");
+if (mysqli_num_rows($qry) > 0) {
+    $_SESSION['sukses'] = "berhasil merubah gejala";
+}else {
+    $_SESSION['gagal'] = "gagal merubah gejala";
+}
+header("location: index_pakar.php?act=daftar_gejala");
 
 ?>

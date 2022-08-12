@@ -17,16 +17,16 @@ if (isset($_POST['tombol'])) {
     if ($cek > 0) {
       $qry = mysqli_query($conn, "UPDATE data_user SET password='" . md5($_POST['passwordbaru']) . "', pertanyaan='$pertanyaan', jawaban='" . md5($_POST['jawaban']) . "' WHERE username='$username'");
 
-      echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+      echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=ubah_password\">";
       $_SESSION['sukses'] = "berhasil merubah password";
       exit();
     } else {
-      echo  "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+      echo  "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=ubah_password\">";
       $_SESSION['gagal'] = "gagal merubah password";
       exit();
     }
   } else {
-    echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+    echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=ubah_password\">";
     $_SESSION['gagal'] = "gagal merubah password";
     exit();
   }

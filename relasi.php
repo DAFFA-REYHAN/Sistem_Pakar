@@ -18,7 +18,7 @@
 <br />
 <div class="title">Pengolahan Data Relasi</div>
 
-<form method="post" action="relasi_simpan.php?page=6&act=simpanrelasi">
+<form method="post" action="relasi_simpan.php">
 	<table width="100%" align="center" cellpadding="5">
 		<tr>
 			<td colspan="3">
@@ -32,8 +32,9 @@
 		<tr>
 			<td>
 				<select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)">
-					<option value="?page=6&act=relasi&kode_penyakit">[ Daftar Penyakit ]</option>
+					<option value="?act=relasi">[ Daftar Penyakit ]</option>
 					<?php
+					$kode_penyakit = $_GET['kode_penyakit'];
 					$qryp = mysqli_query($conn, "SELECT * FROM penyakit");
 					while ($datap = mysqli_fetch_array($qryp)) {
 						if ($datap['kode_penyakit'] == $kode_penyakit) {
@@ -41,7 +42,7 @@
 						} else {
 							$cek = "";
 						}
-						echo "<option value='?page=6&act=relasi&kode_penyakit=$datap[kode_penyakit]' $cek>$datap[nama_penyakit]</option>";
+						echo "<option value='?act=relasi&kode_penyakit=$datap[kode_penyakit]' $cek>$datap[nama_penyakit]</option>";
 					}
 					?>
 				</select>
