@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('otentifikasi.php');
 include("koneksi_db.php");
 
@@ -9,7 +10,7 @@ $pengobatan = $_POST['pengobatan'];
 $pencegahan = $_POST['pencegahan'];
 
 $qry = mysqli_query($conn, "UPDATE penyakit SET nama_penyakit='$nama_penyakit', definisi='$definisi', pengobatan='$pengobatan' , pencegahan='$pencegahan' WHERE kode_penyakit='$kode_penyakit'");
-if (mysqli_num_rows($qry) > 0) {
+if (mysqli_affected_rows($conn) > 0) {
     $_SESSION['sukses'] = "berhasil merubah penyakit";
 }else {
     $_SESSION['gagal'] = "gagal merubah penyakit";

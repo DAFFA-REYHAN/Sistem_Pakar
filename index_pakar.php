@@ -137,16 +137,16 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<!-- <div class="tab-pane fade" id="list-artikel" role="tabpanel" aria-labelledby="list-artikel-list">
-					<div class="card">
-						<div class="card-header">
-						</div>
-						<div class="card-body">
-						//<?php //include "artikel.php" 
-							?>
+					<div class="tab-pane fade <?= $_GET['act'] == "artikel" ? "active show" : "" ?>" id="list-artikel" role="tabpanel" aria-labelledby="list-artikel-list">
+						<div class="card">
+							<div class="card-header">
+							</div>
+							<div class="card-body">
+							<?php include "artikel.php" 
+								?>
+							</div>
 						</div>
 					</div>
-				</div> -->
 				</div>
 			</div>
 		</div>
