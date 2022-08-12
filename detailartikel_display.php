@@ -50,20 +50,37 @@ include("koneksi_db.php"); ?>
 
 		.link:hover {
 			text-decoration: none;
-			border-radius: 5px;
+			border-radius: 3px;
 
 
 		}
 
 		.list-group-item:hover {
 			text-decoration: none;
-			border-radius: 30px;
-			color: black;
-			text-decoration: none;
-			background-color: #e9eceb !important;
+			border-radius: 100%;
+			color: white;
+			font-weight: bold;
+			background-color: #d0d0C1;
 			transition: background-color .3s ease-out;
 
 
+		}
+
+		.list-link:hover {
+			text-decoration: none;
+			border-radius: 30px;
+
+
+			background-color: #e9eceb !important;
+			transition: background-color .3s ease-out;
+
+		}
+
+		.link-web:hover {
+			text-decoration: none;
+			color: green;
+
+			transition: color .3s ease-out;
 		}
 	</style>
 
@@ -96,24 +113,44 @@ include("koneksi_db.php"); ?>
 			</div>
 		</div>
 		<div class="col-4 mt-4">
+			<!-- CARD ARTIKEL LAINNYA -->
 			<div class="card w-100">
-				<div class="card-header">
+				<div class="card-header text-white font-weight-bolder" style="background-color: #23517F;">
 					Baca Artikel Lainnya :
 				</div>
 				<?php
-				$query = mysqli_query($conn, "SELECT * FROM artikel");
+				$query = mysqli_query($conn, "SELECT * FROM artikel  WHERE kd_artikel<>'$kd_artikel' LIMIT 10");
 
 
 				?>
 
 				<ul class="list-group list-group-flush">
 					<?php while ($row = mysqli_fetch_array($query)) : ?>
-						<a class="link" href="detailartikel_display.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" href="#">
+						<a class="link" href="detailartikel_display.php?kd_artikel=<?php echo $row['kd_artikel']; ?>" href="#">
 							<li class="list-group-item text-center"><?= $row['judul'] ?>
 							</li>
 						</a>
 					<?php endwhile; ?>
 
+				</ul>
+			</div>
+			<!-- END ARTIKEL LAINNYA -->
+			<br><br>
+
+			<div class="card w-100">
+				<ul class="nav flex-column py-3 px-3">
+					<li class="nav-header">
+						<a class="nav-link disabled font-weight-bold" href="#">Website Sistem Reproduksi Wanita Lainnya :</a>
+					</li>
+					<li class="list-link nav-item ml-3">
+						<a class="link-web nav-link" href="https://herminahospitals.com/id/specialities/kandungan-obgyn" target="_blank">https://herminahospitals.com/id/</a>
+					</li>
+					<li class="list-link nav-item ml-3">
+						<a class="link-web nav-link" href="https://rscm.co.id/index.php?XP_webview_menu=0&pageid=72" target="_blank">https://rscm.co.id/kandungan/</a>
+					</li>
+					<li class="list-link nav-item ml-3">
+						<a class="link-web nav-link" href="https://www.rspondokindah.co.id/id/center-of-excellence/klinik-kebidanan-dan-kandungan" target="_blank">https://www.rspondokindah.co.id/id/</a>
+					</li>
 				</ul>
 			</div>
 		</div>
