@@ -13,9 +13,6 @@
             $qry = mysqli_query($conn, "SELECT * FROM hasil_diagnosa, penyakit, data_user WHERE penyakit.kode_penyakit=hasil_diagnosa.kode_penyakit AND hasil_diagnosa.username='$u' AND hasil_diagnosa.username=data_user.username ORDER BY hasil_diagnosa.id_diagnosa DESC LIMIT 1") or die(mysqli_error());
             $data = mysqli_fetch_array($qry);
             $id = $data['id_diagnosa'];
-            mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa`");
-            mysqli_query($conn, "TRUNCATE TABLE `tmp_gejala`");
-            mysqli_query($conn, "TRUNCATE TABLE `tmp_penyakit`");
             ?>
             <div class="text_area" align="justify">
               <br>

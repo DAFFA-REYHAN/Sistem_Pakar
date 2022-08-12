@@ -2,7 +2,10 @@
 
 
 	<?php
+	session_start();
+	
 	require_once('otentifikasi.php');
+	
 	include("koneksi_db.php");
 	$u = $_SESSION['SESS_USERNAME'];
 	$act = isset($_GET['act']);
@@ -127,14 +130,18 @@ if (isset($_POST['submit'])) {
 		$persentase=$persentase + $bobot['bobot'];
 	}
 */
+	mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa`");
+	mysqli_query($conn, "TRUNCATE TABLE `tmp_gejala`");
+	mysqli_query($conn, "TRUNCATE TABLE `tmp_penyakit`");
 	if ($persentase == 0) {
 		$sql_pasien = "SELECT * FROM data_user WHERE username='$u'";
 		$qry_pasien = mysqli_query($GLOBALS['conn'], $sql_pasien);
 		$hsl_pasien = mysqli_fetch_array($qry_pasien);
 		$sql_in = "INSERT INTO hasil_diagnosa SET username='$hsl_pasien[username]', kode_penyakit='', tanggal_diagnosa=NOW(), persentase='0'";
 		mysqli_query($GLOBALS['conn'], $sql_in) or die(mysqli_error($GLOBALS['conn']));
+		
 
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=hasil0.php?page=7&act=hasil0\">";
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=hasil_kosong\">";
 		exit;
 	} else {
 		$sql_pasien = "SELECT * FROM data_user WHERE username='$u'";
@@ -142,8 +149,8 @@ if (isset($_POST['submit'])) {
 		$hsl_pasien = mysqli_fetch_array($qry_pasien);
 		$sql_in = "INSERT INTO hasil_diagnosa SET username='$hsl_pasien[username]', kode_penyakit='$hsl_data[kode_penyakit]', tanggal_diagnosa=NOW(), persentase='$persentase'";
 		mysqli_query($GLOBALS['conn'], $sql_in) or die(mysqli_error($GLOBALS['conn']));
-		$_SESSION['hasil'] = true;
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+		
+		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=hasil\">";
 		exit;
 	}
 

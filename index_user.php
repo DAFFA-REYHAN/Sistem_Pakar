@@ -2,6 +2,7 @@
 
 // cek  session
 session_start();
+include("koneksi_db.php");
 if (isset($_SESSION['user'])) {
 	$username = $_SESSION['SESS_USERNAME'];
 } elseif (isset($_SESSION['pakar'])) {
@@ -25,7 +26,7 @@ function clean($str)
 }
 ?>
 <?php
-include("koneksi_db.php");
+
 include("library.php");
 ?>
 
@@ -49,13 +50,13 @@ include("library.php");
 					<a class="list-group-item list-group-item-action" id="list-profil-list" data-toggle="list" href="#list-profil" role="tab" aria-controls="profil">
 						<img src="gambar/iconprofile.png" width="48" height="48" />Profile
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "ubah_password" ? "active" : "" ?>" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
 						<img src="gambar/ubahpassword.png" width="48" height="48" />Ubah Password
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-diagnosa-list" data-toggle="list" href="#list-diagnosa" role="tab" aria-controls="diagnosa">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "diagnosa" ? "active" : "" ?>" id="list-diagnosa-list" data-toggle="list" href="#list-diagnosa" role="tab" aria-controls="diagnosa">
 						<img src="gambar/diagnosa.png" width="48" height="48" />Diagnosa
 					</a>
-					<a class="list-group-item list-group-item-action" id="list-hasildiagnosa-list" data-toggle="list" href="#list-hasildiagnosa" role="tab" aria-controls="hasildiagnosa">
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "hasil_diagnosa" ? "active" : "" ?>" id="list-hasildiagnosa-list" data-toggle="list" href="#list-hasildiagnosa" role="tab" aria-controls="hasildiagnosa">
 						<img src="gambar/lihathasil.png" width="48" height="48" />Lihat Hasil Diagnosa
 					</a>
 					<a class="list-group-item list-group-item-action" href="logout.php">
@@ -65,7 +66,7 @@ include("library.php");
 			</div>
 			<div class="col-8">
 				<div class="tab-content" id="nav-tabContent">
-					<div class="tab-pane fade" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
+					<div class="tab-pane fade <?= !isset($_GET['act']) ? "active show" : "" ?>" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
 						<div class="card">
 							<div class="card-header">
 								Profil
@@ -75,7 +76,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "ubah_password" ? "active show" : "" ?>" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
 						<div class="card">
 							<div class="card-header">
 								Ubah Password
@@ -85,7 +86,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="list-diagnosa" role="tabpanel" aria-labelledby="list-diagnosa-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "diagnosa" ? "active show" : "" ?>" id="list-diagnosa" role="tabpanel" aria-labelledby="list-diagnosa-list">
 						<div class="card">
 							<div class="card-header">
 								Diagnosa
@@ -95,7 +96,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="list-hasildiagnosa" role="tabpanel" aria-labelledby="list-hasildiagnosa-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "hasil_diagnosa" ? "active show" : "" ?>" id="list-hasildiagnosa" role="tabpanel" aria-labelledby="list-hasildiagnosa-list">
 						<div class="card">
 							<div class="card-header">
 								Hasil Diagnosa
@@ -105,7 +106,7 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade <?= isset($_SESSION['hasil']) ? 'show active' : '' ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
+					<div class="tab-pane fade  <?= $_GET['act'] == "hasil" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
 						<div class="card">
 							<div class="card-header">
 								Hasil
@@ -115,12 +116,22 @@ include("library.php");
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade <?= isset($_GET['detail']) ? 'show active' : '' ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
+					<div class="tab-pane fade  <?= $_GET['act'] == "detail" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
 						<div class="card">
 							<div class="card-header">
 							</div>
 							<div class="card-body">
 								<?php include "user_detail.php" ?>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade  <?= $_GET['act'] == "hasil_kosong" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
+						<div class="card">
+							<div class="card-header">
+								Hasil
+							</div>
+							<div class="card-body">
+								<?php include "hasil0.php" ?>
 							</div>
 						</div>
 					</div>

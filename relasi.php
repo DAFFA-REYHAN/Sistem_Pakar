@@ -59,35 +59,41 @@
 			</td>
 
 		</tr>
-		<tr>
-			<td class="subtitle">Daftar Gejala</td>
-		</tr>
-		<?php
-		$no = 0;
-		$qry = mysqli_query($conn, "SELECT * FROM gejala ORDER BY kode_gejala");
-		while ($data = mysqli_fetch_array($qry)) {
-			$no++;
-			$qryr = mysqli_query($conn, "SELECT * FROM relasi_penyakit_gejala WHERE kode_penyakit='$kode_penyakit' AND kode_gejala='$data[kode_gejala]'");
-			$cocok = mysqli_num_rows($qryr);
-			if ($cocok == 1) {
-				$cek = "checked";
-			} else {
-				$cek = "";
-			}
-		?>
+	</table>
+	<table>
+		<tbody class=" d-block" style="height:450px;width:100%;font:10px;overflow:scroll;">
 			<tr>
-				<td><input type="checkbox" name="cekgejala[]" value="<?php echo $data['kode_gejala']; ?>" <?php echo $cek; ?> />&nbsp;<?php echo "[" . $data['kode_gejala'] . "]&nbsp;" . $data['nama_gejala']; ?></td>
+				<td class="subtitle">Daftar Gejala</td>
 			</tr>
-		<?php } ?>
-		<tr>
-			<td></td>
-		</tr>
-		<tr>
-			<td colspan="3">
-				<hr color="#AAAAAA">
-			</td>
+			<?php
+			$no = 0;
+			$qry = mysqli_query($conn, "SELECT * FROM gejala ORDER BY kode_gejala");
+			while ($data = mysqli_fetch_array($qry)) {
+				$no++;
+				$qryr = mysqli_query($conn, "SELECT * FROM relasi_penyakit_gejala WHERE kode_penyakit='$kode_penyakit' AND kode_gejala='$data[kode_gejala]'");
+				$cocok = mysqli_num_rows($qryr);
+				if ($cocok == 1) {
+					$cek = "checked";
+				} else {
+					$cek = "";
+				}
+			?>
+				<tr>
+					<td><input type="checkbox" name="cekgejala[]" value="<?php echo $data['kode_gejala']; ?>" <?php echo $cek; ?> />&nbsp;<?php echo "[" . $data['kode_gejala'] . "]&nbsp;" . $data['nama_gejala']; ?></td>
+				</tr>
+			<?php } ?>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<hr color="#AAAAAA">
+				</td>
 
-		</tr>
+			</tr>
+		</tbody>
+	</table>
+	<table>
 		<tr>
 			<td align="center" class="judul"><input class="btn btn-primary btn-lg active" type="submit" name="simpan" value="Simpan" onclick="return confirm('Apakah anda yakin data relasi ini akan disimpan?')" />&nbsp;<input class="btn btn-primary btn-lg active" type="reset" value="Normalkan" /></td>
 		</tr>
