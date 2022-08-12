@@ -56,7 +56,7 @@ include("koneksi_db.php"); ?>
 	$jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
 	$jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
 	$linkHalaman = $p->navHalaman($_GET['hal'], $jmlhalaman);
-	echo "<center>$linkHalaman</center>";
+	echo "<center class='my-4'>$linkHalaman</center>";
 	?>
 </div>
 

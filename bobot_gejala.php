@@ -33,7 +33,7 @@
 						<option value="?act=bobot">[ Daftar Penyakit ]</option>
 						<?php
 						$kode_penyakit = $_GET['kode_penyakit'];
-						$qryp = mysqli_query($conn, "SELECT * FROM penyakit");
+						$qryp = mysqli_query($conn, "SELECT * FROM penyakit ORDER BY kode_penyakit ASC");
 						while ($datap = mysqli_fetch_array($qryp)) {
 							if ($datap['kode_penyakit'] == $kode_penyakit) {
 								$cek = "selected";
@@ -64,7 +64,7 @@
 			</tr>
 			<?php
 
-			$qry = mysqli_query($conn, "SELECT * FROM relasi_penyakit_gejala,gejala where relasi_penyakit_gejala.kode_penyakit='$kode_penyakit' AND relasi_penyakit_gejala.kode_gejala=gejala.kode_gejala");
+			$qry = mysqli_query($conn, "SELECT * FROM relasi_penyakit_gejala,gejala where relasi_penyakit_gejala.kode_penyakit='$kode_penyakit' AND relasi_penyakit_gejala.kode_gejala=gejala.kode_gejala ORDER BY gejala.kode_gejala ASC");
 			$a = 0;
 			while ($data = mysqli_fetch_array($qry)) {
 				++$a;
@@ -73,7 +73,8 @@
 					<td><input type="hidden" name="kode_gejala[]" value="<?php echo $data['kode_gejala'] ?>" /><?php echo "[" . $data['kode_gejala'] . "]&nbsp;" . $data['nama_gejala']; ?></td>
 					<td>:</td>
 					<td>
-							<input name="bobot[]" type="text" size="2" maxlength="3" value="<?php echo $data['bobot']; ?>" /></td>
+						<input name="bobot[]" type="text" size="2" maxlength="3" value="<?php echo $data['bobot']; ?>" />
+					</td>
 				</tr>
 			<?php } ?>
 			<tr>

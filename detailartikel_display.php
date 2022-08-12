@@ -49,13 +49,20 @@ include("koneksi_db.php"); ?>
 		}
 
 		.link:hover {
-			padding: 1%;
 			text-decoration: none;
 			border-radius: 5px;
 
-			background-color: #e0e0e0;
+
+		}
+
+		.list-group-item:hover {
+			text-decoration: none;
+			border-radius: 30px;
+			color: black;
+			text-decoration: none;
+			background-color: #e9eceb !important;
 			transition: background-color .3s ease-out;
-			transition: color .2s ease-out;
+
 
 		}
 	</style>
@@ -101,7 +108,10 @@ include("koneksi_db.php"); ?>
 
 				<ul class="list-group list-group-flush">
 					<?php while ($row = mysqli_fetch_array($query)) : ?>
-						<li class="list-group-item text-center"><a class="link" href="detailartikel_display.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" href="#"><?= $row['judul'] ?></a></li>
+						<a class="link" href="detailartikel_display.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" href="#">
+							<li class="list-group-item text-center"><?= $row['judul'] ?>
+							</li>
+						</a>
 					<?php endwhile; ?>
 
 				</ul>

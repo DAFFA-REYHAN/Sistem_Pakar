@@ -35,7 +35,7 @@
 					<option value="?act=relasi">[ Daftar Penyakit ]</option>
 					<?php
 					$kode_penyakit = $_GET['kode_penyakit'];
-					$qryp = mysqli_query($conn, "SELECT * FROM penyakit");
+					$qryp = mysqli_query($conn, "SELECT * FROM penyakit ORDER BY kode_penyakit ASC");
 					while ($datap = mysqli_fetch_array($qryp)) {
 						if ($datap['kode_penyakit'] == $kode_penyakit) {
 							$cek = "selected";
