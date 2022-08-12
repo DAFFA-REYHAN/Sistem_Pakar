@@ -1,237 +1,293 @@
 <?php
-require_once('otentifikasi.php');
 include "tanggal.php";
-if (isset($_REQUEST['page'])) {
-	$page = $_REQUEST['page'];
-} else {
-	$page = '1';
-}
+
+require_once('otentifikasi.php');
+include("koneksi_db.php");
 ?>
-<!DOCTYPE html>
-<html>
-<link rel="icon" type="image/gif" href="images/gun.gif">
+	
+<div class="text_area" align="justify">
+	
+	<br />
+	<div class="title">Pengolahan Artikel</div>
+	<br />
+	<div class="text-center">
+		<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambahartikel">
+			<img src="gambar/add.png" align="middle" width="20" border="0"> Tambah
+		</button>
+	</div>
 
-<head>
-	<meta charset="utf-8">
-	<title>Sistem Pakar Kejiwaan</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+											<!-- Modal -->
+	<div class="modal fade" id="tambahartikel" tabindex="-1" aria-labelledby="tambahartikelLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="tambahartikelLabel">Tambah Artikel </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="text_area" align="justify">
+					<br />
+					<br />
+					<form action="tambahartikel.php" method="post" enctype="multipart/form-data">
+						<table>
+							<tr>
+								<td>Kode artikel</td>
+								<td>:</td>
+								<td><input name="kd_artikel" type="text" size="5" maxlength="5" disabled value="<?php echo kdautopenyakit("artikel", "A"); ?>" />
+									<input name="kd_artikel" type="hidden" value="<?php echo kdautopenyakit("artikel", "A"); ?>" />
+								</td>
+							</tr>
 
-	<script type='text/javascript'>
-		msg = " -- Selamat datang di website ";
-		msg = " Sistem Pakar Diagnosa Gangguan Kejiwaan-- " + msg;
-		pos = 0;
-
-		function scrollMSG() {
-			document.title = msg.substring(pos, msg.length) + msg.substring(0, pos);
-			pos++;
-			if (pos > msg.length) pos = 0
-			window.setTimeout("scrollMSG()", 200);
-		}
-		scrollMSG();
-	</script>
-
-	<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-	<?php
-	require_once('otentifikasi.php');
-	include("library.php"); ?>
-	<script type="text/javascript">
-		//fungsi displayTime yang dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik
-		function displayTime() {
-			//buat object date berdasarkan waktu saat ini
-			var time = new Date();
-			//ambil nilai jam,
-			//tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length
-			var sh = time.getHours() + "";
-			//ambil nilai menit
-			var sm = time.getMinutes() + "";
-			//ambil nilai detik
-			var ss = time.getSeconds() + "";
-			//tampilkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
-			document.getElementById("clock").innerHTML = (sh.length == 1 ? "0" + sh : sh) + ":" + (sm.length == 1 ? "0" + sm : sm) + ":" + (ss.length == 1 ? "0" + ss : ss);
-		}
-	</script>
-
-</head>
-
-<body>
-	<div class="container">
-		<nav class="navbar navbar-default navbar-static-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation">
-							<?php echo "$tglsekarang"; ?>
-						</li>
-						<li role="presentation><a href=" index_pakar.php">Home</a></li>
-						<li role="presentation"><a href="informasi_pakar.php">Informasi</a></li>
-						<li role="presentation"><a href="lokasi.php">Lokasi</a></li>
-						<li role="presentation" class="active"><a href="Artikel.php">Artikel</a></li>
-						<li role="presentation"><a href="bantuan_pakar.php">Bantuan</a></li>
-						<li role="presentation"><a href="about_pakar.php">About Us</a></li>
-						<li role="presentation"><a href="contact_pakar.php">Contact Us</a></li>
-					</ul>
+							<tr>
+								<td>Judul Artiel</td>
+								<td>:</td>
+								<td><textarea name="judul" cols="30" rows="3"></textarea><br />
+										</td>
+							</tr>
+							<tr>
+								<td>Penulis</td>
+								<td>:</td>
+								<td><textarea name="penulis" cols="30" rows="3"></textarea><br />
+								</td>
+							</tr>
+							<tr>
+								<td>Abstrak</td>
+								<td>:</td>
+								<td><textarea name="abstrak" cols="80" rows="5"></textarea><br />
+										</td>
+							</tr>
+							<tr>
+								<td>Isi</td>
+								<td>:</td>
+								<td><textarea name="isi" cols="80" rows="15"></textarea><br />
+								</td>
+							</tr>
+							<tr>
+								<td>Gambar</td>
+								<td>:</td>
+								<td><input type="file" name="gambar" required /> </td>
+							</tr>
+							<tr> </tr>
+							<tr>
+								<td colspan="3" align="center" onclick="return confirm('Artikel yang akan di simpan sudah sesuai ?')"><input type="submit" name="simpan" value="Simpan" />
+									<input type="button" name="batal" value="Batal" onclick="javascript:history.go(-1)" />
+								</td>
+							</tr>
+						</table>
+					</form>
 				</div>
 			</div>
-		</nav>
-
-
-		<div class="row">
-			<div class="col-md-4">
-				<div class="panel panel-success">
-					<div class="panel-body">
-						Menu Pakar
-					</div>
-					<div class="panel-footer"><img src="gambar/ubahpassword.png" width="48" height="48" /><a href="ubahpw_pakar.php">Ubah Password</a></div>
-					<div class="panel-footer"><img src="gambar/daftar_penyakit.png" width="48" height="48" /><a href="daftar_penyakit.php">Daftar Penyakit</a></div>
-					<div class="panel-footer"><img src="gambar/daftar_gejala.png" width="48" height="48" /><a href="daftar_gejala.php">Daftar Gejala</a></div>
-					<div class="panel-footer"><img src="gambar/relasi.png" width="48" height="48" /><a href="relasi.php">Relasi</a></div>
-					<div class="panel-footer"><img src="gambar/timbangan.png" width="48" height="48" /><a href="bobot_gejala.php">Bobot Gejala</a></div>
-					<div class="panel-footer"><img src="gambar/artikel.png" width="48" height="48" /><a href="artikel.php">Artikel</a></div>
-					<div class="panel-footer"><img src="gambar/peta.png" width="48" height="48" /><a href="lokasi.php">Lokasi</a></div>
-					<div class="panel-footer"><img src="gambar/keluar.png" width="48" height="48" /><a href="index.php">Keluar</a></div>
-				</div>
-
-
-
-				<div class="panel panel-info">
-					<div class="panel-footer">
-
-						<ul class="nav nav-list">
-							<li class="nav-header">Website Kejiwaan Lainnya :</li>
-							<li class="active"><a href="http://www.pdskji.org/home">http://www.pdskji.org/home</a></li>
-							<li><a href="http://www.lahargokembaren.com/">http://www.lahargokembaren.com/</a></li>
-							<li><a href="http://www.budiannakeliat.com/">http://www.budiannakeliat.com/</a></li>
-
-						</ul>
-					</div>
-				</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
+			</div>
+		</div>
+	</div>
 
-			<div class="col-md-8">
-				<div class="panel panel-success">
-					<div class="panel-body">
+	<?php $jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
+	echo "<center style=text-decoration:blink>Terdapat <b>$jmldata</b> Artikel </center>"; ?>
+	<br>
+	<table table class="table table-bordered" border="0" align="center" cellpadding="5" cellspacing="0" bordercolor="#666666" id="pag">
+		<tr tr bgcolor="gray" align="center">
+			<td><b>
+					<font color="white" size=3>Kode Artikel</font>
+				</b></td>
+			<td><b>
+					<font color="white" size=3>Judul Artikel</font>
+				</b></td>
+			<td><b>
+					<font color="white" size=3>Penulis</font>
+				</b></td>
+			<td><b>
+					<font color="white" size=3>Abstrak</font>
+				</b></td>
 
+			<td><b>
+					<font color="white" size=3>Proses</font>
+				</b></td>
+		</tr>
+		<?php
 
+		$no = 0;
+		$qlog = mysqli_query($conn, "SELECT * FROM artikel");
+		while ($data = mysqli_fetch_array($qlog)) {
+			$no++;
+		?>
 
+			<tr class="<?php if ($no % 2 == 1) echo "isitabelganjil";
+						else echo "isitabelgenap"; ?>">
+				<td align="center" name="username"><?php echo $data['kd_artikel']; ?></td>
+				<td><?php echo $data['judul']; ?></td>
+				<td><?php echo $data['penulis']; ?></td>
+				<td><?php echo $data['abstrak']; ?></td>
+				<td align="center">
 
-						<?php
-						require_once('otentifikasi.php');
-						?>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#detailartikel<?= $data['kd_artikel'] ?>">
+						<img src="gambar/detail.png" align="middle" width="20" border="0"> Detail
+					</button>
 
-						<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
-						<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
-						<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css" />
-						<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-						<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css" />
-						<?php include("koneksi_db.php");
-						include("paging.php");
-						$act = isset($_GET['act']);
-						?>
-						<div class="text_area" align="justify">
-							<br />
-							<div class="title">Pengolahan Artikel</div>
-							<br />
+					<!-- Modal -->
+					<div class="modal fade" id="detailartikel<?= $data['kd_artikel'] ?>" tabindex="-1" aria-labelledby="detailartikel<?= $data['kd_artikel'] ?>Label" aria-hidden="true">
+						<div class="modal-dialog modal-xl">
+							<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="detailartikel<?= $data['kd_artikel'] ?>Label">Detail Artikel <?= $data['kd_artikel'] ?></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="text_area" align="justify">
 
-
-							<?php $jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM artikel"));
-							echo "<center style=text-decoration:blink>Terdapat <b>$jmldata</b> Artikel </center>"; ?>
-							<br>
-							<table table class="table table-bordered" border="0" align="center" cellpadding="5" cellspacing="0" bordercolor="#666666" id="pag">
-								<tr tr bgcolor="gray" align="center">
-									<td><b>
-											<font color="white" size=3>Kode Artikel</font>
-										</b></td>
-									<td><b>
-											<font color="white" size=3>Judul Artikel</font>
-										</b></td>
-									<td><b>
-											<font color="white" size=3>Penulis</font>
-										</b></td>
-									<td><b>
-											<font color="white" size=3>Abstrak</font>
-										</b></td>
-
-									<td><b>
-											<font color="white" size=3>Proses</font>
-										</b></td>
-								</tr>
 								<?php
-
-
-								$p = new Paging;
-								$batas = 10;
-								$posisi = $p->cariPosisi($batas);
-
-								$no = 0;
-								$qlog = mysqli_query($conn, "SELECT * FROM artikel ORDER BY kd_artikel Desc LIMIT $posisi,$batas");
-								while ($data = mysqli_fetch_array($qlog)) {
-									$no++;
+							
+									$kd_artikel = $data['kd_artikel'];
+									$qry = mysqli_query($conn, "SELECT * FROM artikel WHERE kd_artikel='$kd_artikel'");
+									$detailAr = mysqli_fetch_array($qry);
 								?>
+									<br>
+									<div class="text_area" align="justify">
+										<div class="title">Detail Artikel <?php echo $detailAr['kd_artikel']; ?></div>
+										<br>
+										<table>
+											<tr>
+												<td colspan="3">
+													<hr color="#AAAAAA">
+												</td>
 
-									<tr class="<?php if ($no % 2 == 1) echo "isitabelganjil";
-												else echo "isitabelgenap"; ?>">
-										<td align="center" name="username"><?php echo $data['kd_artikel']; ?></td>
-										<td><?php echo $data['judul']; ?></td>
-										<td><?php echo $data['penulis']; ?></td>
-										<td><?php echo $data['abstrak']; ?></td>
-										<td align="center"><a href="detailartikel.php?page=4&act=detailartikel&kd_artikel=<?php echo $data['kd_artikel']; ?>"><img src="gambar/detail.png" align="middle" width="20" border="0"> Detail</a>
-											|<a href="editartikel.php?page=4&act=editartikel&kd_artikel=<?php echo $data['kd_artikel']; ?>"><img src="gambar/edit.png" width="20" align="middle" border="0"> Ubah</a>
-									</tr>
-								<?php } ?>
-								<tr tr bgcolor="gray">
-									<td colspan="6" align="center"><a class="link" href="tambahartikel.php"><img src="gambar/add.png" width="20" border="0"> Tambah</a></td>
-								</tr>
-							</table>
-							<?php
-							$jmldata = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM peta"));
-							$jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
-							$linkHalaman = $p->navHalaman($_GET['hal'], $jmlhalaman);
-							echo "<center>$linkHalaman</center>";
-							?>
+											</tr>
+											<tr>
+												<td class="subtitle">Judul</td>
+												<td>:</td>
+												<td><?php echo $detailAr['judul']; ?></td>
+											</tr>
+											<tr>
+												<td class="subtitle">Abstrak</td>
+												<td>:</td>
+												<td><?php echo $detailAr['abstrak']; ?></td>
+											</tr>
+											<tr>
+												<td class="subtitle">Isi</td>
+												<td align="center">:</td>
+												<td><?php echo $detailAr['isi']; ?></td>
+											</tr>
+											<tr>
+												<td class="subtitle">Gambar</td>
+												<td align="center">:</td>
+												<td><img src="<?php echo 'gambarartikel/' . $detailAr['gambar']; ?>" alt="" height="150px"></td>
+											</tr>
+											<tr>
+												<td class="subtitle">Penulis</td>
+												<td align="center">:</td>
+												<td><?php echo $detailAr['penulis']; ?></td>
+											</tr>
+										</table>
+									</div>
 
-
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+							</div>
 						</div>
 					</div>
 
+					<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editartikel<?= $data['kd_artikel'] ?>">
+					<img src="gambar/edit.png" align="middle" width="20" border="0"> Ubah
+					</button>
+
+					<!-- Modal -->
+					<div class="modal fade" id="editartikel<?= $data['kd_artikel'] ?>" tabindex="-1" aria-labelledby="editartikel<?= $data['kd_artikel'] ?>Label" aria-hidden="true">
+						<div class="modal-dialog modal-xl">
+							<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="editartikel<?= $data['kd_artikel'] ?>Label">Edit Artikel <?= $data['kd_artikel'] ?></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+							<?php
+								$kd_artikel = $data['kd_artikel'];
+								$qry = mysqli_query($conn, "SELECT * FROM artikel WHERE kd_artikel='$kd_artikel'");
+								$data = mysqli_fetch_array($qry);
+							?>
+								<br>
+								<div class="text_area" align="justify">
+									<br>
+									<form action="aceditartikel.php" method="post" enctype="multipart/form-data">
+										<table>
+											<tr>
+												<td class="subtitle">Kode</td>
+												<td>:</td>
+												<td><input name="kd_artikel" type="text" size="5" maxlength="5" disabled value="<?php echo $kd_artikel; ?>" />
+													<input name="kd_artikel" type="hidden" value="<?php echo $kd_artikel; ?>" />
+												</td>
+											</tr>
+											<tr>
+												<td class="subtitle">Judul Artikel</td>
+												<td>:</td>
+												<td><input name="judul" type="text" value="<?php echo $data['judul']; ?>" size="30" />
+														<br />
+														</td>
+											</tr>
+											<tr>
+												<td class="subtitle">Penulis</td>
+												<td>:</td>
+												<td><input name="penulis" type="text" value="<?php echo $data['penulis']; ?>" size="30" />
+														<br />
+														</td>
+											</tr>
+											<tr>
+												<td class="subtitle">Abstrak</td>
+												<td class="subtitle" align="center">:</td>
+												<td><textarea name="abstrak" cols="80" rows="5"><?php echo $data['abstrak']; ?></textarea>
+														<br></td>
+												</td>
+											</tr>
+
+											<tr>
+												<td class="subtitle">Isi</td>
+												<td class="subtitle" align="center">:</td>
+												<td><textarea name="isi" cols="80" rows="12"><?php echo $data['isi']; ?></textarea>
+														<br></td>
+												</td>
+											</tr>
+											<tr>
+												<td>Gambar</td>
+												<td>:</td>
+												<td><input type="file" name="gambar" /> </td>
+											</tr>
+
+											<tr>
+												<td colspan="3" align="center"><input type="submit" name="simpan" value="Simpan" onclick="return confirm('Apakah anda yakin data artikel ini akan disimpan?')" />
+													<input type="button" name="batal" value="Batal" onclick="javascript:history.go(-1)" />
+												</td>
+											</tr>
+										</table>
+									</form>
+								</div>
+
+							
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+						</div>
+					</div>
+
+					| <a href="hapusartikel.php?kd_artikel=<?php echo $data['kd_artikel']; ?>" onclick="return confirm('Apakah anda yakin data artikel ini akan dihapus?')" class="btn btn-danger btn-sm"><img src="gambar/hapus.png" width="20" align="middle" border="0"> Hapus</a>
+			</tr>
+		<?php } ?>
+	</table>
+	<?php
+	?>
 
 
-
-
-
-
-
-
-
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-
-
-	<div class="row">
-		<div class="container">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<center>
-						Design by Jesreel Surbakti | jeareel22@gmail.com | © Copyright 2015
-					</center>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	</div> <!-- end dari class container -->
-
-
-
-	<!-- Javascript files harus ditaruh di bawah untuk meningkatkan performa web -->
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-
-
-
-
-</body>
-
-</html>
+</div>
+					
