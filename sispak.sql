@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2022 at 09:14 PM
+-- Generation Time: Aug 15, 2022 at 06:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -113,42 +113,48 @@ CREATE TABLE `gejala` (
 --
 
 INSERT INTO `gejala` (`kode_gejala`, `nama_gejala`) VALUES
-('G0024', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
-('G0023', 'Nyeri Perut'),
-('G0022', 'Kehilangan Nafsu Makan'),
-('G0021', 'Perdarahan Tidak Normal (Diluar Masa Menstruasi, Setelah Berhubungan Seksual Atau Setelah Menopause)'),
-('G0020', 'Nyeri Saat Menstruasi, Setelah Berhubungan Seksual Atau Saat Terjadi Penekanan Pada Panggul'),
-('G0019', 'Perut Terasa Penuh Dan Membesar'),
-('G0018', 'Menstruasi Dalam Jumlah Banyak\r\n'),
+('G0025', 'Lemas'),
+('G0026', 'Sesak'),
+('G0027', 'Perdarahan Pervaginam (Diluar Masa Menstruasi, Setelah Berhubungan Seksual Atau Setelah Menopause)'),
+('G0024', 'Nyeri Saat Menstruasi, Setelah Berhubungan Seksual Atau Saat Terjadi Penekanan Pada Panggul'),
+('G0023', 'Teraba Benjolan Di Vagina'),
+('G0022', 'Nyeri Perut'),
+('G0021', 'Teraba Benjolan Pada Bagian Perut'),
+('G0020', 'Perut Terasa Penuh Dan Membesar'),
+('G0019', 'Mual Dan Muntah'),
+('G0018', 'Nyeri Ketika Buang Air Kecil'),
 ('G0017', 'Mudah Merasa Lelah Atau Tidak Enak Badan'),
-('G0016', 'Perdarahan Diluar Waktu Menstruasi Atau Setelah Berhubungan Seksual'),
+('G0016', 'Riwayat Berhubungan Seksual'),
 ('G0015', 'Nyeri Panggul Atau Perut Bagian Bawah'),
 ('G0014', 'Keputihan Berbau Tidak Sedap'),
+('G0012', 'Menstruasi Dalam Jumlah Banyak'),
 ('G0013', 'Demam'),
-('G0012', 'Mual Dan Muntah'),
-('G0011', 'Nyeri Ketika Buang Air Kecil'),
-('G0010', 'Gangguan Buang Air Besar'),
-('G0009', 'Dispareunia (Nyeri Sebelum, Selama, atau Sesudah Berhubungan Seksual)'),
-('G0008', 'Nyeri Setelah Berhubungan Seksual'),
-('G0007', 'Nyeri Haid Terasa Sangat Menyakitkan'),
-('G0006', 'Sering Buang Air Kecil'),
-('G0005', 'Sulit Buang Air Besar'),
-('G0004', 'Merasa Sangat Kenyang Walau Hanya Makan Sedikit Atau Perut Terasa Kembung'),
+('G0011', 'Keluhan Infertilitas Atau Sulit Mendapatkan Keturunan'),
+('G0010', 'Dispareunia (Nyeri Sebelum, Selama Atau Sesudah Berhubungan Seksual)'),
+('G0009', 'Nyeri Selama Masa Haid Terasa Sangat Menyakitkan'),
+('G0008', 'Sering Buang Air Kecil'),
+('G0007', 'Sulit Buang Air Besar'),
+('G0006', 'Merasa Sangat Kenyang Walau Hanya Makan Sedikit Atau Perut Terasa Kembung'),
+('G0005', 'Memiliki Riwayat Keluarga Mengidap Penyakit Kista\r\n'),
 ('G0003', 'Haid Tidak Teratur'),
-('G0002', 'Nyeri Secara Tiba-Tiba Pada Area Panggul'),
-('G0001', 'Nyeri Perut Bagian Kiri Atau Kanan Bawah (Panggul).'),
-('G0025', 'Perdarahan Pascamenopause Atau Diantara Waktu Menstruasi'),
-('G0026', 'Keluar Cairan Yang Tidak Biasa Dengan Jumlah Banyak Dari Vagina Disertai Rasa Perih'),
-('G0027', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
-('G0028', 'Nyeri Di Panggul, Perut Dan Punggung Bagian Bawah'),
-('G0029', 'Jaringan Rahim Menonjol Ke Vagina'),
-('G0030', 'Perasaan Berat Atau Tekanan Di Panggul'),
-('G0031', 'Merasa Ada Sesuatu Yang Mengganjal Saat Duduk'),
-('G0032', 'Kemerahan Dan Pembengkakan Di Sisi Bibir Vagina'),
-('G0033', 'Kemerahan Dan Nyeri Disekitar Vagina'),
-('G0034', 'Flek Atau Perdarahan Dari Vagina Setelah Berhubungan Seksual dan Terasa Perih'),
-('G0035', 'Keputihan Yang Kental, Berwarna Putih Atau Kuning Kehijauan Dan Berbau Tidak Sedap'),
-('G0036', 'Gatal Di Area Vagina Atau Disekitarnya');
+('G0004', 'Teraba Benjolan Pada Bagian Perut Bawah\r\n'),
+('G0002', 'Nyeri Perut Bagian Kiri Atau Kanan Bawah (Panggul)'),
+('G0001', 'Nyeri Secara Tiba-Tiba Pada Area Panggul'),
+('G0028', 'Memiliki Riwayat Keluarga Mengidap Kanker Serviks'),
+('G0029', 'Kehilangan Nafsu Makan'),
+('G0030', 'Sulit Buang Air Kecil'),
+('G0031', 'Perdarahan Setelah Melakukan Hubungan Seksual'),
+('G0032', 'Perdarahan Pascamenopause'),
+('G0033', 'Perdarahan Diantara Waktu Menstruasi'),
+('G0034', 'Teraba Benjolan Di Vagina Yang Tidak Terasa Sakit dan Benjolan Semakin Terasa Bila Batuk Atau Mengedan'),
+('G0035', 'Terasa Pegal Di Panggul, Perut Dan Punggung Bagian Bawah'),
+('G0036', 'Perasaan Berat Atau Tekanan Di Panggul'),
+('G0037', 'Merasa Ada Sesuatu Yang Mengganjal Saat Duduk'),
+('G0038', 'Benjolan Di Sisi Bibir Vagina, Kemerahan dan Terasa Nyeri'),
+('G0039', 'Kemerahan Dan Nyeri Disekitar Vagina'),
+('G0040', 'Flek Atau Perdarahan Dari Vagina Setelah Berhubungan Seksual dan Terasa Perih'),
+('G0041', 'Gatal Di Area Vagina Atau Disekitarnya'),
+('G0042', 'Riwayat Penggunaan Sabun Pembersih Vagina');
 
 -- --------------------------------------------------------
 
@@ -189,7 +195,17 @@ INSERT INTO `hasil_diagnosa` (`id_diagnosa`, `username`, `kode_penyakit`, `tangg
 (45, 'muhamadhafidz', '', '2022-08-07', 0),
 (46, 'muhamadhafidz', 'P0001', '2022-08-07', 80),
 (47, 'muhamadhafidz', 'P0001', '2022-08-07', 80),
-(48, 'muhamadhafidz', 'P0001', '2022-08-07', 70);
+(48, 'muhamadhafidz', 'P0001', '2022-08-07', 70),
+(49, 'Jesss', '', '2022-08-13', 0),
+(50, 'Jesss', '', '2022-08-13', 0),
+(51, 'Jesss', 'P0003', '2022-08-13', 78),
+(52, 'Jesss', 'P0002', '2022-08-13', 100),
+(53, 'Jesss', 'P0010', '2022-08-15', 40),
+(54, 'Jesss', 'P0005', '2022-08-15', 30),
+(55, 'Jesss', 'P0003', '2022-08-15', 32),
+(56, 'Jesss', 'P0003', '2022-08-15', 32),
+(57, 'Jesss', '', '2022-08-15', 0),
+(58, 'Jesss', 'P0009', '2022-08-15', 40);
 
 -- --------------------------------------------------------
 
@@ -218,9 +234,8 @@ INSERT INTO `penyakit` (`kode_penyakit`, `nama_penyakit`, `definisi`, `pengobata
 ('P0004', 'Mioma Uteri\r\n', 'Mioma adalah pertumbuhan massa di dalam rahim atau di luar rahim yang tidak bersifat ganas. Mioma berasal dari sel otot polos rahim, dan pada beberapa kasus juga berasal dari otot polos pembuluh darah rahim. Jumlah dan ukuran mioma bervariasi, terkadang ditemukan satu atau lebih dari satu. Biasanya mioma tersebut berlokasi di dinding rahim, dan bentuknya menonjol ke rongga endometrium atau permukaan rahim.', 'USG, Terapi Hormonal, Miektomi, Histerektomi.\r\n', 'Olahraga/aktivitas fisik. Tubuh akan membakar kalori lebih sedikit ketika Anda malas bergerak. Pola makan sehat. Pola makan yang tinggi kalori, sedikit sayur dan buah, sering melewatkan sarapan, dan minum minuman tinggi gula dapat menyebabkan terjadinya obesitas. Hindari merokok. Kebiasaan ini dapat meningkatkan risiko mioma.'),
 ('P0005', 'Kanker Serviks', 'Kanker serviks adalah kanker yang tumbuh pada sel-sel di leher rahim. Kanker ini umumnya berkembang perlahan dan baru menunjukkan gejala ketika sudah memasuki stadium lanjut. Oleh sebab itu, penting untuk mendeteksi kanker serviks sejak dini sebelum timbul masalah serius. Serviks atau leher rahim adalah bagian rahim yang terhubung ke vagina. Fungsinya adalah untuk memproduksi lendir yang membantu menyalurkan sperma dari vagina ke rahim saat berhubungan seksual. Serviks juga berfungsi melindungi rahim dari bakteri dan benda asing dari luar.', 'Bedah, Radioterapi, Kemoterapi, Terapi Target.', 'Vaksin HPV. Berhubungan seks secara aman, yaitu dengan menggunakan kondom dan menghindari berhubungan seksual dengan lebih dari satu pasangan. Menjalani pap smear atau pemeriksaan IVA secara berkala agar kondisi serviks selalu terpantau dan agar penanganan bisa lebih cepat dilakukan bila ada kanker. Tidak merokok.'),
 ('P0001', 'Kista Ovarium Terpuntir', 'Kista ovarium adalah kantong berisi cairan yang tumbuh pada indung telur (ovarium) wanita. Kista ini biasanya muncul selama masa subur atau selama wanita  mengalami menstruasi. Tiap wanita memiliki dua indung telur (ovarium), satu di bagian kanan dan satu lagi di sebelah kiri rahim. Ovarium yang berukuran sebesar biji kenari ini merupakan bagian dari sistem reproduksi wanita. Ovarium berfungsi untuk menghasilkan sel telur tiap bulan (mulai dari masa pubertas hingga menopause), serta memproduksi hormon estrogen dan progesteron. Fungsi ovarium terkadang dapat terganggu, kista termasuk jenis gangguan yang sering terjadi.', 'Pemantauan Rutin, Konsumsi Pil KB, Prosedur Operasi.', 'Melakukan pemeriksaan panggul secara rutin. Waspada terhadap perubahan dalam siklus menstruasi, termasuk gejala menstruasi yang tidak biasa, terutama yang terjadi lebih dari beberapa siklus. Segera berkonsultasi dengan dokter bila mengalami gejala yang mengkhawatirkan.'),
-('P0002', 'Kista Endometriosis', 'Kista endometriosis adalah kista yang terbentuk saat jaringan endometrium tumbuh di ovarium atau indung telur. Isinya berupa cairan berukuran besar pada indung telur, bahkan bisa membungkusnya. Pada kebanyakan kasus, keadaan ini muncul akibat endometriosis yang tidak mendapat penanganan tepat. Dikenal sebagai endometrioma atau \"chocolate cyst\" (karena berisi cairan berwarna cokelat tua yang terdiri dari darah dan jaringan menstruasi lama).', 'Konsumsi Obat-obatan, Terapi Hormon, Operasi', 'Berolahraga secara rutin, minimal 30 menit setiap hari. Menjaga berat badan agar tetap ideal. Menurunkan berat badan bila mengalami obesitas. Mengurangi konsumsi alkohol secara berlebihan. Mengurangi konsumsi kafein yang berlebihan. Berkonsultasi dengan dokter mengenai penggunaan alat kontrasepsi yang tepat.'),
-('P0003', 'PID (Pelvic Inflammation Disease) / Penyakit Radang Panggul', 'Radang panggul atau pelvic inflammatory disease (PID) adalah infeksi pada organ reproduksi wanita, seperti serviks, rahim, dan ovarium. Salah satu penyebab paling sering dari radang panggul adalah infeksi menular seksual. Radang panggul umumnya dialami oleh wanita usia 15–25 tahun yang aktif berhubungan seksual. Radang panggul bisa ditandai dengan nyeri di panggul atau perut bagian bawah. Kondisi ini perlu mendapat penanganan untuk mencegah terjadinya komplikasi, seperti kehamilan di luar kandungan (ektopik) atau kemandulan (infertilitas).', 'Konsumsi Obat-obatan, Operasi', 'Jangan berganti-ganti pasangan. Gunakan kondom saat berhubungan seksual. Periksa kesehatan secara rutin jika memiliki risiko tertular infeksi menular seksual. Konsultasikan pilihan dan rencana penggunaan alat kontrasepsi dengan dokter. Bersihkan area kemaluan dari depan ke belakang dan jangan sebaliknya.'),
-('P0011', 'adfwfa', 'sda', 'sdasdaw', 'sdawdwd');
+('P0002', 'Endometriosis', 'Kista endometriosis adalah kista yang terbentuk saat jaringan endometrium tumbuh di ovarium atau indung telur. Isinya berupa cairan berukuran besar pada indung telur, bahkan bisa membungkusnya. Pada kebanyakan kasus, keadaan ini muncul akibat endometriosis yang tidak mendapat penanganan tepat. Dikenal sebagai endometrioma atau \"chocolate cyst\" (karena berisi cairan berwarna cokelat tua yang terdiri dari darah dan jaringan menstruasi lama).', 'Konsumsi Obat-obatan, Terapi Hormon, Operasi', 'Berolahraga secara rutin, minimal 30 menit setiap hari. Menjaga berat badan agar tetap ideal. Menurunkan berat badan bila mengalami obesitas. Mengurangi konsumsi alkohol secara berlebihan. Mengurangi konsumsi kafein yang berlebihan. Berkonsultasi dengan dokter mengenai penggunaan alat kontrasepsi yang tepat.'),
+('P0003', 'PID (Pelvic Inflammation Disease) / Penyakit Radang Panggul', 'Radang panggul atau pelvic inflammatory disease (PID) adalah infeksi pada organ reproduksi wanita, seperti serviks, rahim, dan ovarium. Salah satu penyebab paling sering dari radang panggul adalah infeksi menular seksual. Radang panggul umumnya dialami oleh wanita usia 15–25 tahun yang aktif berhubungan seksual. Radang panggul bisa ditandai dengan nyeri di panggul atau perut bagian bawah. Kondisi ini perlu mendapat penanganan untuk mencegah terjadinya komplikasi, seperti kehamilan di luar kandungan (ektopik) atau kemandulan (infertilitas).', 'Konsumsi Obat-obatan, Operasi', 'Jangan berganti-ganti pasangan. Gunakan kondom saat berhubungan seksual. Periksa kesehatan secara rutin jika memiliki risiko tertular infeksi menular seksual. Konsultasikan pilihan dan rencana penggunaan alat kontrasepsi dengan dokter. Bersihkan area kemaluan dari depan ke belakang dan jangan sebaliknya.');
 
 -- --------------------------------------------------------
 
@@ -261,50 +276,68 @@ CREATE TABLE `relasi_penyakit_gejala` (
 --
 
 INSERT INTO `relasi_penyakit_gejala` (`kode_penyakit`, `kode_gejala`, `bobot`) VALUES
-('P0003', 'G0017', 4),
+('P0003', 'G0018', 5),
 ('P0001', 'G0006', 5),
-('P0001', 'G0005', 10),
-('P0002', 'G0008', 25),
-('P0002', 'G0007', 30),
-('P0002', 'G0003', 15),
-('P0003', 'G0016', 14),
-('P0003', 'G0015', 16),
-('P0003', 'G0014', 6),
-('P0003', 'G0013', 10),
-('P0004', 'G0020', 25),
-('P0004', 'G0019', 35),
-('P0005', 'G0023', 30),
-('P0005', 'G0022', 10),
-('P0005', 'G0021', 35),
-('P0005', 'G0014', 25),
-('P0006', 'G0025', 40),
-('P0006', 'G0024', 60),
-('P0007', 'G0027', 25),
-('P0007', 'G0026', 40),
-('P0008', 'G0031', 10),
-('P0008', 'G0030', 20),
-('P0008', 'G0029', 40),
-('P0008', 'G0028', 30),
-('P0009', 'G0032', 50),
-('P0009', 'G0013', 20),
-('P0009', 'G0009', 30),
-('P0010', 'G0036', 5),
-('P0010', 'G0035', 10),
-('P0010', 'G0034', 22),
-('P0001', 'G0004', 15),
-('P0001', 'G0003', 20),
-('P0001', 'G0002', 23),
-('P0002', 'G0009', 20),
-('P0002', 'G0010', 10),
-('P0003', 'G0012', 12),
-('P0003', 'G0011', 20),
-('P0003', 'G0009', 18),
-('P0010', 'G0033', 30),
-('P0010', 'G0011', 15),
-('P0010', 'G0009', 18),
-('P0007', 'G0009', 35),
-('P0004', 'G0018', 40),
-('P0001', 'G0001', 27);
+('P0001', 'G0005', 7),
+('P0002', 'G0011', 16),
+('P0002', 'G0010', 18),
+('P0002', 'G0009', 22),
+('P0003', 'G0017', 5),
+('P0003', 'G0016', 10),
+('P0003', 'G0015', 13),
+('P0003', 'G0014', 17),
+('P0004', 'G0020', 14),
+('P0004', 'G0012', 16),
+('P0003', 'G0019', 5),
+('P0005', 'G0025', 5),
+('P0005', 'G0022', 5),
+('P0005', 'G0016', 15),
+('P0005', 'G0014', 20),
+('P0006', 'G0031', 35),
+('P0006', 'G0023', 15),
+('P0007', 'G0027', 30),
+('P0007', 'G0014', 20),
+('P0002', 'G0012', 14),
+('P0008', 'G0037', 5),
+('P0008', 'G0036', 5),
+('P0008', 'G0035', 40),
+('P0008', 'G0034', 50),
+('P0001', 'G0008', 5),
+('P0001', 'G0007', 5),
+('P0009', 'G0038', 40),
+('P0009', 'G0013', 25),
+('P0009', 'G0010', 35),
+('P0010', 'G0042', 10),
+('P0010', 'G0041', 12),
+('P0010', 'G0040', 18),
+('P0001', 'G0004', 12),
+('P0001', 'G0003', 17),
+('P0001', 'G0002', 22),
+('P0002', 'G0007', 10),
+('P0002', 'G0003', 20),
+('P0003', 'G0013', 19),
+('P0003', 'G0011', 11),
+('P0003', 'G0010', 15),
+('P0010', 'G0039', 24),
+('P0010', 'G0014', 15),
+('P0010', 'G0010', 21),
+('P0007', 'G0010', 15),
+('P0004', 'G0011', 9),
+('P0001', 'G0001', 27),
+('P0004', 'G0021', 13),
+('P0004', 'G0022', 12),
+('P0004', 'G0023', 11),
+('P0004', 'G0024', 10),
+('P0004', 'G0025', 8),
+('P0004', 'G0026', 7),
+('P0005', 'G0026', 5),
+('P0005', 'G0027', 30),
+('P0005', 'G0028', 10),
+('P0005', 'G0029', 5),
+('P0005', 'G0030', 5),
+('P0006', 'G0032', 30),
+('P0006', 'G0033', 20),
+('P0007', 'G0031', 35);
 
 -- --------------------------------------------------------
 
@@ -395,7 +428,7 @@ ALTER TABLE `peta`
 -- AUTO_INCREMENT for table `hasil_diagnosa`
 --
 ALTER TABLE `hasil_diagnosa`
-  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_diagnosa` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

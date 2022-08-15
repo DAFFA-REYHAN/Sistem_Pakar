@@ -50,18 +50,18 @@ include("koneksi_db.php"); ?>
 
 		.link:hover {
 			text-decoration: none;
-			border-radius: 3px;
+
+
 
 
 		}
 
 		.list-group-item:hover {
 			text-decoration: none;
-			border-radius: 100%;
 			color: white;
 			font-weight: bold;
 			background-color: #d0d0C1;
-			transition: background-color .3s ease-out;
+			transition: background-color .5s ease-out;
 
 
 		}
