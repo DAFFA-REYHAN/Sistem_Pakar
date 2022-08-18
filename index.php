@@ -26,7 +26,7 @@ include("koneksi_db.php"); ?>
 		<p class="text-large">DIAGNOSIS PENYAKIT REPRODUKSI WANITA</p>
 		<h5>Daftarkan diri anda segera untuk menggunakan fasilitas diagnosis ini</h5>
 		<div>
-			<a class="btn btn-warning text-black px-4 mt-4" href="daftar.php">Daftar</a>
+			<a class="btn btn-warning text-black px-4 mt-4" href="#" data-toggle="modal" data-target="#registerModal">Daftar</a>
 		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_POST['tombol']) && $_POST['g-recaptcha-response'] != "") {
+if (isset($_POST['tombol']) && isset($_POST['g-recaptcha-response'])) {
 
 
 	// Insert you code for processing the form here
@@ -28,7 +28,7 @@ if (isset($_POST['tombol']) && $_POST['g-recaptcha-response'] != "") {
 
 	//Create INSERT query
 	$qry = "INSERT INTO data_user 
-		VALUES('$username', '" . md5($_POST['password']) . "',  '$nama_user', '$usia', '$jenis_kelamin', '$alamat','$pertanyaan', '" . md5($_POST['jawaban']) . "', 'user')";
+		VALUES('$username', '" . md5($_POST['password']) . "',  '$nama_user', '$usia', '$jenis_kelamin', '$alamat','$pertanyaan', '" . md5($_POST['jawaban']) . "','user')";
 
 	$result = mysqli_query($conn, $qry);
 

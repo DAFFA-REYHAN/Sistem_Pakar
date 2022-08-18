@@ -225,7 +225,10 @@ function kdautopenyakit($tabel, $inisial)
 	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
 	$row	= mysqli_fetch_array($qry);
 	if ($row[0] == "") {
-		$angka = 0;
+		$angka = 1;
+		$inisial = 'P';
+		$tmp = "000";
+		return $inisial . $tmp . $angka;
 	} else {
 		$angka = substr($row[0], strlen($inisial));
 	}
@@ -276,7 +279,39 @@ function kdautogejala($tabel, $inisial)
 	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
 	$row	= mysqli_fetch_array($qry);
 	if ($row[0] == "") {
-		$angka = 0;
+		$angka = 1;
+		$inisial = 'G';
+		$tmp = "000";
+		return $inisial . $tmp . $angka;
+	} else {
+		$angka = substr($row[0], strlen($inisial));
+
+
+		$angka++;
+		$angka = strval($angka);
+		$tmp = "";
+		for ($i = 1; $i <= ($panjang - strlen($inisial) - strlen($angka)); $i++) {
+			$tmp = $tmp . "0";
+		}
+		return $inisial . $tmp . $angka;
+	}
+}
+
+function kdautoartikel($tabel, $inisial)
+{
+	$conn = mysqli_connect("localhost", "root", "", "sispak");
+	$struktur	= mysqli_query($conn, "SELECT * FROM $tabel");
+	$field		=  mysqli_fetch_field_direct($struktur, 0)->name;
+	$panjang	= mysqli_fetch_field_direct($struktur, 0)->max_length;
+
+
+	$qry	= mysqli_query($conn, "SELECT max(" . $field . ") FROM " . $tabel);
+	$row	= mysqli_fetch_array($qry);
+	if ($row[0] == "") {
+		$angka = 1;
+		$inisial = 'A';
+		$tmp = "000";
+		return $inisial . $tmp . $angka;
 	} else {
 		$angka = substr($row[0], strlen($inisial));
 	}
@@ -287,7 +322,7 @@ function kdautogejala($tabel, $inisial)
 	for ($i = 1; $i <= ($panjang - strlen($inisial) - strlen($angka)); $i++) {
 		$tmp = $tmp . "0";
 	}
-	return $inisial . $tmp . $angka;
+	return  $inisial . $tmp . $angka;
 }
 
 
