@@ -1,54 +1,45 @@
+<?php $username = $_SESSION['SESS_USERNAME']; ?>
+
 <?php
+	if (isset($_POST['tombol-profil'])) {
+		if ($_POST['g-recaptcha-response'] != "") {
+			$username = $_SESSION['SESS_USERNAME'];
 
-$username = $_SESSION['SESS_USERNAME'];
-?>
-<?php
+			//Sanitize the POST values
+			$nama_user = clean($_POST['nama_user']);
+			$usia = clean($_POST['usia']);
+			$jenis_kelamin = clean($_POST['jenis_kelamin']);
+			$alamat = clean($_POST['alamat']);
 
-if (isset($_POST['tombol-profil'])) {
-	if ($_POST['g-recaptcha-response'] != "") {
-		$username = $_SESSION['SESS_USERNAME'];
+			$cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'"));
 
-		//Sanitize the POST values
-
-		$nama_user = clean($_POST['nama_user']);
-		$usia = clean($_POST['usia']);
-		$jenis_kelamin = clean($_POST['jenis_kelamin']);
-		$alamat = clean($_POST['alamat']);
-
-		$cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'"));
-
-		if ($cek > 0) {
-			$qry = mysqli_query($conn, "UPDATE data_user SET nama_user='$nama_user', usia='$usia', jenis_kelamin='$jenis_kelamin', alamat='$alamat' WHERE username='$username'");
-
-			echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
-			$_SESSION['sukses'] = "berhasil merubah profil";
-			exit();
+			if ($cek > 0) {
+				$qry = mysqli_query($conn, "UPDATE data_user SET nama_user='$nama_user', usia='$usia', jenis_kelamin='$jenis_kelamin', alamat='$alamat' WHERE username='$username'");
+				echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+				$_SESSION['sukses'] = "Berhasil Merubah Profil";
+				exit();
+			} else {
+				echo  "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+				$_SESSION['gagal'] = "Gagal Merubah Profil";
+				exit();
+			}
 		} else {
-			echo  "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
-			$_SESSION['gagal'] = "gagal merubah profil";
+			echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
+			$_SESSION['gagal'] = "Gagal Merubah Profil";
 			exit();
 		}
-	} else {
-		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php\">";
-		$_SESSION['gagal'] = "gagal merubah profil";
-		exit();
 	}
-}
 ?>
+
 <div class="alert alert-success" role="alert">Selamat Datang <?php echo $username; ?></div>
 
-
-
-<!--<img src="images/89.jpg" title="user" width="200" height="200" class="templatemo_pic" /></div>-->
 <?php
-$qry = mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'");
-$data = mysqli_fetch_array($qry);
+	$qry = mysqli_query($conn, "SELECT * FROM data_user WHERE username='$username'");
+	$data = mysqli_fetch_array($qry);
 ?>
 
 <table class="table table-striped">
 	<th>
-
-
 		<div class="subtitle">Biodata</div>
 	<th>
 	<th>
@@ -63,7 +54,7 @@ $data = mysqli_fetch_array($qry);
 	<tr>
 		<td valign="top">Usia</td>
 		<td valign="top">:</td>
-		<td valign="bottom"><?php echo $data['usia']; ?> tahun
+		<td valign="bottom"><?php echo $data['usia']; ?> Tahun
 	</tr>
 	<tr>
 		<td valign="top">Jenis Kelamin</td>
@@ -83,16 +74,13 @@ $data = mysqli_fetch_array($qry);
 		<td colspan="3">
 			<hr color="#AAAAAA">
 		</td>
-
 	</tr>
 </table>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ubahProfil">
-	Ubah Profil
-</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ubahProfil">Ubah Profil</button>
 
 <!-- Modal -->
-<div class="modal fade" id="ubahProfil" tabindex="-1" aria-labelledby="ubahProfilLabel" aria-hidden="true">
+<div class="modal  fade modal-centered" id="ubahProfil" tabindex="-1" aria-labelledby="ubahProfilLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">

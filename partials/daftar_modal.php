@@ -21,13 +21,12 @@
     </div>
 </div>
 
-
 <!-- Modal -->
-<div class="modal  fade modal-centered" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg ">
+<div class="modal  fade modal-centered" id="RegisterModal" tabindex="-1" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title text-center w-100 font-weight-bold" id="registerModalLabel">BUAT AKUN</h4>
+                <h4 class="modal-title text-center w-100 font-weight-bold" id="RegisterModalLabel">BUAT AKUN</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,91 +39,86 @@
                                 <tr>
                                     <td valign="top">Nama Pengguna</td>
                                     <td valign="top">:</td>
-                                    <td valign="bottom"><span id="sprytextfield7">
+                                    <td valign="bottom">
+                                        <span id="sprytextfield7">
                                             <input name="username" type="text" size="40" maxlength="30" />
-                                            <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Username Harus Diisi.</span>
-                                            <span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Panjang minimal 5 karakter.</span>
-                                            <span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan tanpa spasi.</span>
                                             <br>
-                                            <p class="style2 text-primary">*Panjang minimal 5 karakter.</p>
-
+                                            <p class="style2 text-primary">*Panjang minimal 5 karakter dan tanpa spasi.</p>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td valign="top">Kata Sandi</td>
                                     <td valign="top">:</td>
-                                    <td valign="bottom"><span id="sprypassword">
+                                    <td valign="bottom">
+                                        <span id="sprypassword">
                                             <input name="password" type="password" id="password" size="25" maxlength="30" />
-                                            <span class="passwordRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Password Harus Diisi.</span>
-                                            <span class="passwordMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 6 karakter.</span></span>
-                                        <br>
-                                        <p class="style2 text-primary "> *Panjang minimal 6 karakter.</p>
+                                            <br>
+                                            <p class="style2 text-primary "> *Panjang minimal 6 karakter.</p>
+                                        </span>
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td>Konfirmasi Kata Sandi</td>
                                     <td>:</td>
-                                    <td><span id="spryconfirm">
+                                    <td>
+                                        <span id="spryconfirm">
                                             <input name="password2" type="password" size="25" maxlength="30" />
-                                            <span class="confirmRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Konfirmasi Password Harus Diisi.</span>
-                                            <span class="confirmInvalidMsg"><img src="gambar/hapus.png" width="10" height="10"> Kata Sandi Harus Cocok.</span></span></td>
+                                        </span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
                                         <hr color="#AAAAAA">
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td colspan="3">
                                         <div class="subtitle font-weight-bold mb-3 ">Biodata</div>
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td>Nama</td>
                                     <td>:</td>
-                                    <td><span id="sprytextfield4">
+                                    <td>
+                                        <span id="sprytextfield4">
                                             <input name="nama_user" type="text" size="30" maxlength="30">
-                                            <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Nama Anda harus diisi.</span>
-                                            <span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Panjang minimal 2 karakter.</span>
-                                            <span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span></span></td>
+                                        </span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td valign="top">Usia</td>
                                     <td valign="top">:</td>
-                                    <td><span id="sprytextfield5">
+                                    <td>
+                                        <span id="sprytextfield5">
                                             <input name="usia" type="text" size="30" maxlength="30">
-                                            <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Usia Anda harus diisi.</span>
-                                            <span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Kelamin</td>
                                     <td>:</td>
-                                    <td><select name="jenis_kelamin">
+                                    <td>
+                                        <select name="jenis_kelamin">
                                             <option value="#">Pilih Jenis Kelamin</option>
                                             <option value="L">Laki-laki</option>
                                             <option value="P">Perempuan</option>
-                                        </select></td>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
                                     <td>:</td>
-                                    <td><span id="sprytextfield6">
+                                    <td>
+                                        <span id="sprytextfield6">
                                             <input name="alamat" type="text" size="50" maxlength="100" />
-                                            <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Alamat harus diisi.</span>
-                                            <span class="textfieldMinCharsMsg"><img src="gambar/hapus.png" width="10" height="10"> Minimal 4 karakter.</span>
-                                            <span class="textfieldInvalidFormatMsg"><img src="gambar/hapus.png" width="10" height="10"> Format penulisan salah.</span>
-                                        </span></td>
+                                        </span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="3">
                                         <hr color="#AAAAAA">
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td colspan="3">
@@ -134,22 +128,25 @@
                                 <tr>
                                     <td>Pilih Pertanyaan Rahasia</td>
                                     <td>:</td>
-                                    <td><select name="pertanyaan" id="pertanyaan">
+                                    <td>
+                                        <select name="pertanyaan" id="pertanyaan">
                                             <option value="Apa Makanan Favorit Anda?">Apa Makanan Favorit Anda?</option>
                                             <option value="Apa Buku Favorit Anda?">Apa Buku Favorit Anda?</option>
                                             <option value="Apa Nama Sekolah Dasar Anda?">Apa Nama Sekolah Dasar Anda?</option>
                                             <option value="Siapa Nama Sahabat Anda Waktu Masih Kecil?">Siapa Nama Sahabat Anda Waktu Masih Kecil?</option>
                                             <option value="Siapa Nama Guru Favorit Anda?">Siapa Nama Guru Favorit Anda?</option>
                                             <option value="Di Kota Manakah Ibu Anda Lahir?">Di Kota Manakah Ibu Anda Lahir?</option>
-                                        </select></td>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Jawaban Anda</td>
                                     <td>:</td>
-                                    <td><span id="sprytextfield88">
+                                    <td>
+                                        <span id="sprytextfield88">
                                             <input name="jawaban" type="text" size="30" maxlength="30">
-                                            <span class="textfieldRequiredMsg"><img src="gambar/hapus.png" width="10" height="10"> Jawaban harus diisi.</span>
-                                        </span></td>
+                                        </span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Validasi</td>
@@ -164,7 +161,6 @@
                     </form>
                 </div>
             </div>
-
             <div class="text-center py-2">
                 <hr>
                 <p>Apakah anda sudah punya akun? <a href="" data-dismiss="modal" data-toggle="modal" data-target="#LoginModal" class="font-weight-bolder ml-1"> MASUK</a></p>
@@ -175,9 +171,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-
-
 
 <script type="text/javascript">
     var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "data", {
@@ -212,5 +205,4 @@
     var validsel = new Spry.Widget.ValidationSelect("validsel", {
         validateOn: ["blur"]
     });
-    //
 </script>

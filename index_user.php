@@ -1,54 +1,51 @@
 <?php
+	// cek  session
+	session_start();
 
-// cek  session
-session_start();
-include("koneksi_db.php");
-if (isset($_SESSION['user'])) {
-	$username = $_SESSION['SESS_USERNAME'];
-} elseif (isset($_SESSION['pakar'])) {
-	header("location:index_pakar.php");
-} else {
-	header("location:index.php");
-}
-include "tanggal.php";
-if (isset($_REQUEST['page'])) {
-	$page = $_REQUEST['page'];
-} else {
-	$page = '1';
-}
-function clean($str)
-{
-	$str = @trim($str);
-	if (get_magic_quotes_gpc()) {
-		$str = stripslashes($str);
+	if (isset($_SESSION['user'])) {
+		$username = $_SESSION['SESS_USERNAME'];
+	} elseif (isset($_SESSION['pakar'])) {
+		header("location:index_pakar.php");
+	} else {
+		header("location:index.php");
 	}
-	return mysqli_real_escape_string($GLOBALS['conn'], $str);
-}
+
+	if (isset($_REQUEST['page'])) {
+		$page = $_REQUEST['page'];
+	} else {
+		$page = '1';
+	}
+
+	function clean($str)
+	{
+		$str = @trim($str);
+		if (get_magic_quotes_gpc()) {
+			$str = stripslashes($str);
+		}
+		return mysqli_real_escape_string($GLOBALS['conn'], $str);
+	}
 ?>
-<?php
 
-include("library.php");
-?>
-
-
+<?php include('koneksi_db.php') ?>
+<?php include('library.php') ?>
 <?php include('partials/header.php') ?>
-<style>
+<?php include('partials/navbar.php') ?>
+
+<!-- <style>
 	.active-side {
 		background-color: #23517f !important;
 		color: white !important;
 	}
-</style>
-<?php include('partials/navbar.php') ?>
-<div class=" py-5" style="background-color: #23517f!important;">
+</style> -->
 
+<div class=" py-5" style="background-color: #23517f!important;">
 	<div class="container">
 		<div class="row">
-			<div class="col-4">
-
+			<div class="col-3">
 				<div class="list-group" id="list-tab" role="tablist">
 					<li class="list-group-item">Menu User</li>
 					<a class="list-group-item list-group-item-action" id="list-profil-list" data-toggle="list" href="#list-profil" role="tab" aria-controls="profil">
-						<img src="gambar/iconprofile.png" width="48" height="48" />Profile
+						<img src="gambar/iconprofile.png" width="48" height="48" />Profil
 					</a>
 					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "ubah_password" ? "active" : "" ?>" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
 						<img src="gambar/ubahpassword.png" width="48" height="48" />Ubah Password
@@ -57,14 +54,14 @@ include("library.php");
 						<img src="gambar/diagnosa.png" width="48" height="48" />Diagnosa
 					</a>
 					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "hasil_diagnosa" ? "active" : "" ?>" id="list-hasildiagnosa-list" data-toggle="list" href="#list-hasildiagnosa" role="tab" aria-controls="hasildiagnosa">
-						<img src="gambar/lihathasil.png" width="48" height="48" />Lihat Hasil Diagnosa
+						<img src="gambar/lihathasil.png" width="48" height="48" />Hasil Diagnosa
 					</a>
 					<a class="list-group-item list-group-item-action" href="logout.php">
 						<img src="gambar/keluar.png" width="48" height="48" />Keluar
 					</a>
 				</div>
 			</div>
-			<div class="col-8">
+			<div class="col-9">
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade <?= !isset($_GET['act']) ? "active show" : "" ?>" id="list-profil" role="tabpanel" aria-labelledby="list-profil-list">
 						<div class="card">
@@ -139,8 +136,10 @@ include("library.php");
 			</div>
 		</div>
 	</div>
-
 </div>
+
+<?php include('partials/footer.php') ?>
+
 <script type="text/javascript">
 	var sprypassword9 = new Spry.Widget.ValidationPassword("sprypassword9", {
 		minChars: 6,
@@ -174,4 +173,3 @@ include("library.php");
 		validateOn: ["blur"]
 	});
 </script>
-<?php include('partials/footer.php'); ?>

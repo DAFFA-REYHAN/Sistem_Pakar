@@ -1,4 +1,5 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+
 <!-- Modal -->
 <div class="modal fade modal-centered" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable ">
@@ -14,25 +15,21 @@
                     <div class="md-form mb-3">
                         <i class="fas fa-user"></i><label data-error="wrong" data-success="rigt" class="font-weight-bold ml-2">Nama Pengguna</label>
                         <input type="text" class="form-control validate" name="username" placeholder="Masukkan nama pengguna" required>
-
                     </div>
                     <div class="md-form mb-3">
                         <i class="fas fa-lock"></i> <label data-error="wrong" data-success="rigt" class="font-weight-bold ml-2">Kata Sandi</label>
                         <input type="password" class="form-control validate" name="password" placeholder="Masukkan kata sandi" required>
-
                     </div>
                     <div class="md-form mb-3 text-right mr-3">
                         <a href="lupa_pw.php">Lupa password ?</a>
-
                     </div>
                     <div class="md-form mb-2 text-right">
                         <button type="submit" class="btn btn-primary w-100 font-weight-bold"> Masuk</button>
-
                     </div>
                 </form>
             </div>
             <div class=" text-center py-2">
-                <p>Apakah anda sudah punya akun? <a href="" data-dismiss="modal" data-toggle="modal" data-target="#registerModal" class="font-weight-bolder ml-1"> BUAT AKUN</a></p>
+                <p>Apakah anda belum punya akun? <a href="" data-dismiss="modal" data-toggle="modal" data-target="#RegisterModal" class="font-weight-bolder ml-1"> BUAT AKUN</a></p>
             </div>
         </div>
     </div>

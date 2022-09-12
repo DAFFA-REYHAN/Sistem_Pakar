@@ -1,23 +1,18 @@
 <?php
-session_start();
+	session_start();
 
-include "tanggal.php";
-
-if (isset($_REQUEST['page'])) {
-	$page = $_REQUEST['page'];
-} else {
-	$page = '1';
-}
+	if (isset($_REQUEST['page'])) {
+		$page = $_REQUEST['page'];
+	} else {
+		$page = '1';
+	}
 ?>
-<?php
-include("koneksi_db.php"); ?>
 
-
+<?php include('koneksi_db.php') ?>
 <?php include('partials/header.php') ?>
 <?php include('partials/navbar.php') ?>
 <?php include('partials/login_modal.php') ?>
 <?php include('partials/daftar_modal.php') ?>
-
 
 <div class="container my-5 py-5">
 	<h4 class="text-center mb-5">Tentang Kami</h4>
@@ -28,8 +23,6 @@ include("koneksi_db.php"); ?>
 			</p>
 		</div>
 	</div>
-
-
 </div>
 
 <?php include('partials/footer.php') ?>
