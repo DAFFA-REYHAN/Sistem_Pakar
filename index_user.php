@@ -1,29 +1,29 @@
 <?php
-	// cek  session
-	session_start();
+// cek  session
+session_start();
 
-	if (isset($_SESSION['user'])) {
-		$username = $_SESSION['SESS_USERNAME'];
-	} elseif (isset($_SESSION['pakar'])) {
-		header("location:index_pakar.php");
-	} else {
-		header("location:index.php");
-	}
+if (isset($_SESSION['user'])) {
+	$username = $_SESSION['SESS_USERNAME'];
+} elseif (isset($_SESSION['pakar'])) {
+	header("location:index_pakar.php");
+} else {
+	header("location:index.php");
+}
 
-	if (isset($_REQUEST['page'])) {
-		$page = $_REQUEST['page'];
-	} else {
-		$page = '1';
-	}
+if (isset($_REQUEST['page'])) {
+	$page = $_REQUEST['page'];
+} else {
+	$page = '1';
+}
 
-	function clean($str)
-	{
-		$str = @trim($str);
-		if (get_magic_quotes_gpc()) {
-			$str = stripslashes($str);
-		}
-		return mysqli_real_escape_string($GLOBALS['conn'], $str);
+function clean($str)
+{
+	$str = @trim($str);
+	if (get_magic_quotes_gpc()) {
+		$str = stripslashes($str);
 	}
+	return mysqli_real_escape_string($GLOBALS['conn'], $str);
+}
 ?>
 
 <?php include('koneksi_db.php') ?>
@@ -38,12 +38,12 @@
 	}
 </style> -->
 
-<div class=" py-5" style="background-color: #23517f!important;">
+<div class="py-5" style="background-color: #23517f!important;">
 	<div class="container">
 		<div class="row">
 			<div class="col-3">
 				<div class="list-group" id="list-tab" role="tablist">
-					<li class="list-group-item">Menu User</li>
+					<li class="list-group-item card-header">Menu User</li>
 					<a class="list-group-item list-group-item-action" id="list-profil-list" data-toggle="list" href="#list-profil" role="tab" aria-controls="profil">
 						<img src="gambar/iconprofile.png" width="48" height="48" />Profil
 					</a>
@@ -106,7 +106,7 @@
 					<div class="tab-pane fade  <?= $_GET['act'] == "hasil" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
 						<div class="card">
 							<div class="card-header">
-								Hasil
+								Hasil Diagnosa
 							</div>
 							<div class="card-body">
 								<?php include "hasil.php" ?>

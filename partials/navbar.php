@@ -1,5 +1,5 @@
 <?php
-	$page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+$page = $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
 ?>
 <?php include('partials/login_modal.php') ?>
 <?php include('partials/daftar_modal.php') ?>
@@ -9,7 +9,7 @@
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 py-3 shadow-sm sticky-top">
 	<div class="container">
-	Sistem Pakar Diagnosa Penyakit Sistem Reproduksi Wanita
+		Sistem Pakar Diagnosa Penyakit Sistem Reproduksi Wanita
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -28,22 +28,22 @@
 					<a class="nav-link" href="about.php">Tentang Kami</a>
 				</li>
 				<?php
-					if (!isset($_SESSION['SESS_USERNAME'])) {
+				if (!isset($_SESSION['SESS_USERNAME'])) {
 				?>
-						<li class="nav-item ml-2 px-2">
-							<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
-						</li>
-						<li class="nav-item mr-2 px-2">
-							<a class="nav-link btn btn-primary text-white px-3" data-toggle="modal" data-target="#RegisterModal">Daftar</a>
-						</li>
+					<li class="nav-item ml-2 px-2">
+						<a class="nav-link btn btn-outline-primary px-3" data-toggle="modal" data-target="#LoginModal">Masuk</a>
+					</li>
+					<li class="nav-item mr-2 px-2">
+						<a class="nav-link btn btn-primary text-white px-3" data-toggle="modal" data-target="#RegisterModal">Daftar</a>
+					</li>
 				<?php
-					} else {
+				} else {
 				?>
-						<li class="nav-item ml-2 px-2">
-							<a class=" nav-link btn btn-outline-primary px-3" href="index_<?= $_SESSION['hak_akses'] ?>.php">Dashboard</a>
-						</li>
+					<li class="nav-item ml-2 px-2">
+						<a class=" nav-link btn btn-outline-primary px-3" href="index_<?= $_SESSION['hak_akses'] ?>.php">Dashboard</a>
+					</li>
 				<?php
-					}
+				}
 				?>
 			</ul>
 		</div>
