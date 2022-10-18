@@ -30,7 +30,7 @@
               $qry = mysqli_query($conn, "SELECT * FROM hasil_diagnosa INNER JOIN data_user ON data_user.username = hasil_diagnosa.username WHERE hasil_diagnosa.id_diagnosa = '$id'");
               $data = mysqli_fetch_array($qry);
               if ($data['kode_penyakit'] != '') {
-                $arr_penyakit = (explode("|",$data['kode_penyakit']));
+                // $arr_penyakit = (explode("|",$data['kode_penyakit']));
             ?>
                 <div class="text_area" align="justify">
                   <br>

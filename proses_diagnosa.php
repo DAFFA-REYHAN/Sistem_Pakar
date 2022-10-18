@@ -125,7 +125,7 @@
 ?>
 
 <?php
-	session_start();
+	/*session_start();
 	require_once('otentifikasi.php');
 	include("koneksi_db.php");
 
@@ -214,5 +214,137 @@
 			exit;
 		}
 		echo "<br/><b>Note :</b> <span>Similarily, You Can Also Perform CRUD Operations using These Selected Values.</span>";
+	}*/
+?>
+
+<?php
+	session_start();
+	require_once('otentifikasi.php');
+	include("koneksi_db.php");
+
+	$u = $_SESSION['SESS_USERNAME'];
+
+	if (isset($_POST['submit'])) {
+		if (!empty($_POST['check_list'])) {
+
+			$checked_count = count($_POST['check_list']);
+			if ($checked_count > 9) {
+				$_SESSION['gagal'] = "Maksimal Memilih 9 Gejala";
+				echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=diagnosa\">";
+			}
+			else {
+				# Memastikan Table tmp_analisa kosong
+				$qry_analisa = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa") or die(mysqli_error($GLOBALS['conn']));
+				$data_cek_analisa = mysqli_num_rows($qry_analisa);
+				if ($data_cek_analisa > 0) {
+					mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa`");
+				}
+
+				# Memastikan Table tmp_analisa_fuzzy kosong
+				$qry_analisa_fuzzy = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa_fuzzy") or die(mysqli_error($GLOBALS['conn']));
+				$data_cek_analisa_fuzzy = mysqli_num_rows($qry_analisa_fuzzy);
+				if ($data_cek_analisa_fuzzy > 0) {
+					mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa_fuzzy`");
+				}
+
+				# Memastikan Table tmp_penyakit kosong
+				$qry_penyakit = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_penyakit") or die(mysqli_error($GLOBALS['conn']));
+				$data_cek_penyakit = mysqli_num_rows($qry_penyakit);
+				if ($data_cek_penyakit > 0) {
+					mysqli_query($conn, "TRUNCATE TABLE `tmp_penyakit`");
+				}
+
+				# Memastikan Table tmp_gejala kosong
+				/*$qry_gejala = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_gejala") or die(mysqli_error($GLOBALS['conn']));
+				$data_cek_gejala = mysqli_num_rows($qry_gejala);
+				if ($data_cek_gejala > 0) {
+					mysqli_query($conn, "TRUNCATE TABLE `tmp_gejala`");
+				}*/
+
+				foreach ($_POST['check_list'] as $selected) {
+
+					# Insert tmp_penyakit
+					$query_satu = mysqli_query($GLOBALS['conn'], "SELECT * FROM relasi_penyakit_gejala WHERE kode_gejala = '$selected'") or die(mysqli_error($GLOBALS['conn']));
+					while ($data_satu = mysqli_fetch_array($query_satu)) {
+						$query_empat = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_penyakit WHERE username = '$u' AND kode_penyakit = '$data_satu[kode_penyakit]'") or die(mysqli_error($GLOBALS['conn']));
+						$data_empat = mysqli_num_rows($query_empat);
+						if ($data_empat == 0) {
+							$sql_satu = mysqli_query($GLOBALS['conn'], "INSERT INTO tmp_penyakit (username,kode_penyakit) VALUES ('$u','$data_satu[kode_penyakit]')") or die(mysqli_error($GLOBALS['conn']));
+						}
+					}
+
+					# Insert tmp_analisa
+					$query_dua = mysqli_query($GLOBALS['conn'], "SELECT relasi_penyakit_gejala.* FROM relasi_penyakit_gejala INNER JOIN tmp_penyakit ON tmp_penyakit.kode_penyakit = relasi_penyakit_gejala.kode_penyakit WHERE tmp_penyakit.username = '$u' AND relasi_penyakit_gejala.kode_gejala = '$selected' ORDER BY relasi_penyakit_gejala.kode_penyakit,relasi_penyakit_gejala.kode_gejala") or die(mysqli_error($GLOBALS['conn']));
+					while ($data_dua = mysqli_fetch_array($query_dua)) {
+						$sql_dua = mysqli_query($GLOBALS['conn'], "INSERT INTO tmp_analisa (username,kode_penyakit,kode_gejala,bobot) VALUES ('$u','$data_dua[kode_penyakit]','$data_dua[kode_gejala]','$data_dua[bobot]')") or die(mysqli_error($GLOBALS['conn']));
+					}
+
+					# Insert tmp_gejala
+					//$sql_tiga = mysqli_query($GLOBALS['conn'], "INSERT INTO tmp_gejala (username,kode_gejala) VALUES ('$u','$selected')") or die (mysqli_error($GLOBALS['conn']));
+				}
+
+				$query_lima = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_penyakit WHERE username = '$u' ORDER BY kode_penyakit ASC") or die(mysqli_error($GLOBALS['conn']));
+				while ($data_lima = mysqli_fetch_array($query_lima)){
+					/*$query_enam = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa WHERE kode_penyakit = '$data_lima[kode_penyakit]' ORDER BY bobot ASC LIMIT 1") or die(mysqli_error($GLOBALS['conn']));
+					while ($data_enam = mysqli_fetch_array($query_enam)){
+						$sql_empat = mysqli_query($GLOBALS['conn'], "INSERT INTO tmp_analisa_fuzzy (username,kode_penyakit,kode_gejala,bobot) VALUES ('$u','$data_enam[kode_penyakit]','$data_enam[kode_gejala]','$data_enam[bobot]')") or die(mysqli_error($GLOBALS['conn']));
+					}*/
+
+					$sum_bobot = 0;
+					$sum_fuzzy = 0;
+					$kd_penyakit = '';
+					$query_enam = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa WHERE kode_penyakit = '$data_lima[kode_penyakit]'") or die(mysqli_error($GLOBALS['conn']));
+					while ($data_enam = mysqli_fetch_array($query_enam)){
+						$kd_penyakit = $data_enam['kode_penyakit'];
+						$sum_bobot = $sum_bobot + $data_enam['bobot'];
+					}
+					$sum_fuzzy = ((($sum_bobot - 0.5) / 0.5) / $sum_bobot);
+					$sql_empat = mysqli_query($GLOBALS['conn'], "INSERT INTO tmp_analisa_fuzzy (username,kode_penyakit,bobot) VALUES ('$u','$kd_penyakit',$sum_fuzzy)") or die(mysqli_error($GLOBALS['conn']));
+				}
+
+				# Mencari Hasil
+				$kode_penyakit = '';
+				$persentase = '';
+				$query_tujuh = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa_fuzzy ORDER BY bobot DESC LIMIT 1") or die(mysqli_error($GLOBALS['conn']));
+				while ($data_tujuh = mysqli_fetch_array($query_tujuh)){
+					$kode_penyakit = $data_tujuh['kode_penyakit'];
+
+					$query_select = mysqli_query($GLOBALS['conn'], "SELECT * FROM tmp_analisa WHERE kode_penyakit = '$kode_penyakit'") or die(mysqli_error($GLOBALS['conn']));
+					$data_select = mysqli_num_rows($query_select);
+					$query_sum = mysqli_query($GLOBALS['conn'], "SELECT * FROM relasi_penyakit_gejala WHERE kode_penyakit = '$kode_penyakit'") or die(mysqli_error($GLOBALS['conn']));
+					$data_sum = mysqli_num_rows($query_sum);
+
+					$persentase = ($data_select / $data_sum) * 100;
+				}
+
+				mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa`");
+				mysqli_query($conn, "TRUNCATE TABLE `tmp_analisa_fuzzy`");
+				//mysqli_query($conn, "TRUNCATE TABLE `tmp_gejala`");
+				mysqli_query($conn, "TRUNCATE TABLE `tmp_penyakit`");
+
+				if ($kode_penyakit == '') {
+					$sql_pasien = "SELECT * FROM data_user WHERE username='$u'";
+					$qry_pasien = mysqli_query($GLOBALS['conn'], $sql_pasien);
+					$hsl_pasien = mysqli_fetch_array($qry_pasien);
+					$sql_in = "INSERT INTO hasil_diagnosa SET username = '$hsl_pasien[username]', kode_penyakit = '', tanggal_diagnosa = NOW(), persentase = '0'";
+					mysqli_query($GLOBALS['conn'], $sql_in) or die(mysqli_error($GLOBALS['conn']));
+					echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=hasil_kosong\">";
+					exit;
+				} else {
+					$sql_pasien = "SELECT * FROM data_user WHERE username='$u'";
+					$qry_pasien = mysqli_query($GLOBALS['conn'], $sql_pasien);
+					$hsl_pasien = mysqli_fetch_array($qry_pasien);
+					$sql_in = "INSERT INTO hasil_diagnosa SET username = '$hsl_pasien[username]', kode_penyakit = '$kode_penyakit', tanggal_diagnosa = NOW(), persentase = '$persentase'";
+					mysqli_query($GLOBALS['conn'], $sql_in) or die(mysqli_error($GLOBALS['conn']));
+					echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=hasil\">";
+					exit;
+				}
+				echo "<br/><b>Note :</b> <span>Similarily, You Can Also Perform CRUD Operations using These Selected Values.</span>";
+			}
+		}
+		else {
+			$_SESSION['gagal'] = "Silahkan Pilih Gejala Yang Tersedia";
+			echo "<meta http-equiv=\"refresh\" content=\"0; url=index_user.php?act=diagnosa\">";
+		}
 	}
 ?>

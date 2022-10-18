@@ -6,7 +6,7 @@
 ?>
 <?php
 	$u = $_SESSION['SESS_USERNAME'];
-	$qry = mysqli_query($conn, "SELECT * FROM hasil_diagnosa, penyakit, data_user WHERE penyakit.kode_penyakit=hasil_diagnosa.kode_penyakit AND hasil_diagnosa.username='$u' AND hasil_diagnosa.username=data_user.username ORDER BY hasil_diagnosa.id_diagnosa DESC LIMIT 1") or die(mysqli_error());
+	$qry = mysqli_query($conn, "SELECT * FROM hasil_diagnosa INNER JOIN penyakit ON penyakit.kode_penyakit = hasil_diagnosa.kode_penyakit INNER JOIN data_user ON data_user.username = hasil_diagnosa.username WHERE hasil_diagnosa.username = '$u' ORDER BY hasil_diagnosa.id_diagnosa DESC LIMIT 1") or die(mysqli_error());
 	$data = mysqli_fetch_array($qry);
 	$id = $data['id_diagnosa'];
 ?>

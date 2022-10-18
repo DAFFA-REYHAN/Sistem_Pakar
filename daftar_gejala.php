@@ -101,7 +101,7 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="edit<?= $data['kode_gejala'] ?>Label">Edit gejala <?= $data['kode_gejala'] ?></h5>
+										<h5 class="modal-title" id="edit<?= $data['kode_gejala'] ?>Label">Edit Gejala <?= $data['kode_gejala'] ?></h5>
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
@@ -119,11 +119,6 @@
 												<br>
 												<form action="aceditgejala.php" method="post">
 													<table>
-														<tr>
-															<td colspan="3">
-																<hr color="#AAAAAA">
-															</td>
-														</tr>
 														<tr>
 															<td class="subtitle">Kode</td>
 															<td class="subtitle">:</td>

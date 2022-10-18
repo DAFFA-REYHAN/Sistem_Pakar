@@ -11,11 +11,6 @@
 	<form method="post" action="relasi_simpan.php">
 		<table width="100%" align="center" cellpadding="5">
 			<tr>
-				<td colspan="3">
-					<hr color="#AAAAAA">
-				</td>
-			</tr>
-			<tr>
 				<td class="subtitle">Nama Penyakit</td>
 			</tr>
 			<tr>
@@ -84,7 +79,7 @@
 		</table>
 		<table>
 			<tr>
-				<td align="center" class="judul"><input class="btn btn-primary btn-lg active" type="submit" name="simpan" value="Simpan" onclick="return confirm('Apakah Anda Yakin Menyimpan Data Relasi Ini ?')" />&nbsp;<input class="btn btn-primary btn-lg active" type="reset" value="Normalkan" /></td>
+				<td align="center" class="judul"><input class="btn btn-primary btn-lg active" type="submit" name="simpan" value="Simpan" onclick="return confirm('Apakah Anda Yakin Menyimpan Data Relasi Ini ?')" />&nbsp;</td>
 			</tr>
 		</table>
 	</form>

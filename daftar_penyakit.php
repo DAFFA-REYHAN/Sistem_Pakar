@@ -150,11 +150,6 @@
 													<br>
 													<table>
 														<tr>
-															<td colspan="3">
-																<hr color="#AAAAAA">
-															</td>
-														</tr>
-														<tr>
 															<td class="subtitle">Kode Penyakit</td>
 															<td>:</td>
 															<td><?php echo $kode_penyakit; ?></td>
@@ -185,25 +180,14 @@
 															<td><?php echo $detailP['definisi']; ?></td>
 														</tr>
 														<tr>
-															<td colspan='3' align='center'>...</td>
-														</tr>
-														<tr>
 															<td class="subtitle">Pengobatan</td>
 															<td align="center">:</td>
 															<td><?php echo $detailP['pengobatan']; ?></td>
 														</tr>
 														<tr>
-															<td colspan='3' align='center'>...</td>
-														</tr>
-														<tr>
 															<td class="subtitle">Pencegahan</td>
 															<td align="center">:</td>
 															<td><?php echo $detailP['pencegahan']; ?></td>
-														</tr>
-														<tr>
-															<td colspan="3">
-																<hr color="#AAAAAA">
-															</td>
 														</tr>
 													</table>
 												</div>
@@ -243,11 +227,6 @@
 													<form action="aceditpenyakit.php" method="post">
 														<table>
 															<tr>
-																<td colspan="3">
-																	<hr color="#AAAAAA">
-																</td>
-															</tr>
-															<tr>
 																<td class="subtitle">Kode</td>
 																<td class="subtitle">:</td>
 																<td>
@@ -281,11 +260,6 @@
 																<td class="subtitle" align="center">:</td>
 																<td>
 																	<textarea name="pencegahan" cols="80" rows="5" require><?php echo $editP['pencegahan']; ?></textarea>
-																</td>
-															</tr>
-															<tr>
-																<td colspan="3">
-																	<hr color="#AAAAAA">
 																</td>
 															</tr>
 															<tr>

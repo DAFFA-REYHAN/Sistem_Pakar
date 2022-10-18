@@ -7,6 +7,8 @@
 		$username = $_SESSION['SESS_USERNAME'];
 	} elseif (isset($_SESSION['user'])) {
 		header("location:index_user.php");
+	} elseif (isset($_SESSION['admin'])) {
+		header("location:index_admin.php");
 	} else {
 		header("location:index.php");
 	}

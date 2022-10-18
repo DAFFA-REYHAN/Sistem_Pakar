@@ -6,7 +6,7 @@
 	$bobot = $_POST['bobot'];
 	$kode_gejala = $_POST['kode_gejala'];
 	$jum = count($kode_gejala);
-	$total = 0;
+	/*$total = 0;
 	for ($i = 0; $i < $jum; ++$i) {
 		$total = $total + $bobot[$i];
 	}
@@ -19,5 +19,10 @@
 	} else {
 		$_SESSION['gagal'] = "Bobot Gagal Ditambahkan | Bobot Kurang Dari 100%";
 		echo "<meta http-equiv=\"refresh\" content=\"0; url=index_pakar.php?act=bobot\">";;
+	}*/
+	for ($i = 0; $i < $jum; ++$i) {
+		$qryr = mysqli_query($conn, "UPDATE relasi_penyakit_gejala SET bobot='$bobot[$i]' WHERE kode_penyakit = '$kode_penyakit' AND kode_gejala = '$kode_gejala[$i]'");
 	}
+	$_SESSION['sukses'] = "Bobot Berhasil Ditambahkan";
+	echo "<meta http-equiv=\"refresh\" content=\"0; url=index_pakar.php?act=bobot\">";
 ?>

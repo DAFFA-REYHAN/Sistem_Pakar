@@ -34,10 +34,15 @@
 			$_SESSION['hak_akses'] = "pakar";
 			header("location: index_pakar.php");
 			exit();
-		} else {
+		} else if ($hak_akses == 'user') {
 			$_SESSION['user'] = true;
 			$_SESSION['hak_akses'] = "user";
 			header("location: index_user.php");
+			exit();
+		} else if ($hak_akses == 'admin') {
+			$_SESSION['admin'] = true;
+			$_SESSION['hak_akses'] = "admin";
+			header("location: index_admin.php");
 			exit();
 		}
 	} else {

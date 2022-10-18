@@ -168,11 +168,6 @@
 												<br>
 												<table>
 													<tr>
-														<td colspan="3">
-															<hr color="#AAAAAA">
-														</td>
-													</tr>
-													<tr>
 														<td class="subtitle">Judul</td>
 														<td>:</td>
 														<td><?php echo $detailAr['judul']; ?></td>

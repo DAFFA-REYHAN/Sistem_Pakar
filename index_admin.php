@@ -2,12 +2,12 @@
 	// cek  session
 	session_start();
 
-	if (isset($_SESSION['user'])) {
+	if (isset($_SESSION['admin'])) {
 		$username = $_SESSION['SESS_USERNAME'];
 	} elseif (isset($_SESSION['pakar'])) {
 		header("location:index_pakar.php");
-	} elseif (isset($_SESSION['admin'])) {
-		header("location:index_admin.php");
+	} elseif (isset($_SESSION['user'])) {
+		header("location:index_user.php");
 	} else {
 		header("location:index.php");
 	}
@@ -33,12 +33,6 @@
 <?php include('partials/header.php') ?>
 <?php include('partials/navbar.php') ?>
 
-<!-- <style>
-	.active-side {
-		background-color: #23517f !important;
-		color: white !important;
-	}
-</style> -->
 
 <div class=" py-5" style="background-color: #23517f!important;">
 	<div class="container">
@@ -52,11 +46,8 @@
 					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "ubah_password" ? "active" : "" ?>" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">
 						<img src="gambar/ubahpassword.png" width="48" height="48" />Ubah Password
 					</a>
-					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "diagnosa" ? "active" : "" ?>" id="list-diagnosa-list" data-toggle="list" href="#list-diagnosa" role="tab" aria-controls="diagnosa">
-						<img src="gambar/diagnosa.png" width="48" height="48" />Diagnosa
-					</a>
-					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "hasil_diagnosa" ? "active" : "" ?>" id="list-hasildiagnosa-list" data-toggle="list" href="#list-hasildiagnosa" role="tab" aria-controls="hasildiagnosa">
-						<img src="gambar/lihathasil.png" width="48" height="48" />Hasil Diagnosa
+					<a class="list-group-item list-group-item-action <?= $_GET['act'] == "hakaksespakar" ? "active" : "" ?>" id="list-hakaksespakar-list" data-toggle="list" href="#list-hakaksespakar" role="tab" aria-controls="hakaksespakar">
+						<img src="gambar/ubahpassword.png" width="48" height="48" />Hak Akses Pakar
 					</a>
 					<a class="list-group-item list-group-item-action" href="logout.php">
 						<img src="gambar/keluar.png" width="48" height="48" />Keluar
@@ -85,52 +76,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade <?= $_GET['act'] == "diagnosa" ? "active show" : "" ?>" id="list-diagnosa" role="tabpanel" aria-labelledby="list-diagnosa-list">
+					<div class="tab-pane fade <?= $_GET['act'] == "hakaksespakar" ? "active show" : "" ?>" id="list-hakaksespakar" role="tabpanel" aria-labelledby="list-hakaksespakar-list">
 						<div class="card">
 							<div class="card-header">
-								Diagnosa
+								Hak Akses Pakar
 							</div>
 							<div class="card-body">
-								<?php include "diagnosa_user.php" ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade <?= $_GET['act'] == "hasil_diagnosa" ? "active show" : "" ?>" id="list-hasildiagnosa" role="tabpanel" aria-labelledby="list-hasildiagnosa-list">
-						<div class="card">
-							<div class="card-header">
-								Hasil Diagnosa
-							</div>
-							<div class="card-body">
-								<?php include "hasil_diagnosa_user.php" ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade  <?= $_GET['act'] == "hasil" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
-						<div class="card">
-							<div class="card-header">
-								Hasil
-							</div>
-							<div class="card-body">
-								<?php include "hasil.php" ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade  <?= $_GET['act'] == "detail" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
-						<div class="card">
-							<div class="card-header">
-							</div>
-							<div class="card-body">
-								<?php include "user_detail.php" ?>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane fade  <?= $_GET['act'] == "hasil_kosong" ? "active show" : "" ?>" id="list-hasil" role="tabpanel" aria-labelledby="list-hasil-list">
-						<div class="card">
-							<div class="card-header">
-								Hasil
-							</div>
-							<div class="card-body">
-								<?php include "hasil0.php" ?>
+								<?php include "hak_akses_pakar.php" ?>
 							</div>
 						</div>
 					</div>

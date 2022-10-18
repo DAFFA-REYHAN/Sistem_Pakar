@@ -64,7 +64,7 @@
 											}
 											else
 											{
-												$arr_penyakit = (explode("|",$data['kode_penyakit']));
+												/*$arr_penyakit = (explode("|",$data['kode_penyakit']));
 												$list_penyakit = '';
 												foreach ($arr_penyakit as $value) {
 													$kd = substr($value,0,5);
@@ -72,7 +72,11 @@
 													$data_penyakit = mysqli_fetch_array($qry_penyakit);
 													$list_penyakit = $list_penyakit . $data_penyakit['nama_penyakit'] . ' (' . substr($value,6) . ' %)' . ' | ';
 												}
-												echo substr($list_penyakit, 0, -3);
+												echo substr($list_penyakit, 0, -3);*/
+
+												$qry_penyakit = mysqli_query($conn, "SELECT * FROM penyakit WHERE kode_penyakit = '$data[kode_penyakit]'");
+												$data_penyakit = mysqli_fetch_array($qry_penyakit);
+												echo $data_penyakit['nama_penyakit'] . ' (' . number_format($data['persentase'], 2, '.', '') . ' %)';
 											}
 										?>
 									</td>

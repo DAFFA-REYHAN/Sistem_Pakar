@@ -7,21 +7,21 @@
 		<div style="height:450px;width:100%;font:10px;overflow:scroll;">
 			<table>
 				<?php
-				$qry = mysqli_query($conn, "SELECT * FROM gejala ORDER BY kode_gejala");
-				while ($data = mysqli_fetch_array($qry)) {
+					$qry = mysqli_query($conn, "SELECT * FROM gejala ORDER BY kode_gejala");
+					while ($data = mysqli_fetch_array($qry)) {
 				?>
-					<tr style="padding-bottom: 3px;">
-						<td>
-							<input type="checkbox" name="check_list[]" value="<?php echo $data['kode_gejala']; ?>" style="cursor:pointer;">
-						</td>
-						<td style="padding-left: 5px; padding-top:3px">
-							<li style="list-style:none">
-								<label><?php echo $data['nama_gejala']; ?></label>
-							</li>
-						</td>
-					</tr>
-				<?php
-				}
+						<tr style="padding-bottom: 3px;">
+							<td>
+								<input type="checkbox" name="check_list[]" value="<?php echo $data['kode_gejala']; ?>">
+							</td>
+							<td style="padding-left: 5px; padding-top:3px">
+								<li style="list-style:none">
+									<label><?php echo $data['nama_gejala']; ?></label>
+								</li>
+							</td>
+						</tr>
+				<?php 
+					}
 				?>
 			</table>
 		</div>
